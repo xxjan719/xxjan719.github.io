@@ -487,10 +487,38 @@
         text-decoration: none;
       }
 
-      .map-attribution a:hover {
-        color: var(--link-color);
-        text-decoration: underline;
-      }
+              .map-attribution a:hover {
+          color: var(--link-color);
+          text-decoration: underline;
+        }
+
+        /* Leaflet map styling */
+        .leaflet-container {
+          background-color: var(--card-bg) !important;
+        }
+
+        .leaflet-popup-content-wrapper {
+          background-color: var(--card-bg) !important;
+          color: var(--text-color) !important;
+          border: 1px solid var(--border-color) !important;
+        }
+
+        .leaflet-popup-tip {
+          background-color: var(--card-bg) !important;
+        }
+
+        .visitor-tooltip {
+          background-color: var(--card-bg) !important;
+          color: var(--text-color) !important;
+          border: 1px solid var(--border-color) !important;
+          font-size: 12px !important;
+          padding: 4px 8px !important;
+        }
+
+        .custom-div-icon {
+          background: transparent !important;
+          border: none !important;
+        }
 
       @media (max-width: 768px) {
         .post-title {
@@ -779,6 +807,10 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/mdbootstrap@4.20.0/js/mdb.min.js"></script>
 
+    <!-- Leaflet CSS and JS for interactive map -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
     <!-- Font Awesome -->
     <script src="https://kit.fontawesome.com/your-kit-code.js" crossorigin="anonymous"></script>
 
@@ -786,6 +818,7 @@
     <script>
       // Store visitor locations (in a real implementation, this would be saved to a database)
       let visitorLocations = [];
+      let map;
       
       // Function to detect visitor location using IP geolocation
       async function detectVisitorLocation() {
@@ -831,60 +864,43 @@
       // Function to load world map with visitor locations
       function loadWorldMap() {
         const mapContainer = document.getElementById('world-map');
-        const loadingElement = document.getElementById('map-loading');
         
-        // Create world map using OpenStreetMap
-        const mapUrl = 'https://www.openstreetmap.org/export/embed.html?bbox=-180,-90,180,90&layer=mapnik';
-        
-        // Create iframe for world map
-        const iframe = document.createElement('iframe');
-        iframe.src = mapUrl;
-        iframe.width = '100%';
-        iframe.height = '180';
-        iframe.frameBorder = '0';
-        iframe.scrolling = 'no';
-        iframe.marginHeight = '0';
-        iframe.marginWidth = '0';
-        iframe.title = 'World Visitor Map';
-        
-        // Replace loading text with map
+        // Clear container
         mapContainer.innerHTML = '';
-        mapContainer.appendChild(iframe);
+        
+        // Initialize Leaflet map
+        map = L.map('world-map').setView([20, 0], 2);
+        
+        // Add OpenStreetMap tiles
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+          attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
         
         // Add red dots for visitor locations
         if (visitorLocations.length > 0) {
-          setTimeout(() => {
-            visitorLocations.forEach((visitor, index) => {
-              const dot = document.createElement('div');
-              dot.style.cssText = `
-                position: absolute;
-                width: 8px;
-                height: 8px;
-                background-color: #ff0000;
-                border: 2px solid #ffffff;
-                border-radius: 50%;
-                z-index: 1000;
-                box-shadow: 0 0 4px rgba(0,0,0,0.5);
-              `;
-              
-              // Calculate position on map (simplified mapping)
-              // This is a basic approximation - in a real implementation you'd use proper map projection
-              const x = ((visitor.lng + 180) / 360) * 100; // Convert longitude to percentage
-              const y = ((90 - visitor.lat) / 180) * 100;  // Convert latitude to percentage
-              
-              dot.style.left = `${x}%`;
-              dot.style.top = `${y}%`;
-              dot.style.transform = 'translate(-50%, -50%)';
-              
-              // Add tooltip
-              const tooltipText = visitor.city && visitor.country 
-                ? `${visitor.city}, ${visitor.country}` 
-                : `Visitor ${index + 1}: ${visitor.lat.toFixed(2)}, ${visitor.lng.toFixed(2)}`;
-              dot.title = tooltipText;
-              
-              mapContainer.appendChild(dot);
+          visitorLocations.forEach((visitor, index) => {
+            // Create custom red dot icon
+            const redDotIcon = L.divIcon({
+              className: 'custom-div-icon',
+              html: `<div style="background-color: #ff0000; width: 8px; height: 8px; border: 2px solid #ffffff; border-radius: 50%; box-shadow: 0 0 4px rgba(0,0,0,0.5);"></div>`,
+              iconSize: [8, 8],
+              iconAnchor: [4, 4]
             });
-          }, 1000);
+            
+            // Create tooltip text
+            const tooltipText = visitor.city && visitor.country 
+              ? `${visitor.city}, ${visitor.country}` 
+              : `Visitor ${index + 1}: ${visitor.lat.toFixed(2)}, ${visitor.lng.toFixed(2)}`;
+            
+            // Add marker to map
+            const marker = L.marker([visitor.lat, visitor.lng], { icon: redDotIcon })
+              .addTo(map)
+              .bindTooltip(tooltipText, {
+                permanent: false,
+                direction: 'top',
+                className: 'visitor-tooltip'
+              });
+          });
         }
       }
       
