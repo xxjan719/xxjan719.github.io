@@ -35,12 +35,12 @@
     }
 
     [data-theme="dark"] {
-      --text-color: #ffffff;
+      --text-color: #90EE90;
       --bg-color: #212529;
-      --link-color: #4285f4;
+      --link-color: #90EE90;
       --border-color: #495057;
       --navbar-bg: #212529;
-      --navbar-text: #ffffff;
+      --navbar-text: #90EE90;
       --section-bg: #343a40;
       --card-bg: #2b3035;
       --shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.5);
@@ -78,7 +78,7 @@
     .navbar {
       background-color: var(--navbar-bg) !important;
       border: none;
-      padding: 15px 0;
+      padding: 8px 0;
       box-shadow: var(--shadow);
       transition: background-color 0.3s ease;
     }
@@ -90,8 +90,8 @@
     .navbar-nav > li > a {
       color: var(--navbar-text) !important;
       font-weight: 400;
-      font-size: 16px;
-      margin: 0 15px;
+      font-size: 14px;
+      margin: 0 10px;
       transition: color 0.3s ease;
       text-decoration: none;
     }
@@ -209,7 +209,7 @@
     }
     
     .job-market-text {
-      color: var(--link-color);
+      color: var(--text-color);
       margin: 0;
       font-weight: 400;
       font-size: 14px;
@@ -238,20 +238,20 @@
     }
     
     .section-title {
-      font-size: 1.8em;
+      font-size: 1.5em;
       font-weight: 300;
       color: var(--text-color);
-      margin: 0 0 30px 0;
+      margin: 0 0 20px 0;
       border-bottom: 2px solid var(--border-color);
-      padding-bottom: 10px;
+      padding-bottom: 8px;
       transition: color 0.3s ease;
     }
     
     .bio-text {
-      font-size: 16px;
-      line-height: 1.8;
+      font-size: 14px;
+      line-height: 1.5;
       color: var(--text-color);
-      margin-bottom: 30px;
+      margin-bottom: 20px;
       transition: color 0.3s ease;
     }
     
@@ -266,21 +266,21 @@
     }
     
     .research-interests {
-      margin-top: 30px;
+      margin-top: 15px;
     }
     
     .research-title {
       font-weight: 700;
       color: var(--text-color);
-      margin-bottom: 15px;
+      margin-bottom: 8px;
       font-size: 14px;
       transition: color 0.3s ease;
     }
     
     .research-text {
       color: var(--text-color);
-      line-height: 1.8;
-      font-size: 16px;
+      line-height: 1.5;
+      font-size: 14px;
       transition: color 0.3s ease;
     }
     
@@ -331,14 +331,14 @@
     
     .moon-icon {
       color: var(--navbar-text);
-      font-size: 16px;
+      font-size: 14px;
       cursor: pointer;
       transition: color 0.3s ease;
     }
     
     .fa-cog {
       color: var(--navbar-text);
-      font-size: 16px;
+      font-size: 14px;
       transition: color 0.3s ease;
     }
     
@@ -364,34 +364,44 @@
     
     .pub-list-item {
       margin-bottom: 30px;
-      padding: 20px;
-      background-color: var(--card-bg);
-      border-radius: 6px;
-      box-shadow: var(--shadow);
-      transition: background-color 0.3s ease;
+      display: flex;
+      align-items: flex-start;
+    }
+    
+    .pub-abbr {
+      width: 120px;
+      margin-right: 20px;
+      flex-shrink: 0;
+    }
+    
+    .pub-abbr .badge {
+      background-color: var(--link-color);
+      color: var(--bg-color);
+      font-size: 12px;
+      padding: 4px 8px;
+      border-radius: 4px;
+      font-weight: 500;
+    }
+    
+    .pub-content {
+      flex: 1;
     }
     
     .article-title {
       font-size: 16px;
-      margin-bottom: 10px;
+      margin-bottom: 8px;
       font-weight: 500;
+      color: var(--text-color);
     }
     
     .article-title a {
-      color: var(--link-color);
+      color: var(--text-color);
       text-decoration: none;
     }
     
     .article-title a:hover {
-      color: var(--link-color);
-      text-decoration: none;
-    }
-    
-    .pub-abstract {
-      font-size: 14px;
-      margin-bottom: 10px;
       color: var(--text-color);
-      transition: color 0.3s ease;
+      text-decoration: none;
     }
     
     .pub-authors {
@@ -401,24 +411,33 @@
       transition: color 0.3s ease;
     }
     
+    .pub-authors em {
+      color: var(--link-color);
+      font-style: normal;
+    }
+    
     .pub-publication {
       font-size: 14px;
       margin-bottom: 10px;
       color: var(--text-color);
       transition: color 0.3s ease;
+      font-style: italic;
     }
     
     .btn-outline {
-      border: 1px solid var(--border-color);
+      border: 1px solid var(--text-color);
       color: var(--text-color);
       background-color: transparent;
       transition: all 0.3s ease;
+      font-size: 12px;
+      padding: 4px 8px;
+      margin-right: 8px;
     }
     
     .btn-outline:hover {
-      background-color: var(--link-color);
-      border-color: var(--link-color);
-      color: white;
+      background-color: var(--text-color);
+      border-color: var(--text-color);
+      color: var(--bg-color);
     }
     
           @media (max-width: 768px) {
@@ -569,38 +588,42 @@
     <section id="publications" class="section">
       <h2 class="section-title">Selected Publications</h2>
       <div class="pub-list-item">
-        <h3 class="article-title">
-          <a href="http://121.199.17.194/paper/1478416071372460032">Deep Learning via Neural Energy Descent</a>
-        </h3>
-        <div class="pub-abstract">
-          The Neural Energy Descent (NED) via evolution equations shows that deep learning can be reformulated as the evolution of network parameters and the steady state solution of the PDE can be seen as a network-based solution.
+        <div class="pub-abbr">
+          <span class="badge">arXiv</span>
         </div>
-        <div class="pub-authors">
-          Wenrui Hao, Chunmei Wang, Xingjian Xu, Haizhao Yang
-        </div>
-        <div class="pub-publication">
-          <em>arxiv:2302.10424</em>, 2023
-        </div>
-        <div class="pub-links">
-          <a class="btn btn-primary btn-outline" href="https://arxiv.org/pdf/2302.10424.pdf">PDF</a>
+        <div class="pub-content">
+          <h3 class="article-title">
+            <a href="http://121.199.17.194/paper/1478416071372460032">Deep Learning via Neural Energy Descent</a>
+          </h3>
+          <div class="pub-authors">
+            Wenrui Hao, Chunmei Wang, <em>Xingjian Xu</em>, Haizhao Yang
+          </div>
+          <div class="pub-publication">
+            <em>arxiv:2302.10424</em>, 2023
+          </div>
+          <div class="pub-links">
+            <a class="btn btn-primary btn-outline" href="https://arxiv.org/pdf/2302.10424.pdf">PDF</a>
+          </div>
         </div>
       </div>
 
       <div class="pub-list-item">
-        <h3 class="article-title">
-          <a href="http://121.199.17.194/paper/1478416071372460032">Discovery of subdiffusion problem with noisy data via deep learning</a>
-        </h3>
-        <div class="pub-abstract">
-          Two types DNNs for identifying source function of subdiffusion with noisy data by using L1 approximation is presented.
+        <div class="pub-abbr">
+          <span class="badge">JSC</span>
         </div>
-        <div class="pub-authors">
-          Xingjian Xu, Minghua Chen
-        </div>
-        <div class="pub-publication">
-          <em>Journal of Scientific Computing</em>, 2022 (preprint available)
-        </div>
-        <div class="pub-links">
-          <a class="btn btn-primary btn-outline" href="https://arxiv.org/pdf/2201.00146.pdf">PDF</a>
+        <div class="pub-content">
+          <h3 class="article-title">
+            <a href="http://121.199.17.194/paper/1478416071372460032">Discovery of subdiffusion problem with noisy data via deep learning</a>
+          </h3>
+          <div class="pub-authors">
+            <em>Xingjian Xu</em>, Minghua Chen
+          </div>
+          <div class="pub-publication">
+            <em>Journal of Scientific Computing</em>, 2022 (preprint available)
+          </div>
+          <div class="pub-links">
+            <a class="btn btn-primary btn-outline" href="https://arxiv.org/pdf/2201.00146.pdf">PDF</a>
+          </div>
         </div>
       </div>
     </section>
