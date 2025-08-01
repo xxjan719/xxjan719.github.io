@@ -12,7 +12,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha512-6MXa8B6uaO18Hid6blRMetEIoPqHf7Ux1tnyIQdpt9qI5OACx7C+O3IVTr98vwGnlcg0LOLa02i9Y1HpVhlfiw==" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.8.1/css/academicons.min.css" integrity="sha512-NThgw3XKQ1absAahW6to7Ey42uycrVvfNfyjqcFNgCmOCQ5AR4AO0SiXrN+8ZtYeappp56lk1WtvjVmEa+VR6A==" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha512-SfTiTlX6kk+qitfevl/7LibUOeJWlt9rbyDn92a1DqWOw9vWG2MFoays0sgObmWazO5BQPiFucnnEAjpAB+/Sw==" crossorigin="anonymous">
-  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:400,700%7CMerriweather%7CRoboto+Mono">
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:100,300,400,500,700">
   <link rel="stylesheet" href="/css/hugo-academic.css">
   <link rel="alternate" href="https://xxjan719.github.io/index.xml" type="application/rss+xml" title="Xingjian Xu">
   <link rel="feed" href="https://xxjan719.github.io/index.xml" type="application/rss+xml" title="Xingjian Xu">
@@ -22,58 +22,70 @@
   <title>Xingjian Xu</title>
   
   <style>
+    :root {
+      --text-color: #333;
+      --bg-color: #fff;
+      --link-color: #007bff;
+      --border-color: #dee2e6;
+      --navbar-bg: #fff;
+      --navbar-text: #333;
+      --section-bg: #f8f9fa;
+      --card-bg: #fff;
+      --shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+    }
+
+    [data-theme="dark"] {
+      --text-color: #e9ecef;
+      --bg-color: #212529;
+      --link-color: #6ea8fe;
+      --border-color: #495057;
+      --navbar-bg: #212529;
+      --navbar-text: #e9ecef;
+      --section-bg: #343a40;
+      --card-bg: #2b3035;
+      --shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.5);
+    }
+
     body {
-      background-color: #1a1a1a;
-      color: #ffffff;
-      font-family: 'Lato', sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      font-family: 'Roboto', sans-serif;
       line-height: 1.6;
       margin: 0;
       padding: 0;
       transition: background-color 0.3s ease, color 0.3s ease;
     }
     
-    body.light-mode {
-      background-color: #ffffff;
-      color: #333333;
-    }
-    
     .navbar {
-      background-color: #1a1a1a !important;
+      background-color: var(--navbar-bg) !important;
       border: none;
       padding: 15px 0;
+      box-shadow: var(--shadow);
       transition: background-color 0.3s ease;
     }
     
-    body.light-mode .navbar {
-      background-color: #ffffff !important;
-    }
-    
     .navbar-brand {
-      color: #ffffff !important;
-      font-weight: bold;
-      font-size: 16px;
+      color: var(--navbar-text) !important;
+      font-weight: 500;
+      font-size: 18px;
       transition: color 0.3s ease;
     }
     
-    body.light-mode .navbar-brand {
-      color: #333333 !important;
-    }
-    
     .navbar-nav > li > a {
-      color: #ffffff !important;
+      color: var(--navbar-text) !important;
       font-weight: 400;
       font-size: 14px;
       margin: 0 10px;
       transition: color 0.3s ease;
     }
     
-    body.light-mode .navbar-nav > li > a {
-      color: #333333 !important;
+    .navbar-nav > li > a:hover {
+      color: var(--link-color) !important;
+      background-color: transparent !important;
     }
     
-    .navbar-nav > li > a:hover {
-      color: #4285f4 !important;
-      background-color: transparent !important;
+    .navbar-nav > li > a:visited {
+      color: var(--navbar-text) !important;
     }
     
     .main-container {
@@ -90,11 +102,12 @@
     }
     
     .profile-image {
-      width: 180px;
-      height: 180px;
+      width: 250px;
+      height: 250px;
       border-radius: 8px;
       object-fit: cover;
       flex-shrink: 0;
+      box-shadow: var(--shadow);
     }
     
     .profile-info {
@@ -102,31 +115,32 @@
     }
     
     .profile-name {
-      font-size: 1.8em;
-      font-weight: bold;
+      font-size: 2.2em;
+      font-weight: 300;
       margin: 0 0 10px 0;
-      color: #ffffff;
+      color: var(--text-color);
       transition: color 0.3s ease;
     }
     
-    body.light-mode .profile-name {
-      color: #333333;
+    .profile-name .font-weight-bold {
+      font-weight: 700;
     }
     
     .profile-title {
-      font-size: 1em;
-      color: #ffffff;
+      font-size: 1.1em;
+      color: var(--text-color);
       margin: 0 0 20px 0;
       transition: color 0.3s ease;
     }
     
-    body.light-mode .profile-title {
-      color: #333333;
+    .profile-title a {
+      color: var(--link-color);
+      text-decoration: none;
     }
     
-    .profile-title a {
-      color: #4285f4;
-      text-decoration: none;
+    .profile-title a:hover {
+      color: var(--link-color);
+      text-decoration: underline;
     }
     
     .contact-info {
@@ -141,37 +155,34 @@
     
     .contact-info li {
       margin: 8px 0;
-      color: #ffffff;
+      color: var(--text-color);
       font-size: 14px;
       transition: color 0.3s ease;
     }
     
-    body.light-mode .contact-info li {
-      color: #333333;
-    }
-    
     .contact-info a {
-      color: #4285f4;
+      color: var(--link-color);
       text-decoration: none;
     }
     
+    .contact-info a:hover {
+      color: var(--link-color);
+      text-decoration: underline;
+    }
+    
     .job-market-box {
-      background-color: #2a2a2a;
-      border-left: 4px solid #4285f4;
+      background-color: var(--section-bg);
+      border: 1px solid var(--border-color);
       padding: 15px 20px;
       margin: 20px 0;
       border-radius: 4px;
       transition: background-color 0.3s ease;
     }
     
-    body.light-mode .job-market-box {
-      background-color: #f5f5f5;
-    }
-    
     .job-market-text {
-      color: #4285f4;
+      color: var(--text-color);
       margin: 0;
-      font-weight: 500;
+      font-weight: 400;
       font-size: 14px;
     }
     
@@ -182,18 +193,14 @@
     }
     
     .social-links a {
-      color: #ffffff;
+      color: var(--text-color);
       font-size: 18px;
       text-decoration: none;
       transition: color 0.3s ease;
     }
     
-    body.light-mode .social-links a {
-      color: #333333;
-    }
-    
     .social-links a:hover {
-      color: #4285f4;
+      color: var(--link-color);
     }
     
     .section {
@@ -201,34 +208,31 @@
     }
     
     .section-title {
-      font-size: 1.5em;
-      font-weight: bold;
-      color: #ffffff;
+      font-size: 1.8em;
+      font-weight: 300;
+      color: var(--text-color);
       margin: 0 0 30px 0;
-      border-bottom: 2px solid #4285f4;
+      border-bottom: 2px solid var(--border-color);
       padding-bottom: 10px;
       transition: color 0.3s ease;
-    }
-    
-    body.light-mode .section-title {
-      color: #333333;
     }
     
     .bio-text {
       font-size: 14px;
       line-height: 1.8;
-      color: #ffffff;
+      color: var(--text-color);
       margin-bottom: 30px;
       transition: color 0.3s ease;
     }
     
-    body.light-mode .bio-text {
-      color: #333333;
+    .bio-text a {
+      color: var(--link-color);
+      text-decoration: none;
     }
     
-    .bio-text a {
-      color: #4285f4;
-      text-decoration: none;
+    .bio-text a:hover {
+      color: var(--link-color);
+      text-decoration: underline;
     }
     
     .research-interests {
@@ -236,145 +240,121 @@
     }
     
     .research-title {
-      font-weight: bold;
-      color: #ffffff;
+      font-weight: 700;
+      color: var(--text-color);
       margin-bottom: 15px;
       font-size: 14px;
       transition: color 0.3s ease;
     }
     
-    body.light-mode .research-title {
-      color: #333333;
-    }
-    
     .research-text {
-      color: #ffffff;
+      color: var(--text-color);
       line-height: 1.8;
       font-size: 14px;
       transition: color 0.3s ease;
     }
     
-    body.light-mode .research-text {
-      color: #333333;
-    }
-    
     .research-text strong {
-      color: #ffffff;
-      font-weight: bold;
+      color: var(--text-color);
+      font-weight: 700;
     }
     
-    body.light-mode .research-text strong {
-      color: #333333;
+    .awards-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
     }
     
-    .awards-list {
-      list-style: none;
-      padding: 0;
+    .awards-table td {
+      padding: 12px 0;
+      vertical-align: top;
+      border-bottom: 1px solid var(--border-color);
     }
     
-    .awards-list li {
-      margin: 15px 0;
-      padding: 15px;
-      background-color: #2a2a2a;
-      border-radius: 6px;
-      border-left: 4px solid #4285f4;
-      transition: background-color 0.3s ease;
+    .awards-table td:first-child {
+      width: 120px;
+      font-weight: 500;
+      color: var(--text-color);
+      white-space: nowrap;
+      padding-right: 20px;
     }
     
-    body.light-mode .awards-list li {
-      background-color: #f5f5f5;
+    .awards-table td:last-child {
+      color: var(--text-color);
     }
     
-    .award-year {
-      font-weight: bold;
-      color: #ffffff;
-      font-size: 14px;
-      transition: color 0.3s ease;
-    }
-    
-    body.light-mode .award-year {
-      color: #333333;
-    }
-    
-    .award-text {
-      color: #ffffff;
-      margin-top: 5px;
-      font-size: 14px;
-      transition: color 0.3s ease;
-    }
-    
-    body.light-mode .award-text {
-      color: #333333;
+    .awards-table strong {
+      font-weight: 700;
     }
     
     .moon-icon {
-      color: #ffffff;
+      color: var(--navbar-text);
       font-size: 16px;
       cursor: pointer;
       transition: color 0.3s ease;
     }
     
-    body.light-mode .moon-icon {
-      color: #333333;
-    }
-    
     .moon-icon:hover {
-      color: #4285f4;
+      color: var(--link-color);
     }
     
     .pub-list-item {
       margin-bottom: 30px;
       padding: 20px;
-      background-color: #2a2a2a;
+      background-color: var(--card-bg);
       border-radius: 6px;
+      box-shadow: var(--shadow);
       transition: background-color 0.3s ease;
-    }
-    
-    body.light-mode .pub-list-item {
-      background-color: #f5f5f5;
     }
     
     .article-title {
       font-size: 16px;
       margin-bottom: 10px;
+      font-weight: 500;
     }
     
     .article-title a {
-      color: #4285f4;
+      color: var(--link-color);
       text-decoration: none;
+    }
+    
+    .article-title a:hover {
+      color: var(--link-color);
+      text-decoration: underline;
     }
     
     .pub-abstract {
       font-size: 14px;
       margin-bottom: 10px;
-      color: #ffffff;
+      color: var(--text-color);
       transition: color 0.3s ease;
-    }
-    
-    body.light-mode .pub-abstract {
-      color: #333333;
     }
     
     .pub-authors {
       font-size: 14px;
       margin-bottom: 5px;
-      color: #ffffff;
+      color: var(--text-color);
       transition: color 0.3s ease;
-    }
-    
-    body.light-mode .pub-authors {
-      color: #333333;
     }
     
     .pub-publication {
       font-size: 14px;
       margin-bottom: 10px;
-      color: #ffffff;
+      color: var(--text-color);
       transition: color 0.3s ease;
     }
     
-    body.light-mode .pub-publication {
-      color: #333333;
+    .btn-outline {
+      border: 1px solid var(--border-color);
+      color: var(--text-color);
+      background-color: transparent;
+      transition: all 0.3s ease;
+    }
+    
+    .btn-outline:hover {
+      background-color: var(--link-color);
+      border-color: var(--link-color);
+      color: white;
     }
     
     @media (max-width: 768px) {
@@ -384,13 +364,18 @@
       }
       
       .profile-image {
-        width: 150px;
-        height: 150px;
+        width: 200px;
+        height: 200px;
         margin: 0 auto;
       }
       
       .social-links {
         justify-content: center;
+      }
+      
+      .awards-table td:first-child {
+        width: 100px;
+        font-size: 12px;
       }
     }
   </style>
@@ -410,7 +395,7 @@
       </div>
       <div class="collapse navbar-collapse">
         <ul class="nav navbar-nav navbar-right">
-          <li class="nav-item">
+          <li class="nav-item active">
             <a href="/#about" data-target="#about">
               <span>About</span>
             </a>
@@ -431,7 +416,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <i class="fa fa-moon-o moon-icon"></i>
+            <i class="fa fa-moon-o moon-icon" id="theme-toggle"></i>
           </li>
         </ul>
       </div>
@@ -443,31 +428,31 @@
     <section id="about" class="profile-section">
       <img src="https://xxjan719.github.io/img/protrait.jpg" alt="Xingjian Xu" class="profile-image">
       <div class="profile-info">
-        <h1 class="profile-name">Xingjian Xu</h1>
-        <h2 class="profile-title">Second-year student in Mathematical Program @ <a href="https://www.ufl.edu/">University of Florida</a></h2>
+        <h1 class="profile-name">
+          <span class="font-weight-bold">Xingjian</span> Xu(Hsu)
+        </h1>
+        <p class="profile-title">Second-year student in Mathematical Program @ <a href="https://www.ufl.edu/" target="_blank">University of Florida</a></p>
         
         <div class="contact-info">
-          <ul>
-            <li>• Contact: <a href="mailto:xingjianxu@ufl.edu">xingjianxu@ufl.edu</a></li>
-            <li>• Office: LIT 453, University of Florida, 32611</li>
-          </ul>
+          <p class="contact-note">• Contact: <a href="mailto:xingjianxu@ufl.edu">xingjianxu@ufl.edu</a><br>
+          • Office: LIT 453, University of Florida, 32611</p>
         </div>
         
         <div class="job-market-box">
-          <p class="job-market-text">I am actively pursuing research opportunities in numerical methods and scientific computing.</p>
+          <pre class="job-market-text">I am actively exploring research interests in numerical methods and scientific computing.</pre>
         </div>
         
         <div class="social-links">
-          <a href="https://github.com/xxjan719" target="_blank">
+          <a href="https://github.com/xxjan719" target="_blank" title="GitHub">
             <i class="fa fa-github"></i>
           </a>
-          <a href="https://www.linkedin.com/in/xingjian-xu-hsu-858953273/" target="_blank">
+          <a href="https://www.linkedin.com/in/xingjian-xu-hsu-858953273/" target="_blank" title="LinkedIn">
             <i class="fa fa-linkedin"></i>
           </a>
-          <a href="https://people.clas.ufl.edu/xingjianxu/files/English_cv.pdf" target="_blank">
+          <a href="https://people.clas.ufl.edu/xingjianxu/files/English_cv.pdf" target="_blank" title="CV">
             <i class="fa fa-file-text-o"></i>
           </a>
-          <a href="https://twitter.com/xxjan6291" target="_blank">
+          <a href="https://twitter.com/xxjan6291" target="_blank" title="Twitter">
             <i class="fa fa-twitter"></i>
           </a>
         </div>
@@ -476,9 +461,9 @@
 
     <!-- Bios Section -->
     <section class="section">
-      <h2 class="section-title">Bios</h2>
+      <h2 class="section-title" id="bios">Bios</h2>
       <div class="bio-text">
-        <p>I am currently a second-year student in the Mathematical Program at the University of Florida, working with <a href="https://people.clas.ufl.edu/chunmei-wang/">Prof. Chunmei Wang</a> in Gainesville, Florida. I earned my M.S. in Mathematics from Lanzhou University in 2023 under the supervision of <a href="http://mathteacher.lzu.edu.cn/system/TeacherProfileqt/content2.jsp?id=52">Dr. Minghua Chen</a>.</p>
+        <p>I am currently a third-year Ph.D. student in the Mathematical Program at University of Florida, working with <a href="https://people.clas.ufl.edu/chunmei-wang/" target="_blank">Prof. Chunmei Wang</a> in Gainesville, Florida. I earned my M.S. in Mathematics from Lanzhou University in 2023 under the supervision of <a href="http://mathteacher.lzu.edu.cn/system/TeacherProfileqt/content2.jsp?id=52" target="_blank">Dr. Minghua Chen</a>.</p>
         
         <div class="research-interests">
           <p class="research-title">Research Interests:</p>
@@ -489,56 +474,56 @@
 
     <!-- Awards & Grants Section -->
     <section class="section">
-      <h2 class="section-title">Awards & Grants</h2>
-      <ul class="awards-list">
-        <li>
-          <div class="award-year">2023-2024</div>
-          <div class="award-text">Graduate Teaching Assistantship, University of Florida</div>
-        </li>
-        <li>
-          <div class="award-year">2020-2023</div>
-          <div class="award-text">Master's Degree Scholarship, Lanzhou University</div>
-        </li>
-        <li>
-          <div class="award-year">2016-2020</div>
-          <div class="award-text">Bachelor's Degree Scholarship, South China Normal University</div>
-        </li>
-      </ul>
+      <h2 class="section-title" id="awards--grants">Awards & Grants</h2>
+      <table class="awards-table">
+        <tr>
+          <td>2023–2024</td>
+          <td><strong>University of Florida</strong>, Graduate Teaching Assistantship</td>
+        </tr>
+        <tr>
+          <td>2020–2023</td>
+          <td><strong>Lanzhou University</strong>, Master's Degree Scholarship</td>
+        </tr>
+        <tr>
+          <td>2016–2020</td>
+          <td><strong>South China Normal University</strong>, Bachelor's Degree Scholarship</td>
+        </tr>
+      </table>
     </section>
 
     <!-- Publications Section -->
     <section id="publications" class="section">
-      <h2 class="section-title">Publications</h2>
-      <div class="pub-list-item" itemscope itemtype="http://schema.org/CreativeWork">
-        <h3 class="article-title" itemprop="name">
-          <a href="http://121.199.17.194/paper/1478416071372460032" itemprop="url">Deep Learning via Neural Energy Descent</a>
+      <h2 class="section-title">Selected Publications</h2>
+      <div class="pub-list-item">
+        <h3 class="article-title">
+          <a href="http://121.199.17.194/paper/1478416071372460032">Deep Learning via Neural Energy Descent</a>
         </h3>
-        <div class="pub-abstract" itemprop="text">
+        <div class="pub-abstract">
           The Neural Energy Descent (NED) via evolution equations shows that deep learning can be reformulated as the evolution of network parameters and the steady state solution of the PDE can be seen as a network-based solution.
         </div>
-        <div class="pub-authors" itemprop="author">
+        <div class="pub-authors">
           Wenrui Hao, Chunmei Wang, Xingjian Xu, Haizhao Yang
         </div>
         <div class="pub-publication">
-          In <em>arxiv:2302.10424</em>, 2023.
+          <em>arxiv:2302.10424</em>, 2023
         </div>
         <div class="pub-links">
           <a class="btn btn-primary btn-outline" href="https://arxiv.org/pdf/2302.10424.pdf">PDF</a>
         </div>
       </div>
 
-      <div class="pub-list-item" itemscope itemtype="http://schema.org/CreativeWork">
-        <h3 class="article-title" itemprop="name">
-          <a href="http://121.199.17.194/paper/1478416071372460032" itemprop="url">Discovery of subdiffusion problem with noisy data via deep learning</a>
+      <div class="pub-list-item">
+        <h3 class="article-title">
+          <a href="http://121.199.17.194/paper/1478416071372460032">Discovery of subdiffusion problem with noisy data via deep learning</a>
         </h3>
-        <div class="pub-abstract" itemprop="text">
+        <div class="pub-abstract">
           Two types DNNs for identifying source function of subdiffusion with noisy data by using L1 approximation is presented.
         </div>
-        <div class="pub-authors" itemprop="author">
+        <div class="pub-authors">
           Xingjian Xu, Minghua Chen
         </div>
         <div class="pub-publication">
-          In <em>Journal of Scientific Computing</em>, 2022 (preprint available).
+          <em>Journal of Scientific Computing</em>, 2022 (preprint available)
         </div>
         <div class="pub-links">
           <a class="btn btn-primary btn-outline" href="https://arxiv.org/pdf/2201.00146.pdf">PDF</a>
@@ -550,8 +535,7 @@
   <footer class="site-footer">
     <div class="container">
       <p class="powered-by">
-        &copy; 2025 Xingjian Xu &middot; 
-        Powered by the <a href="https://github.com/gcushen/hugo-academic" target="_blank">Academic theme</a> for <a href="http://gohugo.io" target="_blank">Hugo</a>.
+        © Copyright 2025 Xingjian Xu. Powered by the <a href="https://github.com/gcushen/hugo-academic" target="_blank">Academic theme</a> for <a href="http://gohugo.io" target="_blank">Hugo</a>.
         <span class="pull-right" aria-hidden="true">
           <a href="#" id="back_to_top">
             <span class="button_icon">
@@ -575,32 +559,32 @@
   <script>hljs.initHighlightingOnLoad();</script>
   
   <script>
-    // Light/Dark mode toggle functionality
+    // Theme toggle functionality
     document.addEventListener('DOMContentLoaded', function() {
-      const moonIcon = document.querySelector('.moon-icon');
+      const themeToggle = document.getElementById('theme-toggle');
       const body = document.body;
       
-      // Check for saved theme preference or default to dark mode
-      const currentTheme = localStorage.getItem('theme') || 'dark';
-      if (currentTheme === 'light') {
-        body.classList.add('light-mode');
-        moonIcon.classList.remove('fa-moon-o');
-        moonIcon.classList.add('fa-sun-o');
+      // Check for saved theme preference or default to light mode
+      const currentTheme = localStorage.getItem('theme') || 'light';
+      if (currentTheme === 'dark') {
+        body.setAttribute('data-theme', 'dark');
+        themeToggle.classList.remove('fa-moon-o');
+        themeToggle.classList.add('fa-sun-o');
       }
       
-      moonIcon.addEventListener('click', function() {
-        if (body.classList.contains('light-mode')) {
-          // Switch to dark mode
-          body.classList.remove('light-mode');
-          moonIcon.classList.remove('fa-sun-o');
-          moonIcon.classList.add('fa-moon-o');
-          localStorage.setItem('theme', 'dark');
-        } else {
+      themeToggle.addEventListener('click', function() {
+        if (body.getAttribute('data-theme') === 'dark') {
           // Switch to light mode
-          body.classList.add('light-mode');
-          moonIcon.classList.remove('fa-moon-o');
-          moonIcon.classList.add('fa-sun-o');
+          body.removeAttribute('data-theme');
+          themeToggle.classList.remove('fa-sun-o');
+          themeToggle.classList.add('fa-moon-o');
           localStorage.setItem('theme', 'light');
+        } else {
+          // Switch to dark mode
+          body.setAttribute('data-theme', 'dark');
+          themeToggle.classList.remove('fa-moon-o');
+          themeToggle.classList.add('fa-sun-o');
+          localStorage.setItem('theme', 'dark');
         }
       });
     });
