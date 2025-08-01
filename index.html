@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
   <!-- Head -->
-  <head>
+<head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    
+
     <!-- Metadata, OpenGraph and Schema.org -->
     <!-- Standard metadata -->
-    <meta charset="utf-8">
+  <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Xingjian Xu (Hsu)</title>
     <meta name="author" content="Xingjian Xu (Hsu)">
     <meta name="description" content="Third-year Ph.D. student in Mathematical Program at University of Florida">
@@ -606,8 +606,8 @@
               </li>
               
             </ul>
-          </div>
-        </div>
+    </div>
+  </div>
       </nav>
     </header>
 
@@ -621,7 +621,7 @@
                 <img src="img/protrait.jpg" class="img-fluid z-depth-1 rounded" width="100%" height="auto" alt="Xingjian Xu" loading="eager">
               </picture>
             </figure>
-          </div>
+</div>
 
           <div class="col-md-9">
             <header class="post-header">
@@ -657,8 +657,8 @@
                 </a>
               </p>
             </header>
-          </div>
-        </div>
+  </div>
+</div>
 
         <article class="mt-3">
           <!-- Content -->
@@ -702,7 +702,7 @@
             <div class="publications">
               <ol class="bibliography">
                 <li>
-                  <div class="row">
+<div class="row">
                     <div class="col col-sm-2 abbr">
                       <abbr class="badge rounded w-100">arXiv</abbr>
                     </div>
@@ -718,8 +718,8 @@
                         <a href="https://arxiv.org/pdf/2302.10424.pdf" class="btn btn-sm z-depth-0" role="button" rel="external nofollow noopener" target="_blank">PDF</a>
                       </div>
                     </div>
-                  </div>
-                </li>
+  </div>
+      </li>
                 <li>
                   <div class="row">
                     <div class="col col-sm-2 abbr">
@@ -738,20 +738,19 @@
                       </div>
                     </div>
                   </div>
-                </li>
+      </li>
               </ol>
-            </div>
-          </div>
+  </div>
+</div>
 
           <!-- Visitor Map Section -->
-          <h2 id="visitor-map">Visitor Map</h2>
           <div class="visitor-map-container">
             <div class="map-info">
               <p>This map shows the locations of visitors to my website from around the world.</p>
               <p id="visitor-location">Detecting your location...</p>
             </div>
             <div class="map-wrapper">
-              <div id="world-map" style="width: 100%; height: 400px; background-color: var(--card-bg); border-radius: 8px; display: flex; align-items: center; justify-content: center;">
+              <div id="world-map" style="width: 100%; height: 250px; background-color: var(--card-bg); border-radius: 8px; display: flex; align-items: center; justify-content: center; position: relative;">
                 <div id="map-loading">Loading world map...</div>
               </div>
               <div class="map-attribution">
@@ -769,8 +768,8 @@
     <footer class="fixed-bottom" role="contentinfo">
       <div class="container mt-0">
         © Copyright 2025 Xingjian Xu (Hsu). Powered by <a href="https://jekyllrb.com/" target="_blank" rel="external nofollow noopener">Jekyll</a> with <a href="https://github.com/alshedivat/al-folio" rel="external nofollow noopener" target="_blank">al-folio</a> theme.
-      </div>
-    </footer>
+  </div>
+</footer>
 
     <!-- JavaScripts -->
     <!-- jQuery -->
@@ -837,7 +836,7 @@
         const iframe = document.createElement('iframe');
         iframe.src = mapUrl;
         iframe.width = '100%';
-        iframe.height = '400';
+        iframe.height = '250';
         iframe.frameBorder = '0';
         iframe.scrolling = 'no';
         iframe.marginHeight = '0';
@@ -848,24 +847,36 @@
         mapContainer.innerHTML = '';
         mapContainer.appendChild(iframe);
         
-        // Add visitor markers (this would be more sophisticated in a real implementation)
+        // Add red dots for visitor locations
         if (visitorLocations.length > 0) {
           setTimeout(() => {
-            const visitorInfo = document.createElement('div');
-            visitorInfo.style.cssText = `
-              position: absolute;
-              top: 10px;
-              right: 10px;
-              background: var(--card-bg);
-              padding: 10px;
-              border-radius: 4px;
-              border: 1px solid var(--border-color);
-              color: var(--text-color);
-              font-size: 12px;
-              z-index: 1000;
-            `;
-            visitorInfo.innerHTML = `👥 Visitors: ${visitorLocations.length}`;
-            mapContainer.appendChild(visitorInfo);
+            visitorLocations.forEach((visitor, index) => {
+              const dot = document.createElement('div');
+              dot.style.cssText = `
+                position: absolute;
+                width: 8px;
+                height: 8px;
+                background-color: #ff0000;
+                border: 2px solid #ffffff;
+                border-radius: 50%;
+                z-index: 1000;
+                box-shadow: 0 0 4px rgba(0,0,0,0.5);
+              `;
+              
+              // Calculate position on map (simplified mapping)
+              // This is a basic approximation - in a real implementation you'd use proper map projection
+              const x = ((visitor.lng + 180) / 360) * 100; // Convert longitude to percentage
+              const y = ((90 - visitor.lat) / 180) * 100;  // Convert latitude to percentage
+              
+              dot.style.left = `${x}%`;
+              dot.style.top = `${y}%`;
+              dot.style.transform = 'translate(-50%, -50%)';
+              
+              // Add tooltip
+              dot.title = `Visitor ${index + 1}: ${visitor.lat.toFixed(2)}, ${visitor.lng.toFixed(2)}`;
+              
+              mapContainer.appendChild(dot);
+            });
           }, 1000);
         }
       }
