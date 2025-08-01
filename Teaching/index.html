@@ -9,9 +9,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Xingjian Xu</title>
+    <title>Teaching - Xingjian Xu</title>
     <meta name="author" content="Xingjian Xu">
-    <meta name="description" content="Third-year Ph.D. student in Mathematical Program at University of Florida">
+    <meta name="description" content="Teaching experience and courses taught by Xingjian Xu">
 
     <!-- Bootstrap & MDB -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
@@ -283,135 +283,73 @@
         background-color: transparent !important;
       }
 
-      .publications {
-        margin-top: 20px;
+      .teaching-section {
+        margin-bottom: 40px;
       }
 
-      .bibliography {
-        list-style: none;
-        padding: 0;
+      .course-card {
+        background-color: var(--card-bg);
+        border-radius: 8px;
+        padding: 20px;
+        margin-bottom: 20px;
+        box-shadow: var(--shadow);
+        transition: all 0.3s ease;
       }
 
-      .bibliography li {
-        margin-bottom: 30px;
+      .course-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
       }
 
-      .bibliography .row {
-        display: flex;
-        align-items: flex-start;
-      }
-
-      .bibliography .abbr {
-        width: 120px;
-        margin-right: 20px;
-        flex-shrink: 0;
-      }
-
-      .bibliography .badge {
-        background-color: var(--link-color);
-        color: var(--bg-color);
-        font-size: 12px;
-        padding: 4px 8px;
-        border-radius: 4px;
-        font-weight: 500;
-        display: block;
-        text-align: center;
-      }
-
-      .bibliography .title {
-        font-size: 16px;
-        margin-bottom: 8px;
-        font-weight: 500;
-        color: var(--text-color);
-      }
-
-      .bibliography .title a {
-        color: var(--text-color);
-        text-decoration: none;
-      }
-
-      .bibliography .title a:hover {
-        color: var(--text-color);
-        text-decoration: none;
-      }
-
-      .bibliography .author {
-        font-size: 14px;
-        margin-bottom: 5px;
-        color: var(--text-color);
-      }
-
-      .bibliography .author em {
+      .course-title {
+        font-size: 18px;
+        font-weight: 600;
         color: var(--link-color);
-        font-style: normal;
+        margin-bottom: 10px;
       }
 
-      .bibliography .periodical {
+      .course-code {
         font-size: 14px;
+        color: var(--text-color);
+        font-weight: 500;
+        margin-bottom: 8px;
+      }
+
+      .course-semester {
+        font-size: 14px;
+        color: var(--text-color);
         margin-bottom: 10px;
+      }
+
+      .course-description {
+        font-size: 14px;
+        line-height: 1.5;
+        color: var(--text-color);
+        margin-bottom: 10px;
+      }
+
+      .course-role {
+        font-size: 14px;
         color: var(--text-color);
         font-style: italic;
       }
 
-      .bibliography .links {
-        margin-top: 8px;
+      .teaching-philosophy {
+        background-color: var(--card-bg);
+        border-left: 4px solid var(--link-color);
+        padding: 20px;
+        margin: 30px 0;
+        border-radius: 0 8px 8px 0;
       }
 
-      .bibliography .btn {
-        border: 1px solid var(--text-color);
-        color: var(--text-color);
-        background-color: transparent;
-        font-size: 12px;
-        padding: 4px 8px;
-        margin-right: 8px;
-        text-decoration: none;
-        border-radius: 4px;
-        transition: all 0.3s ease;
-      }
-
-      .bibliography .btn:hover {
-        background-color: var(--text-color);
-        border-color: var(--text-color);
-        color: var(--bg-color);
-        text-decoration: none;
-      }
-
-      .news {
-        margin-top: 20px;
-      }
-
-      .news .table-responsive {
-        max-height: 60vw;
-      }
-
-      .news .table {
-        background-color: transparent !important;
-      }
-
-      .news .table td, .news .table th {
-        background-color: transparent !important;
-        border: none;
-        padding: 8px 0;
-      }
-
-      .news .table th {
-        width: 12%;
-        font-weight: 600;
-        color: var(--text-color);
-      }
-
-      .news .table td {
-        color: var(--text-color);
-      }
-
-      .news .table td a {
+      .teaching-philosophy h3 {
         color: var(--link-color);
-        text-decoration: none;
+        margin-bottom: 15px;
+        font-size: 1.3em;
       }
 
-      .news .table td a:hover {
-        color: var(--link-color);
-        text-decoration: underline;
+      .teaching-philosophy p {
+        margin-bottom: 10px;
       }
 
       footer {
@@ -439,11 +377,6 @@
         
         .desc {
           font-size: 1em;
-        }
-        
-        .bibliography .abbr {
-          width: 80px;
-          margin-right: 15px;
         }
         
         .navbar-nav > li > a {
@@ -512,25 +445,25 @@
             <ul class="navbar-nav ml-auto flex-nowrap">
               
               <!-- About -->
-              <li class="nav-item active">
-                <a class="nav-link" href="/">About
-                  <span class="sr-only">(current)</span>
-                </a>
+              <li class="nav-item">
+                <a class="nav-link" href="../">About</a>
               </li>
 
               <!-- Publications -->
               <li class="nav-item">
-                <a class="nav-link" href="#publications">Publications</a>
+                <a class="nav-link" href="../#publications">Publications</a>
               </li>
 
               <!-- Services -->
               <li class="nav-item">
-                <a class="nav-link" href="#services">Services</a>
+                <a class="nav-link" href="../#services">Services</a>
               </li>
 
               <!-- Teaching -->
-              <li class="nav-item">
-                <a class="nav-link" href="teaching/">Teaching</a>
+              <li class="nav-item active">
+                <a class="nav-link" href="./">Teaching
+                  <span class="sr-only">(current)</span>
+                </a>
               </li>
               
               <!-- Toggle theme mode -->
@@ -553,7 +486,7 @@
           <div class="col-md-3">
             <figure>
               <picture>
-                <img src="img/protrait.jpg" class="img-fluid z-depth-1 rounded" width="100%" height="auto" alt="Xingjian Xu" loading="eager">
+                <img src="../img/protrait.jpg" class="img-fluid z-depth-1 rounded" width="100%" height="auto" alt="Xingjian Xu" loading="eager">
               </picture>
             </figure>
           </div>
@@ -581,7 +514,7 @@
                 <a href="https://www.linkedin.com/in/yourusername" title="LinkedIn" rel="external nofollow noopener" target="_blank">
                   <i class="fa-brands fa-linkedin"></i>
                 </a>
-                <a href="post/resume/English_cv.pdf" title="CV" rel="external nofollow noopener" target="_blank">
+                <a href="../post/resume/English_cv.pdf" title="CV" rel="external nofollow noopener" target="_blank">
                   <i class="fa fa-file-text-o"></i>
                 </a>
                 <a href="https://twitter.com/yourusername" title="Twitter" rel="external nofollow noopener" target="_blank">
@@ -595,72 +528,13 @@
         <article class="mt-3">
           <!-- Content -->
           <div class="clearfix">
-            <h2 id="bios">Bios</h2>
+            <h2>Teaching</h2>
             
-            <p>I am currently a third-year Ph.D. student in the Mathematical Program at University of Florida, working with <a href="#" rel="external nofollow noopener" target="_blank">Dr. Chunmei Wang</a> in Gainesville, Florida. I earned my M.S. in Mathematics from Lanzhou University in 2023 under the supervision of <a href="#" rel="external nofollow noopener" target="_blank">Dr. Minghua Chen</a>. I earned my B.A. from South China Normal University in 2020 under the supervision of <a href="https://user.scnu.edu.cn/profile/index/user.html?site=maths&uid=9762" rel="external nofollow noopener" target="_blank">Dr. Hua jin</a> and <a href="http://faculty.scnu.edu.cn/wenxge" rel="external nofollow noopener" target="_blank">Dr. Wenxiu Ge</a>.</p>
-            
-            <p><strong>Research Interests:</strong> My research lies in the field of <strong>Numerical Methods and Scientific Computing</strong>, with a particular focus on integrating mathematical modeling and computational techniques to advance scientific applications. I work on <strong>Scientific Machine Learning</strong>, Statistical Learning, and numerical analysis methods. I also develop computational models for applications in protein-protein binding and other biological systems, with interests in finite element methods and their applications.</p>
-
-                         <h2 id="awards--grants">Awards & Grants</h2>
-             
-             <table>
-               <tr>
-                 <td style="vertical-align: top; padding-right: 20px; white-space: nowrap;"><nobr>2022–2023</nobr></td>
-                 <td>
-                   <b>Lanzhou University</b>, Outstanding Graduate Student Award, $1,000 (<b>Recipient</b>).
-                 </td>
-               </tr>
-               <tr>
-                 <td style="vertical-align: top; padding-right: 20px; white-space: nowrap;"><nobr>2021–2022</nobr></td>
-                 <td>
-                   <b>Lanzhou University</b>, Academic Excellence Scholarship, $800 (<b>Recipient</b>).
-                 </td>
-               </tr>
-             </table>
-
-            <h2 id="publications">Selected Publications</h2>
-            <div class="publications">
-              <ol class="bibliography">
-                <li>
-                  <div class="row">
-                    <div class="col col-sm-2 abbr">
-                      <abbr class="badge rounded w-100">arXiv</abbr>
-                    </div>
-                    <div class="col-sm-8">
-                      <div class="title">Deep Learning via Neural Energy Descent</div>
-                      <div class="author">
-                        Wenrui Hao, Chunmei Wang, <em>Xingjian Xu</em>, Haizhao Yang
-                      </div>
-                      <div class="periodical">
-                        <em>arxiv:2302.10424</em>, 2023
-                      </div>
-                      <div class="links">
-                        <a href="https://arxiv.org/pdf/2302.10424.pdf" class="btn btn-sm z-depth-0" role="button" rel="external nofollow noopener" target="_blank">PDF</a>
-                      </div>
-                    </div>
-                  </div>
-                </li>
-                <li>
-                  <div class="row">
-                    <div class="col col-sm-2 abbr">
-                      <abbr class="badge rounded w-100">JSC</abbr>
-                    </div>
-                    <div class="col-sm-8">
-                      <div class="title">Discovery of subdiffusion problem with noisy data via deep learning</div>
-                      <div class="author">
-                        <em>Xingjian Xu</em>, Minghua Chen
-                      </div>
-                      <div class="periodical">
-                        <em>Journal of Scientific Computing</em>, 2022 (preprint available)
-                      </div>
-                      <div class="links">
-                        <a href="https://arxiv.org/pdf/2201.00146.pdf" class="btn btn-sm z-depth-0" role="button" rel="external nofollow noopener" target="_blank">PDF</a>
-                      </div>
-                    </div>
-                  </div>
-                </li>
-              </ol>
-            </div>
+            <h3>Teaching Assistant</h3>
+            <ul>
+              <li>MAC 2311 - Calculus I, Fall 2023, University of Florida</li>
+              <li>MAC 2311 - Calculus I, Spring 2024, University of Florida</li>
+            </ul>
           </div>
         </article>
       </div>
@@ -684,4 +558,4 @@
     <!-- Font Awesome -->
     <script src="https://kit.fontawesome.com/your-kit-code.js" crossorigin="anonymous"></script>
   </body>
-</html>
+</html> 
