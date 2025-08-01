@@ -1,507 +1,422 @@
 <!DOCTYPE html>
 <html lang="en-us">
 <head>
-
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="theme" content="hugo-academic">
   <meta name="generator" content="Hugo 0.27.1" />
   <meta name="author" content="Xingjian Xu">
-  <meta name="description" content="徐行健">
-<link rel="stylesheet" href="/css/highlight.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha512-6MXa8B6uaO18Hid6blRMetEIoPqHf7Ux1tnyIQdpt9qI5OACx7C+O3IVTr98vwGnlcg0LOLa02i9Y1HpVhlfiw==" crossorigin="anonymous">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.8.1/css/academicons.min.css" integrity="sha512-NThgw3XKQ1absAahW6to7Ey42uycrVvfNfyjqcFNgCmOCQ5AR4AO0SiXrN+8ZtYeappp56lk1WtvjVmEa+VR6A==" crossorigin="anonymous">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha512-SfTiTlX6kk+qitfevl/7LibUOeJWlt9rbyDn92a1DqWOw9vWG2MFoays0sgObmWazO5BQPiFucnnEAjpAB+/Sw==" crossorigin="anonymous">
-<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:400,700%7CMerriweather%7CRoboto+Mono">
-<link rel="stylesheet" href="/css/hugo-academic.css">
-<link rel="alternate" href="https://xxjan719.github.io/index.xml" type="application/rss+xml" title="Xingjian Xu">
-<link rel="feed" href="https://xxjan719.github.io/index.xml" type="application/rss+xml" title="Xingjian Xu">
-<link rel="icon" type="image/png" href="https://xxjan719.github.io/img/icon.png">
-<link rel="apple-touch-icon" type="image/png" href="https://xxjan719.github.io/img/apple-touch-icon.png">
-<link rel="canonical" href="https://xxjan719.github.io/xingjian">
-<title>Xingjian Xu</title>
-
+  <meta name="description" content="Xingjian Xu - Mathematical Program Student at University of Florida">
+  <link rel="stylesheet" href="/css/highlight.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha512-6MXa8B6uaO18Hid6blRMetEIoPqHf7Ux1tnyIQdpt9qI5OACx7C+O3IVTr98vwGnlcg0LOLa02i9Y1HpVhlfiw==" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.8.1/css/academicons.min.css" integrity="sha512-NThgw3XKQ1absAahW6to7Ey42uycrVvfNfyjqcFNgCmOCQ5AR4AO0SiXrN+8ZtYeappp56lk1WtvjVmEa+VR6A==" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha512-SfTiTlX6kk+qitfevl/7LibUOeJWlt9rbyDn92a1DqWOw9vWG2MFoays0sgObmWazO5BQPiFucnnEAjpAB+/Sw==" crossorigin="anonymous">
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:400,700%7CMerriweather%7CRoboto+Mono">
+  <link rel="stylesheet" href="/css/hugo-academic.css">
+  <link rel="alternate" href="https://xxjan719.github.io/index.xml" type="application/rss+xml" title="Xingjian Xu">
+  <link rel="feed" href="https://xxjan719.github.io/index.xml" type="application/rss+xml" title="Xingjian Xu">
+  <link rel="icon" type="image/png" href="https://xxjan719.github.io/img/icon.png">
+  <link rel="apple-touch-icon" type="image/png" href="https://xxjan719.github.io/img/apple-touch-icon.png">
+  <link rel="canonical" href="https://xxjan719.github.io/xingjian">
+  <title>Xingjian Xu</title>
+  
+  <style>
+    body {
+      background-color: #1a1a1a;
+      color: #ffffff;
+      font-family: 'Lato', sans-serif;
+      line-height: 1.6;
+      margin: 0;
+      padding: 0;
+    }
+    
+    .navbar {
+      background-color: #1a1a1a !important;
+      border: none;
+      padding: 15px 0;
+    }
+    
+    .navbar-brand {
+      color: #ffffff !important;
+      font-weight: bold;
+      font-size: 18px;
+    }
+    
+    .navbar-nav > li > a {
+      color: #4285f4 !important;
+      font-weight: 500;
+      margin: 0 10px;
+    }
+    
+    .navbar-nav > li > a:hover {
+      color: #ffffff !important;
+      background-color: transparent !important;
+    }
+    
+    .main-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+    
+    .profile-section {
+      display: flex;
+      align-items: flex-start;
+      gap: 40px;
+      margin-bottom: 60px;
+    }
+    
+    .profile-image {
+      width: 200px;
+      height: 200px;
+      border-radius: 8px;
+      object-fit: cover;
+      flex-shrink: 0;
+    }
+    
+    .profile-info {
+      flex: 1;
+    }
+    
+    .profile-name {
+      font-size: 2.5em;
+      font-weight: bold;
+      margin: 0 0 10px 0;
+      color: #ffffff;
+    }
+    
+    .profile-title {
+      font-size: 1.2em;
+      color: #ffffff;
+      margin: 0 0 20px 0;
+    }
+    
+    .profile-title a {
+      color: #4285f4;
+      text-decoration: none;
+    }
+    
+    .contact-info {
+      margin: 20px 0;
+    }
+    
+    .contact-info ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    
+    .contact-info li {
+      margin: 8px 0;
+      color: #ffffff;
+    }
+    
+    .contact-info a {
+      color: #4285f4;
+      text-decoration: none;
+    }
+    
+    .job-market-box {
+      background-color: #2a2a2a;
+      border-left: 4px solid #4285f4;
+      padding: 15px 20px;
+      margin: 20px 0;
+      border-radius: 4px;
+    }
+    
+    .job-market-text {
+      color: #4285f4;
+      margin: 0;
+      font-weight: 500;
+    }
+    
+    .social-links {
+      display: flex;
+      gap: 15px;
+      margin: 20px 0;
+    }
+    
+    .social-links a {
+      color: #ffffff;
+      font-size: 20px;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    
+    .social-links a:hover {
+      color: #4285f4;
+    }
+    
+    .section {
+      margin-bottom: 60px;
+    }
+    
+    .section-title {
+      font-size: 2em;
+      font-weight: bold;
+      color: #ffffff;
+      margin: 0 0 30px 0;
+      border-bottom: 2px solid #4285f4;
+      padding-bottom: 10px;
+    }
+    
+    .bio-text {
+      font-size: 1.1em;
+      line-height: 1.8;
+      color: #ffffff;
+      margin-bottom: 30px;
+    }
+    
+    .bio-text a {
+      color: #4285f4;
+      text-decoration: none;
+    }
+    
+    .research-interests {
+      margin-top: 30px;
+    }
+    
+    .research-title {
+      font-weight: bold;
+      color: #ffffff;
+      margin-bottom: 15px;
+    }
+    
+    .research-text {
+      color: #ffffff;
+      line-height: 1.8;
+    }
+    
+    .research-text strong {
+      color: #ffffff;
+      font-weight: bold;
+    }
+    
+    .awards-list {
+      list-style: none;
+      padding: 0;
+    }
+    
+    .awards-list li {
+      margin: 15px 0;
+      padding: 15px;
+      background-color: #2a2a2a;
+      border-radius: 6px;
+      border-left: 4px solid #4285f4;
+    }
+    
+    .award-year {
+      font-weight: bold;
+      color: #ffffff;
+    }
+    
+    .award-text {
+      color: #ffffff;
+      margin-top: 5px;
+    }
+    
+    .moon-icon {
+      color: #ffffff;
+      font-size: 18px;
+      cursor: pointer;
+    }
+    
+    @media (max-width: 768px) {
+      .profile-section {
+        flex-direction: column;
+        text-align: center;
+      }
+      
+      .profile-image {
+        width: 150px;
+        height: 150px;
+        margin: 0 auto;
+      }
+      
+      .social-links {
+        justify-content: center;
+      }
+    }
+  </style>
 </head>
+
 <body id="top" data-spy="scroll" data-target="#navbar-main" data-offset="71">
-<nav class="navbar navbar-default navbar-fixed-top" id="navbar-main">
-<div class="container">
-<div class="navbar-header">
-<button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-data-target=".navbar-collapse" aria-expanded="false">
-<span class="sr-only">Toggle navigation</span>
-<span class="icon-bar"></span>
-<span class="icon-bar"></span>
-<span class="icon-bar"></span>
-<span class="icon-bar"></span>
-<span class="icon-bar"></span>
-</button>
-<a class="navbar-brand" href="/">Xingjian Xu</a>
-</div>
-<div class="collapse navbar-collapse">
-<ul class="nav navbar-nav navbar-right">
-<li class="nav-item">
-<a href="/#about" data-target="#about">
-<span>Home</span>
-</a>
-</li>
-<li class="nav-item">
-<a href="/#Courses" data-target="#Courses">
-<span>Courses</span>
-</a>
-</li>
-</li>
-<li class="nav-item">
-<a href="/#Recent posts" data-target="#Recent posts">
-<span>Recent posts</span>
-</a>
-</li>
-<li class="nav-item">
-<a href="/#Blogs" data-target="#Blogs">
-<span>Blogs</span>
-</a>
-</li>
-
-<li class="nav-item">
-<a href="/#contact" data-target="#contact">
-<span>Contact</span>
-</a>
-</li>
-</ul>
-</div>
-</div>
-</nav>
-
-
-
-<span id="homepage" style="display: none"></span>
-<section id="about" class="home-section">
+  <nav class="navbar navbar-default navbar-fixed-top" id="navbar-main">
     <div class="container">
-<div class="row" itemprop="author" itemscope itemtype="http://schema.org/Person" itemref="person-email person-address">
-  <div class="col-xs-12 col-md-4">
-    <div id="profile">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="/">Xingjian Xu</a>
+      </div>
+      <div class="collapse navbar-collapse">
+        <ul class="nav navbar-nav navbar-right">
+          <li class="nav-item">
+            <a href="/#about" data-target="#about">
+              <span>About</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/#publications" data-target="#publications">
+              <span>Publications</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/#services" data-target="#services">
+              <span>Services</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/#teaching" data-target="#teaching">
+              <span>Teaching</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <i class="fa fa-moon-o moon-icon"></i>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
 
-      
-      <div class="portrait" style="background-image: url('https://xxjan719.github.io/img/protrait.jpg');"></div>
-      <meta itemprop="image" content="https://xxjan719.github.io/xingjian/img/protrait.jpg">
-      
+  <div class="main-container">
+    <!-- Profile Section -->
+    <section id="about" class="profile-section">
+      <img src="https://xxjan719.github.io/img/protrait.jpg" alt="Xingjian Xu" class="profile-image">
+      <div class="profile-info">
+        <h1 class="profile-name">Xingjian Xu</h1>
+        <h2 class="profile-title">Second-year student in Mathematical Program @ <a href="https://www.ufl.edu/">University of Florida</a></h2>
+        
+        <div class="contact-info">
+          <ul>
+            <li>• Contact: <a href="mailto:xingjianxu@ufl.edu">xingjianxu@ufl.edu</a></li>
+            <li>• Office: LIT 453, University of Florida, 32611</li>
+          </ul>
+        </div>
+        
+        <div class="job-market-box">
+          <p class="job-market-text">I am actively pursuing research opportunities in numerical methods and scientific computing.</p>
+        </div>
+        
+        <div class="social-links">
+          <a href="https://github.com/xxjan719" target="_blank">
+            <i class="fa fa-github"></i>
+          </a>
+          <a href="https://www.linkedin.com/in/xingjian-xu-hsu-858953273/" target="_blank">
+            <i class="fa fa-linkedin"></i>
+          </a>
+          <a href="https://people.clas.ufl.edu/xingjianxu/files/English_cv.pdf" target="_blank">
+            <i class="fa fa-file-text-o"></i>
+          </a>
+          <a href="https://twitter.com/xxjan6291" target="_blank">
+            <i class="fa fa-twitter"></i>
+          </a>
+        </div>
+      </div>
+    </section>
 
-      <div class="portrait-title">
-        <h2 itemprop="name">Xingjian Xu</h2>
-        <h3 itemprop="jobTitle">Second-year student in Mathematical Program</h3>
-        <h3 itemprop="worksFor" itemscope="" itemtype="http://schema.org/Organization">
-        <span itemprop="name">University of Florida </span>
-          
+    <!-- Bios Section -->
+    <section class="section">
+      <h2 class="section-title">Bios</h2>
+      <div class="bio-text">
+        <p>I am currently a second-year student in the Mathematical Program at the University of Florida, working with <a href="https://people.clas.ufl.edu/chunmei-wang/">Prof. Chunmei Wang</a> in Gainesville, Florida. I earned my M.S. in Mathematics from Lanzhou University in 2023 under the supervision of <a href="http://mathteacher.lzu.edu.cn/system/TeacherProfileqt/content2.jsp?id=52">Dr. Minghua Chen</a>.</p>
+        
+        <div class="research-interests">
+          <p class="research-title">Research Interests:</p>
+          <p class="research-text">My research lies in the field of <strong>Numerical Methods</strong> and <strong>Scientific Computing</strong>, with a particular focus on integrating mathematical modeling and computational techniques to advance scientific applications. I work on <strong>Scientific Machine Learning</strong>, <strong>Statistical Learning</strong>, and numerical analysis methods. I also develop computational models for applications in protein-protein binding and other biological systems, with interests in finite element methods and their applications.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Awards & Grants Section -->
+    <section class="section">
+      <h2 class="section-title">Awards & Grants</h2>
+      <ul class="awards-list">
+        <li>
+          <div class="award-year">2023-2024</div>
+          <div class="award-text">Graduate Teaching Assistantship, University of Florida</div>
+        </li>
+        <li>
+          <div class="award-year">2020-2023</div>
+          <div class="award-text">Master's Degree Scholarship, Lanzhou University</div>
+        </li>
+        <li>
+          <div class="award-year">2016-2020</div>
+          <div class="award-text">Bachelor's Degree Scholarship, South China Normal University</div>
+        </li>
+      </ul>
+    </section>
+
+    <!-- Publications Section -->
+    <section id="publications" class="section">
+      <h2 class="section-title">Publications</h2>
+      <div class="pub-list-item" itemscope itemtype="http://schema.org/CreativeWork">
+        <h3 class="article-title" itemprop="name">
+          <a href="http://121.199.17.194/paper/1478416071372460032" itemprop="url">Deep Learning via Neural Energy Descent</a>
         </h3>
-        
+        <div class="pub-abstract" itemprop="text">
+          The Neural Energy Descent (NED) via evolution equations shows that deep learning can be reformulated as the evolution of network parameters and the steady state solution of the PDE can be seen as a network-based solution.
+        </div>
+        <div class="pub-authors" itemprop="author">
+          Wenrui Hao, Chunmei Wang, Xingjian Xu, Haizhao Yang
+        </div>
+        <div class="pub-publication">
+          In <em>arxiv:2302.10424</em>, 2023.
+        </div>
+        <div class="pub-links">
+          <a class="btn btn-primary btn-outline" href="https://arxiv.org/pdf/2302.10424.pdf">PDF</a>
+        </div>
       </div>
 
-      <link itemprop="url" href="https://xxjan719.github.io/">
-
-      <ul class="social-icon" aria-hidden="true">
-        
-        
-        <li>
-          <a itemprop="sameAs" href="mailto:xingjianxu@ufl.edu" target="_blank">
-            <i class="fa fa-envelope big-icon"></i>
-          </a>
-        </li>
-        
-        
-        <li>
-          <a itemprop="sameAs" href="https://twitter.com/xxjan6291" target="_blank">
-            <i class="fa fa-twitter big-icon"></i>
-          </a>
-        </li>
-        <li>
-          <a itemprop="sameAs" href="https://www.linkedin.com/in/xingjian-xu-hsu-858953273/" target="_blank">
-          <i class='fa fa-linkedin big-icon'></i>
-          </a>  
-        </li>
-
-        <li>
-          <a itemprop="sameAs" href="https://github.com/xxjan719" target="_blank">
-            <i class="fa fa-github big-icon"></i>
-          </a>
-        </li>
-
-         <li>
-          <a itemprop="sameAs" href="https://discord.com/channels/@me" target="_blank">
-            <i class="fa fa-discord big-icon"></i>
-          </a>
-        </li>
-        
-        <li>
-          <a itemprop="sameAs" href="https://people.clas.ufl.edu/xingjianxu/files/English_cv.pdf">
-          <i class="fa fa-cv big-icon">
-          </i>
-          </a>
-   
-        
-      </ul>        
-
-    </div>
+      <div class="pub-list-item" itemscope itemtype="http://schema.org/CreativeWork">
+        <h3 class="article-title" itemprop="name">
+          <a href="http://121.199.17.194/paper/1478416071372460032" itemprop="url">Discovery of subdiffusion problem with noisy data via deep learning</a>
+        </h3>
+        <div class="pub-abstract" itemprop="text">
+          Two types DNNs for identifying source function of subdiffusion with noisy data by using L1 approximation is presented.
+        </div>
+        <div class="pub-authors" itemprop="author">
+          Xingjian Xu, Minghua Chen
+        </div>
+        <div class="pub-publication">
+          In <em>Journal of Scientific Computing</em>, 2022 (preprint available).
+        </div>
+        <div class="pub-links">
+          <a class="btn btn-primary btn-outline" href="https://arxiv.org/pdf/2201.00146.pdf">PDF</a>
+        </div>
+      </div>
+    </section>
   </div>
-  <div class="col-xs-12 col-md-8" itemprop="description">
 
-    
-
-<h1 id="biography">Biography</h1>
-
-<p>Hi, I am currently a second year student for mathematical program in University of Florida (Supervised by <a href="https://people.clas.ufl.edu/chunmei-wang/">Prof. Chunmei Wang </a>). My interests fall on Numercial Methods. 
-  You can also find me in <a href="https://people.clas.ufl.edu/xingjianxu/">this page</a>. My CV is <a href="https://people.clas.ufl.edu/xingjianxu/files/English_cv.pdf">here</a>. 
-    </p>
-
-
-    <div class="row">
-
-      
-      <div class="col-sm-5">
-        <h3>Interests</h3>
-        <ul class="ul-interests">
-          
-          <li>Scientific machine learning</li>
-          
-          <li>Statistic Learning</li>
-
-          <li>Applications for protein-protein binding</li>
-          
-        </ul>
-      </div>
-      
-
-      
-      <div class="col-sm-7">
-        <h3> Former Education</h3>
-        <ul class="ul-edu fa-ul">
-          
-          <li>
-            <i class="fa-li fa fa-graduation-cap"></i>
-            <div class="description">
-              <p class="course">M. S. Mathematics, 2020 - 2023</p>
-              <p class="supervisor">supervised by <a href="http://mathteacher.lzu.edu.cn/system/TeacherProfileqt/content2.jsp?id=52">Dr. Minghua Chen </a></p>
-              <p class="institution">Lanzhou University</p>
-              
-            </div>
-          </li>
-          
-          <li>
-            <i class="fa-li fa fa-graduation-cap"></i>
-            <div class="description">
-              <p class="course">B.S.  Applied Statistics, 2016 - 2020</p>
-              <p class="institution">South China Normal University</p>
-            </div>
-          </li>
-          
-        </ul>
-      </div>
-      
-
-    </div>
-  </div>
-</div>
-
-    </div>
-  </section>
-
-<section id="Courses" class="home-section">
+  <footer class="site-footer">
     <div class="container">
-    <div class="row">
-  <div class="col-xs-12 col-md-4 section-heading">
-    <h1>Courses</h1>
-  <p class="view-all">
-  Updated on August in 2023
- </p>
-  </div>
-
-    <a class="btn btn-primary btn-outline" href="https://web.math.ucsb.edu/~agboola/teaching/2021/winter/122A/rudin.pdf">
-    Modern Analysis
- </a>
-  
- <a class="btn btn-primary btn-outline" href="http://www.stat.uchicago.edu/~lekheng/courses/309/books/Trefethen-Bau.pdf">
-  Numerical Linear Algebra
-</a>
-
- <a class="btn btn-primary btn-outline" href="https://twiki.cern.ch/twiki/pub/Main/AVFedotovHowToRootTDecompQRH/Golub_VanLoan.Matr_comp_3ed.pdf">
-  Matrix Computation
-</a>
-
-  <a class="btn btn-primary btn-outline" href="https://b-ok.global/book/908418/1cdad0">
-    Functional Analysis
- </a>
-  <a class="btn btn-primary btn-outline" href="https://handoutset.com/wp-content/uploads/2022/07/Abstract-Algebra-3rd-Edition-David-S.-Dummit-Richard-M.-Foote.pdf">
-   An Introduction to Algebra
-  </a>
-      
- </div>
+      <p class="powered-by">
+        &copy; 2024 Xingjian Xu &middot; 
+        Powered by the <a href="https://github.com/gcushen/hugo-academic" target="_blank">Academic theme</a> for <a href="http://gohugo.io" target="_blank">Hugo</a>.
+        <span class="pull-right" aria-hidden="true">
+          <a href="#" id="back_to_top">
+            <span class="button_icon">
+              <i class="fa fa-chevron-up fa-2x"></i>
+            </span>
+          </a>
+        </span>
+      </p>
     </div>
-</section>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js" integrity="sha512-jGsMH83oKe9asCpkOVkBnUrDDTp8wl+adkB2D+//JtlxO4SrLoJdhbOysIFQJloQFD+C4Fl1rMsQZF76JjV0eQ==" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.2/imagesloaded.pkgd.min.js" integrity="sha512-iHzEu7GbSc705hE2skyH6/AlTpOfBmkx7nUqTLGzPYR+C1tRaItbRlJ7hT/D3YQ9SV0fqLKzp4XY9wKulTBGTw==" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.1/TweenMax.min.js" integrity="sha512-Z5heTz36xTemt1TbtbfXtTq5lMfYnOkXM2/eWcTTiLU01+Sw4ku1i7vScDc8fWhrP2abz9GQzgKH5NGBLoYlAw==" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.1/plugins/ScrollToPlugin.min.js" integrity="sha512-CDeU7pRtkPX6XJtF/gcFWlEwyaX7mcAp5sO3VIu/ylsdR74wEw4wmBpD5yYTrmMAiAboi9thyBUr1vXRPA7t0Q==" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha512-iztkobsvnjKfAtTNdHkGVjAYTrrtlC7mGp/54c40wowO7LhURYl3gVzzcEqGl/qKXQltJ2HwMrdLcNUdo+N/RQ==" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.4/isotope.pkgd.min.js" integrity="sha512-VDBOIlDbuC4VWxGJNmuFRQ0Li0SKkDpmGyuhAG5LTDLd/dJ/S0WMVxriR2Y+CyPL5gzjpN4f/6iqWVBJlht0tQ==" crossorigin="anonymous"></script>
+  <script src="/js/hugo-academic.js"></script>
   
-<section id="Recent posts" class="home-section">
-<div class="container">
-<div class="row">
-<div class="col-xs-12 col-md-4 section-heading">
-<h1>Recent posts</h1>
-<p class="view-all">
-  <a href="http://xxjan719.github.io/post/">
-  More Posts
-  </a>
- </p>
- </div>
-<div class="col-xs-12 col-md-8">
-  <div class="pub-list-item" itemscope="" itemprop="blogpost" itemtype="http://schema.org/BlogPosting">
-  <i class="far fa-newspaper pub-icon" aria-hidden="true"></i>
-  <a href="http://xxjan719.github.io/post/Finite_Element/" itemprop="url">
-  <span itemprop="headline">
-Fortunately  participate in the short course of “finite element method and its application"
-  </span>
-  </a>
-  </div>
-  
- <div class="pub-list-item" itemscope="" itemprop="blogpost" itemtype="http://schema.org/BlogPosting">   
- <i class="far fa-newspaper pub-icon" aria-hidden="true"></i>
-  <a href="http://xxjan719.github.io/post/resume/" itemprop="url">
-  <span itemprop="headline">
-      My brief CV online (updated on Jun 6th in 2022)
-  </span>
-  </a>
- </div>
-  </div>
-  </div>
-  </div>
-</section>
-  
-  <section id="publications" class="home-section">
-    <div class="container">
-      
-
-
-
-<div class="row">
-  <div class="col-xs-12 col-md-4 section-heading">
-    <h1>Publications</h1>
-    
-  </div>
-  <div class="col-xs-12 col-md-8">
-    
-
-    
-      
-
-      
-    
-      
-        <div class="pub-list-item" itemscope itemtype="http://schema.org/CreativeWork">
-  <div class="row">
-
-    
-
-    <div class="col-md-12">
-
-      <h3 class="article-title" itemprop="name">
-        <a href="http://121.199.17.194/paper/1478416071372460032" itemprop="url">Deep Learning via Neural Energy Descent </a>
-      </h3>
-
-      <div class="pub-abstract" itemprop="text">
-        
-        The Nerual Energy Descent (NED) via evolution equations shows that deep learning can be reformulated as the evolution of network parameters  and the steady state solution of the PDE can be seen as a network-based solution. 
-        
-      </div>
-
-      <div class="pub-authors" itemprop="author">
-        
-        Wenrui Hao, Chunmei Wang, Xingjian Xu, Haizhao yang
-        
-      </div>
-
-      <div class="pub-publication">
-        In <em>arxiv:2302.10424 </em>,&nbsp;2023.
-      </div>
-
-      <div class="pub-links">
-      
-      
-      <a class="btn btn-primary btn-outline" href=https://arxiv.org/pdf/2302.10424.pdf">
-  PDF
-</a>
-
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-
-      <h3 class="article-title" itemprop="name">
-        <a href="http://121.199.17.194/paper/1478416071372460032" itemprop="url">Discovery of subdiffusion problem with noisy data via deep learning </a>
-      </h3>
-
-      <div class="pub-abstract" itemprop="text">
-        
-       Two types DNNs for identifying source function of subdiffusion with noisy data by using L1 approximation is presented.
-        
-      </div>
-
-      <div class="pub-authors" itemprop="author">
-        
-        Xingjian Xu, Minghua Chen
-        
-      </div>
-
-      <div class="pub-publication">
-        In <em>Journal of Scientific Computing </em>,&nbsp;2022(But we can only offer the preprint at present).
-      </div>
-
-      <div class="pub-links">
-        
-
-
-        
-        
-        
-        
-
-
-<a class="btn btn-primary btn-outline" href=https://arxiv.org/pdf/2201.00146.pdf">
-  PDF
-</a>
-
-                                                                                 
-      
-
-
-
-
-
-
-
-      </div>
-
-    </div>
-  </div>
-</div>
-
-      
-    
-      
-        
-
-
-      
-    
-
-  </div>
-</div>
-
-    </div>
-  </section>
-
-  
-  
-  <section id="contact" class="home-section">
-    <div class="container">
-      
-
-
-
-
-<div class="row">
-  <div class="col-xs-12 col-md-4 section-heading">
-    <h1>Contact</h1>
-    
-  </div>
-  <div class="col-xs-12 col-md-8">
-    
-
-    <ul class="fa-ul" itemscope>
-
-      
-      <li>
-        <i class="fa-li fa fa-envelope fa-2x" aria-hidden="true"></i>
-        <span id="person-email" itemprop="email"><a href="mailto:xingjianxu@ufl.edu">xingjianxu@ufl.edu</a></span>
-      </li>
-      
-
-      
-
-      
-
-      
-
-      
-
-      
-      <li>
-        <i class="fa-li fa fa-map-marker fa-2x" aria-hidden="true"></i>
-        <span id="person-address" itemprop="address">LIT 453, University of Florida, 32611</span>
-        
-      </li>
-      
-
-      
-
-    </ul>
-
-  </div>
-</div>
-
-    </div>
-  </section>
-
-
-
-<footer class="site-footer">
-  <div class="container">
-    <p class="powered-by">
-
-      &copy; 2024 Xingjian Xu &middot; 
-      
-      Powered by the <a href="https://github.com/gcushen/hugo-academic" target="_blank">Academic
-      theme</a> for <a href="http://gohugo.io" target="_blank">Hugo</a>.
-      <span class="pull-right" aria-hidden="true">
-        <a href="#" id="back_to_top">
-          <span class="button_icon">
-            <i class="fa fa-chevron-up fa-2x"></i>
-          </span>
-        </a>
-      </span>
-
-    </p>
-  </div>
-</footer>
-
-    
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js" integrity="sha512-jGsMH83oKe9asCpkOVkBnUrDDTp8wl+adkB2D+//JtlxO4SrLoJdhbOysIFQJloQFD+C4Fl1rMsQZF76JjV0eQ==" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.2/imagesloaded.pkgd.min.js" integrity="sha512-iHzEu7GbSc705hE2skyH6/AlTpOfBmkx7nUqTLGzPYR+C1tRaItbRlJ7hT/D3YQ9SV0fqLKzp4XY9wKulTBGTw==" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.1/TweenMax.min.js" integrity="sha512-Z5heTz36xTemt1TbtbfXtTq5lMfYnOkXM2/eWcTTiLU01+Sw4ku1i7vScDc8fWhrP2abz9GQzgKH5NGBLoYlAw==" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.1/plugins/ScrollToPlugin.min.js" integrity="sha512-CDeU7pRtkPX6XJtF/gcFWlEwyaX7mcAp5sO3VIu/ylsdR74wEw4wmBpD5yYTrmMAiAboi9thyBUr1vXRPA7t0Q==" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha512-iztkobsvnjKfAtTNdHkGVjAYTrrtlC7mGp/54c40wowO7LhURYl3gVzzcEqGl/qKXQltJ2HwMrdLcNUdo+N/RQ==" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.4/isotope.pkgd.min.js" integrity="sha512-VDBOIlDbuC4VWxGJNmuFRQ0Li0SKkDpmGyuhAG5LTDLd/dJ/S0WMVxriR2Y+CyPL5gzjpN4f/6iqWVBJlht0tQ==" crossorigin="anonymous"></script>
-    
-    <script src="/js/hugo-academic.js"></script>
-    
-
-    
-    
-      
-      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/highlight.min.js"></script>
-
-      
-
-      
-
-      <script>hljs.initHighlightingOnLoad();</script>
-    
-
-    
-    
-
-  </body>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+</body>
 </html>
