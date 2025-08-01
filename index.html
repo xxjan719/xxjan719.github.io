@@ -35,12 +35,12 @@
     }
 
     [data-theme="dark"] {
-      --text-color: #e9ecef;
+      --text-color: #ffffff;
       --bg-color: #212529;
-      --link-color: #6ea8fe;
+      --link-color: #4285f4;
       --border-color: #495057;
       --navbar-bg: #212529;
-      --navbar-text: #e9ecef;
+      --navbar-text: #ffffff;
       --section-bg: #343a40;
       --card-bg: #2b3035;
       --shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.5);
@@ -93,6 +93,7 @@
       font-size: 16px;
       margin: 0 15px;
       transition: color 0.3s ease;
+      text-decoration: none;
     }
     
     .navbar-nav {
@@ -105,6 +106,10 @@
     }
     
     .navbar-nav > li > a:visited {
+      color: var(--navbar-text) !important;
+    }
+    
+    .navbar-nav > li > a:active {
       color: var(--navbar-text) !important;
     }
     
@@ -146,6 +151,10 @@
       font-weight: 700;
     }
     
+    .profile-name .font-weight-bold:first-child {
+      font-weight: 700;
+    }
+    
     .profile-title {
       font-size: 1.1em;
       color: var(--text-color);
@@ -160,7 +169,7 @@
     
     .profile-title a:hover {
       color: var(--link-color);
-      text-decoration: underline;
+      text-decoration: none;
     }
     
     .contact-info {
@@ -187,20 +196,20 @@
     
     .contact-info a:hover {
       color: var(--link-color);
-      text-decoration: underline;
+      text-decoration: none;
     }
     
     .job-market-box {
       background-color: var(--section-bg);
-      border: 1px solid var(--border-color);
+      border-left: 4px solid var(--link-color);
       padding: 15px 20px;
       margin: 20px 0;
-      border-radius: 4px;
+      border-radius: 0;
       transition: background-color 0.3s ease;
     }
     
     .job-market-text {
-      color: var(--text-color);
+      color: var(--link-color);
       margin: 0;
       font-weight: 400;
       font-size: 14px;
@@ -217,6 +226,7 @@
       font-size: 18px;
       text-decoration: none;
       transition: color 0.3s ease;
+      margin-right: 15px;
     }
     
     .social-links a:hover {
@@ -252,7 +262,7 @@
     
     .bio-text a:hover {
       color: var(--link-color);
-      text-decoration: underline;
+      text-decoration: none;
     }
     
     .research-interests {
@@ -275,7 +285,7 @@
     }
     
     .research-text strong {
-      color: var(--text-color);
+      color: var(--text-color) !important;
       font-weight: 700;
     }
     
@@ -308,6 +318,7 @@
     
     .awards-table strong {
       font-weight: 700;
+      color: var(--text-color) !important;
     }
     
     .awards-table tr {
@@ -325,8 +336,30 @@
       transition: color 0.3s ease;
     }
     
-    .moon-icon:hover {
+    .fa-cog {
+      color: var(--navbar-text);
+      font-size: 16px;
+      transition: color 0.3s ease;
+    }
+    
+    .moon-icon:hover,
+    .fa-cog:hover {
       color: var(--link-color);
+    }
+    
+    /* Ensure all text colors match Dong Chen's design */
+    .profile-name,
+    .profile-title,
+    .contact-info li,
+    .bio-text,
+    .research-title,
+    .research-text,
+    .section-title,
+    .awards-table td,
+    .pub-abstract,
+    .pub-authors,
+    .pub-publication {
+      color: var(--text-color) !important;
     }
     
     .pub-list-item {
@@ -351,7 +384,7 @@
     
     .article-title a:hover {
       color: var(--link-color);
-      text-decoration: underline;
+      text-decoration: none;
     }
     
     .pub-abstract {
@@ -456,6 +489,7 @@
 
           <!-- Theme toggle -->
           <li class="nav-item">
+            <i class="fa fa-cog" style="margin-right: 10px;"></i>
             <i class="fa fa-moon-o moon-icon" id="theme-toggle"></i>
           </li>
         </ul>
@@ -469,9 +503,9 @@
       <img src="https://xxjan719.github.io/img/protrait.jpg" alt="Xingjian Xu" class="profile-image">
       <div class="profile-info">
         <h1 class="profile-name">
-          <span class="font-weight-bold">Xingjian</span> Xu(Hsu)
+          <span class="font-weight-bold">Xingjian</span> Xu
         </h1>
-        <p class="profile-title">Second-year student in Mathematical Program @ <a href="https://www.ufl.edu/" target="_blank">University of Florida</a></p>
+        <p class="profile-title">Third-year Ph.D. student in Mathematical Program @ <a href="https://www.ufl.edu/" target="_blank">University of Florida</a></p>
         
         <div class="contact-info">
           <p class="contact-note">• Contact: <a href="mailto:xingjianxu@ufl.edu">xingjianxu@ufl.edu</a><br>
