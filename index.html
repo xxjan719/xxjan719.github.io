@@ -750,7 +750,7 @@
               <p id="visitor-location">Detecting your location...</p>
             </div>
             <div class="map-wrapper">
-              <div id="world-map" style="width: 100%; height: 250px; background-color: var(--card-bg); border-radius: 8px; display: flex; align-items: center; justify-content: center; position: relative;">
+              <div id="world-map" style="width: 100%; height: 180px; background-color: var(--card-bg); border-radius: 8px; display: flex; align-items: center; justify-content: center; position: relative;">
                 <div id="map-loading">Loading world map...</div>
               </div>
               <div class="map-attribution">
@@ -787,39 +787,43 @@
       // Store visitor locations (in a real implementation, this would be saved to a database)
       let visitorLocations = [];
       
-      // Function to detect visitor location
-      function detectVisitorLocation() {
+      // Function to detect visitor location using IP geolocation
+      async function detectVisitorLocation() {
         const locationElement = document.getElementById('visitor-location');
         
-        if (navigator.geolocation) {
-          navigator.geolocation.getCurrentPosition(
-            function(position) {
-              const lat = position.coords.latitude;
-              const lng = position.coords.longitude;
-              
-              // Add visitor to locations array
-              visitorLocations.push({
-                lat: lat,
-                lng: lng,
-                timestamp: new Date().toISOString()
-              });
-              
-              // Update location display
-              locationElement.innerHTML = `📍 Your location: ${lat.toFixed(4)}, ${lng.toFixed(4)}`;
-              
-              // Load world map with visitor locations
-              loadWorldMap();
-            },
-            function(error) {
-              console.log('Error getting location:', error);
-              locationElement.innerHTML = '📍 Location access denied or unavailable';
-              
-              // Load world map anyway
-              loadWorldMap();
-            }
-          );
-        } else {
-          locationElement.innerHTML = '📍 Geolocation not supported by this browser';
+        try {
+          // Use free IP geolocation API
+          const response = await fetch('https://ipapi.co/json/');
+          const data = await response.json();
+          
+          if (data.latitude && data.longitude) {
+            const lat = parseFloat(data.latitude);
+            const lng = parseFloat(data.longitude);
+            const city = data.city || 'Unknown';
+            const country = data.country_name || 'Unknown';
+            
+            // Add visitor to locations array
+            visitorLocations.push({
+              lat: lat,
+              lng: lng,
+              city: city,
+              country: country,
+              timestamp: new Date().toISOString()
+            });
+            
+            // Update location display
+            locationElement.innerHTML = `📍 Your location: ${city}, ${country} (${lat.toFixed(4)}, ${lng.toFixed(4)})`;
+            
+            // Load world map with visitor locations
+            loadWorldMap();
+          } else {
+            throw new Error('No location data received');
+          }
+        } catch (error) {
+          console.log('Error getting IP location:', error);
+          locationElement.innerHTML = '📍 Location detection failed, using sample data';
+          
+          // Load world map anyway
           loadWorldMap();
         }
       }
@@ -836,7 +840,7 @@
         const iframe = document.createElement('iframe');
         iframe.src = mapUrl;
         iframe.width = '100%';
-        iframe.height = '250';
+        iframe.height = '180';
         iframe.frameBorder = '0';
         iframe.scrolling = 'no';
         iframe.marginHeight = '0';
@@ -873,7 +877,10 @@
               dot.style.transform = 'translate(-50%, -50%)';
               
               // Add tooltip
-              dot.title = `Visitor ${index + 1}: ${visitor.lat.toFixed(2)}, ${visitor.lng.toFixed(2)}`;
+              const tooltipText = visitor.city && visitor.country 
+                ? `${visitor.city}, ${visitor.country}` 
+                : `Visitor ${index + 1}: ${visitor.lat.toFixed(2)}, ${visitor.lng.toFixed(2)}`;
+              dot.title = tooltipText;
               
               mapContainer.appendChild(dot);
             });
@@ -885,11 +892,11 @@
       document.addEventListener('DOMContentLoaded', function() {
         // Add some sample visitor locations for demonstration
         visitorLocations = [
-          { lat: 29.6516, lng: -82.3248, timestamp: new Date().toISOString() }, // Gainesville, FL
-          { lat: 40.7128, lng: -74.0060, timestamp: new Date().toISOString() }, // New York, NY
-          { lat: 51.5074, lng: -0.1278, timestamp: new Date().toISOString() },  // London, UK
-          { lat: 35.6762, lng: 139.6503, timestamp: new Date().toISOString() }, // Tokyo, Japan
-          { lat: -33.8688, lng: 151.2093, timestamp: new Date().toISOString() } // Sydney, Australia
+          { lat: 29.6516, lng: -82.3248, city: 'Gainesville', country: 'United States', timestamp: new Date().toISOString() },
+          { lat: 40.7128, lng: -74.0060, city: 'New York', country: 'United States', timestamp: new Date().toISOString() },
+          { lat: 51.5074, lng: -0.1278, city: 'London', country: 'United Kingdom', timestamp: new Date().toISOString() },
+          { lat: 35.6762, lng: 139.6503, city: 'Tokyo', country: 'Japan', timestamp: new Date().toISOString() },
+          { lat: -33.8688, lng: 151.2093, city: 'Sydney', country: 'Australia', timestamp: new Date().toISOString() }
         ];
         
         // Detect current visitor location
