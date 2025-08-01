@@ -19,6 +19,7 @@
 
     <!-- Fonts & Icons -->
     <link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/academicons@1.9.1/css/academicons.min.css">
+    <link defer rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link defer rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:100,300,400,500,700|Material+Icons&display=swap">
 
     <!-- Code Syntax Highlighting -->
@@ -29,17 +30,6 @@
 
     <style>
       :root {
-        --bg-color: #ffffff;
-        --text-color: #333333;
-        --link-color: #007bff;
-        --navbar-bg: #ffffff;
-        --navbar-text: #333333;
-        --card-bg: #f8f9fa;
-        --border-color: #dee2e6;
-        --shadow: 0 2px 4px rgba(0,0,0,0.1);
-      }
-
-      [data-theme="dark"] {
         --bg-color: #1a1a1a;
         --text-color: #ffffff;
         --link-color: #90EE90;
@@ -48,6 +38,17 @@
         --card-bg: #2a2a2a;
         --border-color: #404040;
         --shadow: 0 2px 4px rgba(0,0,0,0.3);
+      }
+
+      [data-theme="light"] {
+        --bg-color: #ffffff;
+        --text-color: #333333;
+        --link-color: #007bff;
+        --navbar-bg: #ffffff;
+        --navbar-text: #333333;
+        --card-bg: #f8f9fa;
+        --border-color: #dee2e6;
+        --shadow: 0 2px 4px rgba(0,0,0,0.1);
       }
 
       body {
@@ -164,11 +165,11 @@
         background-color: var(--card-bg);
         border-left: 4px solid var(--link-color);
         border-radius: 0;
-        padding: 15px;
+        padding: 12px;
         margin: 15px 0;
         color: var(--text-color);
-        font-size: 14px;
-        line-height: 1.5;
+        font-size: 12px;
+        line-height: 1.4;
       }
 
       .contact-icons {
@@ -233,6 +234,16 @@
       p strong {
         color: var(--text-color);
         font-weight: 600;
+      }
+
+      p a {
+        color: var(--link-color) !important;
+        text-decoration: none;
+      }
+
+      p a:hover {
+        color: var(--link-color) !important;
+        text-decoration: underline;
       }
 
       table {
@@ -482,48 +493,7 @@
     <!-- Content -->
     <div class="container mt-5" role="main">
       <div class="post">
-        <div class="row">
-          <div class="col-md-3">
-            <figure>
-              <picture>
-                <img src="../img/protrait.jpg" class="img-fluid z-depth-1 rounded" width="100%" height="auto" alt="Xingjian Xu" loading="eager">
-              </picture>
-            </figure>
-          </div>
 
-          <div class="col-md-9">
-            <header class="post-header">
-              <h1 class="post-title">
-                <span class="font-weight-bold">Xingjian</span> Xu
-              </h1>
-              
-              <p class="desc">Third-year Ph.D. student in Mathematical Program @ <a href="https://www.ufl.edu/" target="_blank" rel="external nofollow noopener">University of Florida</a></p>
-              
-              <p class="contact-note">
-                • Contact: xingjianxu@ufl.edu<br>
-                • Office: LIT 453, University of Florida, 32611
-              </p>
-              
-              <pre>I am actively exploring research interests in numerical methods and scientific computing.</pre>
-
-              <!-- Social -->
-              <p class="contact-icons">
-                <a href="https://github.com/yourusername" title="GitHub" rel="external nofollow noopener" target="_blank">
-                  <i class="fa-brands fa-github"></i>
-                </a>
-                <a href="https://www.linkedin.com/in/yourusername" title="LinkedIn" rel="external nofollow noopener" target="_blank">
-                  <i class="fa-brands fa-linkedin"></i>
-                </a>
-                <a href="../post/resume/English_cv.pdf" title="CV" rel="external nofollow noopener" target="_blank">
-                  <i class="fa fa-file-text-o"></i>
-                </a>
-                <a href="https://twitter.com/yourusername" title="Twitter" rel="external nofollow noopener" target="_blank">
-                  <i class="fa fa-twitter"></i>
-                </a>
-              </p>
-            </header>
-          </div>
-        </div>
 
         <article class="mt-3">
           <!-- Content -->
@@ -532,8 +502,7 @@
             
             <h3>Teaching Assistant</h3>
             <ul>
-              <li>MAC 2311 - Calculus I, Fall 2023, University of Florida</li>
-              <li>MAC 2311 - Calculus I, Spring 2024, University of Florida</li>
+              <li>MAC 2311 - Calculus I, Fall 2025, University of Florida</li>
             </ul>
           </div>
         </article>
