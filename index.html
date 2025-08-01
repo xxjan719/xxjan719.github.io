@@ -29,33 +29,55 @@
       line-height: 1.6;
       margin: 0;
       padding: 0;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+    
+    body.light-mode {
+      background-color: #ffffff;
+      color: #333333;
     }
     
     .navbar {
       background-color: #1a1a1a !important;
       border: none;
       padding: 15px 0;
+      transition: background-color 0.3s ease;
+    }
+    
+    body.light-mode .navbar {
+      background-color: #ffffff !important;
     }
     
     .navbar-brand {
       color: #ffffff !important;
       font-weight: bold;
-      font-size: 18px;
+      font-size: 16px;
+      transition: color 0.3s ease;
+    }
+    
+    body.light-mode .navbar-brand {
+      color: #333333 !important;
     }
     
     .navbar-nav > li > a {
-      color: #4285f4 !important;
-      font-weight: 500;
+      color: #ffffff !important;
+      font-weight: 400;
+      font-size: 14px;
       margin: 0 10px;
+      transition: color 0.3s ease;
+    }
+    
+    body.light-mode .navbar-nav > li > a {
+      color: #333333 !important;
     }
     
     .navbar-nav > li > a:hover {
-      color: #ffffff !important;
+      color: #4285f4 !important;
       background-color: transparent !important;
     }
     
     .main-container {
-      max-width: 1200px;
+      max-width: 1000px;
       margin: 0 auto;
       padding: 40px 20px;
     }
@@ -68,8 +90,8 @@
     }
     
     .profile-image {
-      width: 200px;
-      height: 200px;
+      width: 180px;
+      height: 180px;
       border-radius: 8px;
       object-fit: cover;
       flex-shrink: 0;
@@ -80,16 +102,26 @@
     }
     
     .profile-name {
-      font-size: 2.5em;
+      font-size: 1.8em;
       font-weight: bold;
       margin: 0 0 10px 0;
       color: #ffffff;
+      transition: color 0.3s ease;
+    }
+    
+    body.light-mode .profile-name {
+      color: #333333;
     }
     
     .profile-title {
-      font-size: 1.2em;
+      font-size: 1em;
       color: #ffffff;
       margin: 0 0 20px 0;
+      transition: color 0.3s ease;
+    }
+    
+    body.light-mode .profile-title {
+      color: #333333;
     }
     
     .profile-title a {
@@ -110,6 +142,12 @@
     .contact-info li {
       margin: 8px 0;
       color: #ffffff;
+      font-size: 14px;
+      transition: color 0.3s ease;
+    }
+    
+    body.light-mode .contact-info li {
+      color: #333333;
     }
     
     .contact-info a {
@@ -123,12 +161,18 @@
       padding: 15px 20px;
       margin: 20px 0;
       border-radius: 4px;
+      transition: background-color 0.3s ease;
+    }
+    
+    body.light-mode .job-market-box {
+      background-color: #f5f5f5;
     }
     
     .job-market-text {
       color: #4285f4;
       margin: 0;
       font-weight: 500;
+      font-size: 14px;
     }
     
     .social-links {
@@ -139,9 +183,13 @@
     
     .social-links a {
       color: #ffffff;
-      font-size: 20px;
+      font-size: 18px;
       text-decoration: none;
       transition: color 0.3s ease;
+    }
+    
+    body.light-mode .social-links a {
+      color: #333333;
     }
     
     .social-links a:hover {
@@ -153,19 +201,29 @@
     }
     
     .section-title {
-      font-size: 2em;
+      font-size: 1.5em;
       font-weight: bold;
       color: #ffffff;
       margin: 0 0 30px 0;
       border-bottom: 2px solid #4285f4;
       padding-bottom: 10px;
+      transition: color 0.3s ease;
+    }
+    
+    body.light-mode .section-title {
+      color: #333333;
     }
     
     .bio-text {
-      font-size: 1.1em;
+      font-size: 14px;
       line-height: 1.8;
       color: #ffffff;
       margin-bottom: 30px;
+      transition: color 0.3s ease;
+    }
+    
+    body.light-mode .bio-text {
+      color: #333333;
     }
     
     .bio-text a {
@@ -181,16 +239,32 @@
       font-weight: bold;
       color: #ffffff;
       margin-bottom: 15px;
+      font-size: 14px;
+      transition: color 0.3s ease;
+    }
+    
+    body.light-mode .research-title {
+      color: #333333;
     }
     
     .research-text {
       color: #ffffff;
       line-height: 1.8;
+      font-size: 14px;
+      transition: color 0.3s ease;
+    }
+    
+    body.light-mode .research-text {
+      color: #333333;
     }
     
     .research-text strong {
       color: #ffffff;
       font-weight: bold;
+    }
+    
+    body.light-mode .research-text strong {
+      color: #333333;
     }
     
     .awards-list {
@@ -204,22 +278,103 @@
       background-color: #2a2a2a;
       border-radius: 6px;
       border-left: 4px solid #4285f4;
+      transition: background-color 0.3s ease;
+    }
+    
+    body.light-mode .awards-list li {
+      background-color: #f5f5f5;
     }
     
     .award-year {
       font-weight: bold;
       color: #ffffff;
+      font-size: 14px;
+      transition: color 0.3s ease;
+    }
+    
+    body.light-mode .award-year {
+      color: #333333;
     }
     
     .award-text {
       color: #ffffff;
       margin-top: 5px;
+      font-size: 14px;
+      transition: color 0.3s ease;
+    }
+    
+    body.light-mode .award-text {
+      color: #333333;
     }
     
     .moon-icon {
       color: #ffffff;
-      font-size: 18px;
+      font-size: 16px;
       cursor: pointer;
+      transition: color 0.3s ease;
+    }
+    
+    body.light-mode .moon-icon {
+      color: #333333;
+    }
+    
+    .moon-icon:hover {
+      color: #4285f4;
+    }
+    
+    .pub-list-item {
+      margin-bottom: 30px;
+      padding: 20px;
+      background-color: #2a2a2a;
+      border-radius: 6px;
+      transition: background-color 0.3s ease;
+    }
+    
+    body.light-mode .pub-list-item {
+      background-color: #f5f5f5;
+    }
+    
+    .article-title {
+      font-size: 16px;
+      margin-bottom: 10px;
+    }
+    
+    .article-title a {
+      color: #4285f4;
+      text-decoration: none;
+    }
+    
+    .pub-abstract {
+      font-size: 14px;
+      margin-bottom: 10px;
+      color: #ffffff;
+      transition: color 0.3s ease;
+    }
+    
+    body.light-mode .pub-abstract {
+      color: #333333;
+    }
+    
+    .pub-authors {
+      font-size: 14px;
+      margin-bottom: 5px;
+      color: #ffffff;
+      transition: color 0.3s ease;
+    }
+    
+    body.light-mode .pub-authors {
+      color: #333333;
+    }
+    
+    .pub-publication {
+      font-size: 14px;
+      margin-bottom: 10px;
+      color: #ffffff;
+      transition: color 0.3s ease;
+    }
+    
+    body.light-mode .pub-publication {
+      color: #333333;
     }
     
     @media (max-width: 768px) {
@@ -395,7 +550,7 @@
   <footer class="site-footer">
     <div class="container">
       <p class="powered-by">
-        &copy; 2024 Xingjian Xu &middot; 
+        &copy; 2025 Xingjian Xu &middot; 
         Powered by the <a href="https://github.com/gcushen/hugo-academic" target="_blank">Academic theme</a> for <a href="http://gohugo.io" target="_blank">Hugo</a>.
         <span class="pull-right" aria-hidden="true">
           <a href="#" id="back_to_top">
@@ -418,5 +573,37 @@
   
   <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/highlight.min.js"></script>
   <script>hljs.initHighlightingOnLoad();</script>
+  
+  <script>
+    // Light/Dark mode toggle functionality
+    document.addEventListener('DOMContentLoaded', function() {
+      const moonIcon = document.querySelector('.moon-icon');
+      const body = document.body;
+      
+      // Check for saved theme preference or default to dark mode
+      const currentTheme = localStorage.getItem('theme') || 'dark';
+      if (currentTheme === 'light') {
+        body.classList.add('light-mode');
+        moonIcon.classList.remove('fa-moon-o');
+        moonIcon.classList.add('fa-sun-o');
+      }
+      
+      moonIcon.addEventListener('click', function() {
+        if (body.classList.contains('light-mode')) {
+          // Switch to dark mode
+          body.classList.remove('light-mode');
+          moonIcon.classList.remove('fa-sun-o');
+          moonIcon.classList.add('fa-moon-o');
+          localStorage.setItem('theme', 'dark');
+        } else {
+          // Switch to light mode
+          body.classList.add('light-mode');
+          moonIcon.classList.remove('fa-moon-o');
+          moonIcon.classList.add('fa-sun-o');
+          localStorage.setItem('theme', 'light');
+        }
+      });
+    });
+  </script>
 </body>
 </html>
