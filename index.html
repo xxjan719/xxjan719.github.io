@@ -443,6 +443,55 @@
         text-decoration: underline;
       }
 
+      .visitor-map-container {
+        margin: 30px 0;
+      }
+
+      .map-info {
+        margin-bottom: 15px;
+      }
+
+      .map-info p {
+        font-size: 14px;
+        color: var(--text-color);
+        margin-bottom: 10px;
+      }
+
+      .map-wrapper {
+        position: relative;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: var(--shadow);
+        background-color: var(--card-bg);
+      }
+
+      .map-wrapper iframe {
+        display: block;
+        border: none;
+      }
+
+      .map-attribution {
+        padding: 8px 15px;
+        background-color: var(--card-bg);
+        border-top: 1px solid var(--border-color);
+        text-align: center;
+      }
+
+      .map-attribution small {
+        color: var(--text-color);
+        font-size: 12px;
+      }
+
+      .map-attribution a {
+        color: var(--link-color);
+        text-decoration: none;
+      }
+
+      .map-attribution a:hover {
+        color: var(--link-color);
+        text-decoration: underline;
+      }
+
       @media (max-width: 768px) {
         .post-title {
           font-size: 1.8em;
@@ -693,6 +742,25 @@
               </ol>
             </div>
           </div>
+
+          <!-- Visitor Map Section -->
+          <h2 id="visitor-map">Visitor Map</h2>
+          <div class="visitor-map-container">
+            <div class="map-info">
+              <p>This map shows the locations of visitors to my website from around the world.</p>
+              <p id="visitor-location">Detecting your location...</p>
+            </div>
+            <div class="map-wrapper">
+              <div id="world-map" style="width: 100%; height: 400px; background-color: var(--card-bg); border-radius: 8px; display: flex; align-items: center; justify-content: center;">
+                <div id="map-loading">Loading world map...</div>
+              </div>
+              <div class="map-attribution">
+                <small>
+                  <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="external nofollow noopener">© OpenStreetMap contributors</a>
+                </small>
+              </div>
+            </div>
+          </div>
         </article>
       </div>
     </div>
@@ -714,5 +782,108 @@
 
     <!-- Font Awesome -->
     <script src="https://kit.fontawesome.com/your-kit-code.js" crossorigin="anonymous"></script>
+
+    <!-- Visitor Map Script -->
+    <script>
+      // Store visitor locations (in a real implementation, this would be saved to a database)
+      let visitorLocations = [];
+      
+      // Function to detect visitor location
+      function detectVisitorLocation() {
+        const locationElement = document.getElementById('visitor-location');
+        
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(
+            function(position) {
+              const lat = position.coords.latitude;
+              const lng = position.coords.longitude;
+              
+              // Add visitor to locations array
+              visitorLocations.push({
+                lat: lat,
+                lng: lng,
+                timestamp: new Date().toISOString()
+              });
+              
+              // Update location display
+              locationElement.innerHTML = `📍 Your location: ${lat.toFixed(4)}, ${lng.toFixed(4)}`;
+              
+              // Load world map with visitor locations
+              loadWorldMap();
+            },
+            function(error) {
+              console.log('Error getting location:', error);
+              locationElement.innerHTML = '📍 Location access denied or unavailable';
+              
+              // Load world map anyway
+              loadWorldMap();
+            }
+          );
+        } else {
+          locationElement.innerHTML = '📍 Geolocation not supported by this browser';
+          loadWorldMap();
+        }
+      }
+      
+      // Function to load world map with visitor locations
+      function loadWorldMap() {
+        const mapContainer = document.getElementById('world-map');
+        const loadingElement = document.getElementById('map-loading');
+        
+        // Create world map using OpenStreetMap
+        const mapUrl = 'https://www.openstreetmap.org/export/embed.html?bbox=-180,-90,180,90&layer=mapnik';
+        
+        // Create iframe for world map
+        const iframe = document.createElement('iframe');
+        iframe.src = mapUrl;
+        iframe.width = '100%';
+        iframe.height = '400';
+        iframe.frameBorder = '0';
+        iframe.scrolling = 'no';
+        iframe.marginHeight = '0';
+        iframe.marginWidth = '0';
+        iframe.title = 'World Visitor Map';
+        
+        // Replace loading text with map
+        mapContainer.innerHTML = '';
+        mapContainer.appendChild(iframe);
+        
+        // Add visitor markers (this would be more sophisticated in a real implementation)
+        if (visitorLocations.length > 0) {
+          setTimeout(() => {
+            const visitorInfo = document.createElement('div');
+            visitorInfo.style.cssText = `
+              position: absolute;
+              top: 10px;
+              right: 10px;
+              background: var(--card-bg);
+              padding: 10px;
+              border-radius: 4px;
+              border: 1px solid var(--border-color);
+              color: var(--text-color);
+              font-size: 12px;
+              z-index: 1000;
+            `;
+            visitorInfo.innerHTML = `👥 Visitors: ${visitorLocations.length}`;
+            mapContainer.appendChild(visitorInfo);
+          }, 1000);
+        }
+      }
+      
+      // Initialize visitor map when page loads
+      document.addEventListener('DOMContentLoaded', function() {
+        // Add some sample visitor locations for demonstration
+        visitorLocations = [
+          { lat: 29.6516, lng: -82.3248, timestamp: new Date().toISOString() }, // Gainesville, FL
+          { lat: 40.7128, lng: -74.0060, timestamp: new Date().toISOString() }, // New York, NY
+          { lat: 51.5074, lng: -0.1278, timestamp: new Date().toISOString() },  // London, UK
+          { lat: 35.6762, lng: 139.6503, timestamp: new Date().toISOString() }, // Tokyo, Japan
+          { lat: -33.8688, lng: 151.2093, timestamp: new Date().toISOString() } // Sydney, Australia
+        ];
+        
+        // Detect current visitor location
+        detectVisitorLocation();
+      });
+    </script>
   </body>
 </html>
