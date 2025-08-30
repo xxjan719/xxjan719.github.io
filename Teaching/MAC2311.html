@@ -76,25 +76,35 @@
         }
 
         .light-toggle {
-            background: none;
-            border: none;
+            background: var(--navbar-bg);
+            border: 2px solid var(--border-color);
             color: var(--navbar-text);
-            font-size: 16px;
+            font-size: 18px;
             cursor: pointer;
-            padding: 8px 12px;
-            border-radius: 6px;
+            padding: 10px 15px;
+            border-radius: 8px;
             transition: all 0.3s ease;
-            margin-left: 15px;
+            margin-left: 20px;
+            min-width: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .light-toggle:hover {
-            background-color: var(--border-color);
+            background-color: var(--link-color);
+            color: var(--bg-color);
+            border-color: var(--link-color);
             transform: scale(1.05);
         }
 
         .light-toggle:focus {
             outline: none;
-            box-shadow: 0 0 0 2px var(--link-color);
+            box-shadow: 0 0 0 3px var(--link-color);
+        }
+
+        .light-toggle:active {
+            transform: scale(0.95);
         }
 
         .container {
@@ -224,6 +234,39 @@
         }
 
         /* Light theme specific styling */
+        [data-theme="light"] body {
+            background-color: #ffffff;
+        }
+
+        [data-theme="light"] .navbar {
+            background-color: #f8f9fa !important;
+            border-bottom: 1px solid #dee2e6;
+        }
+
+        [data-theme="light"] .navbar-nav > li > a {
+            color: #333333 !important;
+        }
+
+        [data-theme="light"] .navbar-nav > li > a:hover {
+            color: #007bff !important;
+        }
+
+        [data-theme="light"] .navbar-nav > li.active > a {
+            color: #007bff !important;
+        }
+
+        [data-theme="light"] .light-toggle {
+            background-color: #f8f9fa;
+            border-color: #dee2e6;
+            color: #333333;
+        }
+
+        [data-theme="light"] .light-toggle:hover {
+            background-color: #007bff;
+            color: #ffffff;
+            border-color: #007bff;
+        }
+
         [data-theme="light"] .section {
             background-color: #ffffff;
             border: 1px solid #e9ecef;
@@ -232,12 +275,12 @@
 
         [data-theme="light"] .contact-info {
             background-color: #f8f9fa;
-            border-left: 4px solid var(--link-color);
+            border-left: 4px solid #007bff;
         }
 
         [data-theme="light"] .schedule-table th {
             background-color: #e9ecef;
-            color: var(--link-color);
+            color: #007bff;
         }
 
         [data-theme="light"] .schedule-table tr:hover {
@@ -258,6 +301,28 @@
 
         [data-theme="light"] .contact-item span {
             color: #333333;
+        }
+
+        [data-theme="light"] .course-title {
+            color: #007bff;
+        }
+
+        [data-theme="light"] .section-title {
+            color: #007bff;
+        }
+
+        [data-theme="light"] .section-content a {
+            color: #007bff;
+        }
+
+        [data-theme="light"] .back-link {
+            background-color: #007bff;
+            color: #ffffff;
+        }
+
+        [data-theme="light"] .back-link:hover {
+            background-color: #0056b3;
+            color: #ffffff;
         }
 
         @media (max-width: 768px) {
@@ -302,7 +367,7 @@
                 </li>
             </ul>
             <button class="light-toggle" onclick="toggleTheme()">
-                <i class="fa fa-moon-o" id="theme-icon"></i>
+                <i class="fas fa-moon" id="theme-icon"></i>
             </button>
         </div>
     </nav>
@@ -403,9 +468,9 @@
         function updateThemeIcon(theme) {
             const icon = document.getElementById('theme-icon');
             if (theme === 'dark') {
-                icon.className = 'fa fa-moon-o';
+                icon.className = 'fas fa-moon';
             } else {
-                icon.className = 'fa fa-sun-o';
+                icon.className = 'fas fa-sun';
             }
         }
     </script>
