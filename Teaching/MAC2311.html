@@ -79,15 +79,22 @@
             background: none;
             border: none;
             color: var(--navbar-text);
-            font-size: 14px;
+            font-size: 16px;
             cursor: pointer;
-            padding: 5px 10px;
-            border-radius: 4px;
+            padding: 8px 12px;
+            border-radius: 6px;
             transition: all 0.3s ease;
+            margin-left: 15px;
         }
 
         .light-toggle:hover {
             background-color: var(--border-color);
+            transform: scale(1.05);
+        }
+
+        .light-toggle:focus {
+            outline: none;
+            box-shadow: 0 0 0 2px var(--link-color);
         }
 
         .container {
@@ -215,6 +222,27 @@
             text-decoration: none;
         }
 
+        /* Light theme specific styling */
+        [data-theme="light"] .section {
+            background-color: #ffffff;
+            border: 1px solid #e9ecef;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        [data-theme="light"] .contact-info {
+            background-color: #f8f9fa;
+            border-left: 4px solid var(--link-color);
+        }
+
+        [data-theme="light"] .schedule-table th {
+            background-color: #e9ecef;
+            color: var(--link-color);
+        }
+
+        [data-theme="light"] .schedule-table tr:hover {
+            background-color: #f8f9fa;
+        }
+
         @media (max-width: 768px) {
             .course-title {
                 font-size: 2em;
@@ -337,7 +365,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
     
     <!-- Font Awesome -->
-    <script src="https://kit.fontawesome.com/your-kit-code.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
     <!-- Theme Toggle Script -->
     <script>
