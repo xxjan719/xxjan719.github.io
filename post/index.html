@@ -1,158 +1,768 @@
 <!DOCTYPE html>
-<html lang="en-us">
+<html lang="en">
+  <!-- Head -->
 <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
+    <!-- Metadata, OpenGraph and Schema.org -->
+    <!-- Standard metadata -->
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="theme" content="hugo-academic">
-  <meta name="generator" content="Hugo 0.27.1" />
-  <meta name="author" content="Xingjian Xu">
-  <meta name="description" content="徐行健">
-<link rel="stylesheet" href="/css/highlight.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha512-6MXa8B6uaO18Hid6blRMetEIoPqHf7Ux1tnyIQdpt9qI5OACx7C+O3IVTr98vwGnlcg0LOLa02i9Y1HpVhlfiw==" crossorigin="anonymous">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.8.1/css/academicons.min.css" integrity="sha512-NThgw3XKQ1absAahW6to7Ey42uycrVvfNfyjqcFNgCmOCQ5AR4AO0SiXrN+8ZtYeappp56lk1WtvjVmEa+VR6A==" crossorigin="anonymous">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha512-SfTiTlX6kk+qitfevl/7LibUOeJWlt9rbyDn92a1DqWOw9vWG2MFoays0sgObmWazO5BQPiFucnnEAjpAB+/Sw==" crossorigin="anonymous">
-<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:400,700%7CMerriweather%7CRoboto+Mono">
-<link rel="stylesheet" href="/css/hugo-academic.css">
-<link rel="alternate" href="https://xxjan719.github.io/post/index.xml" type="application/rss+xml" title="Xingjian Xu">
-<link rel="feed" href="https://xxjan719.github.io/index.xml" type="application/rss+xml" title="Xingjian Xu">
-<link rel="icon" type="image/png" href="https://xxjan719.github.io/img/icon.png">
-<link rel="apple-touch-icon" type="image/png" href="https://xxjan719.github.io/img/apple-touch-icon.png">
-<link rel="canonical" href="https://xxjan719.github.io/post">
-<meta property="twitter:card" content="summary_large_image">
-<meta property="og:site_name" content="Xingjian Xu">
-<meta property="og:url" content="https://xxjan719.github.io/post">
-<meta property="og:title" content="Posts| Xingjian Xu">
-<meta property="og:description" content="徐行健">
-<meta property="og:locale" content="en-us">
-<meta property="og:updated_time" content="2020-10-01T00:00:00+08:00">
-<title>Posts |Xingjian Xu</title>
+    <title>Posts | Xingjian Xu (Hsu)</title>
+    <meta name="author" content="Xingjian Xu (Hsu)">
+    <meta name="description" content="Posts and articles by Xingjian Xu">
+
+    <!-- Bootstrap & MDB -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdbootstrap@4.20.0/css/mdb.min.css">
+
+    <!-- Fonts & Icons -->
+    <link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/academicons@1.9.1/css/academicons.min.css">
+    <link defer rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link defer rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:100,300,400,500,700|Material+Icons&display=swap">
+
+    <!-- Code Syntax Highlighting -->
+    <link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@5.2.0/github-markdown.min.css">
+
+    <!-- Styles -->
+    <link rel="shortcut icon" href="data:image/svg+xml,&lt;svg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20100%20100%22&gt;&lt;text%20y=%22.9em%22%20font-size=%2290%22&gt;%E2%9A%9B%EF%B8%8F&lt;/text&gt;&lt;/svg&gt;">
+
+    <style>
+      :root {
+        --bg-color: #1a1a1a;
+        --text-color: #ffffff;
+        --link-color: #90EE90;
+        --navbar-bg: #1a1a1a;
+        --navbar-text: #ffffff;
+        --card-bg: #2a2a2a;
+        --border-color: #404040;
+        --shadow: 0 2px 4px rgba(0,0,0,0.3);
+      }
+
+      [data-theme="light"] {
+        --bg-color: #ffffff;
+        --text-color: #333333;
+        --link-color: #007bff;
+        --navbar-bg: #ffffff;
+        --navbar-text: #333333;
+        --card-bg: #f8f9fa;
+        --border-color: #dee2e6;
+        --shadow: 0 2px 4px rgba(0,0,0,0.1);
+      }
+
+      body {
+        background-color: var(--bg-color);
+        color: var(--text-color);
+        font-family: 'Roboto', sans-serif;
+        transition: background-color 0.3s ease, color 0.3s ease;
+      }
+
+      .navbar {
+        background-color: var(--navbar-bg) !important;
+        box-shadow: var(--shadow);
+        transition: background-color 0.3s ease;
+        padding: 8px 0;
+      }
+
+      .navbar-brand {
+        display: none !important;
+      }
+
+      .navbar-nav {
+        float: right !important;
+      }
+
+      .navbar-nav > li > a {
+        color: var(--navbar-text) !important;
+        font-size: 14px;
+        margin: 0 10px;
+        text-decoration: none;
+        transition: color 0.3s ease;
+      }
+
+      .navbar-nav > li > a:hover {
+        color: var(--link-color) !important;
+      }
+
+      .navbar-nav > li > a:visited {
+        color: var(--navbar-text) !important;
+      }
+
+      .toggle-container {
+        margin-left: 15px;
+      }
+
+      #light-toggle {
+        background: none;
+        border: none;
+        color: var(--navbar-text);
+        font-size: 14px;
+        cursor: pointer;
+        transition: color 0.3s ease;
+      }
+
+      #light-toggle:hover {
+        color: var(--link-color);
+      }
+
+      .container {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 0 15px;
+      }
+
+      .mt-5 {
+        margin-top: 3rem !important;
+      }
+
+      .post {
+        padding: 20px 0;
+      }
+
+      .post-header {
+        margin-bottom: 30px;
+      }
+
+      .post-title {
+        font-size: 2.2em;
+        font-weight: 300;
+        margin-bottom: 10px;
+        color: var(--link-color);
+      }
+
+      .post-title .font-weight-bold {
+        font-weight: 700;
+      }
+
+      .desc {
+        font-size: 1.2em;
+        margin-bottom: 10px;
+        color: var(--text-color);
+      }
+
+      .desc a {
+        color: var(--link-color);
+        text-decoration: none;
+      }
+
+      .desc a:hover {
+        color: var(--link-color);
+        text-decoration: underline;
+      }
+
+      .contact-note {
+        font-size: 14px;
+        margin-bottom: 15px;
+        color: var(--text-color);
+      }
+
+      .contact-note br {
+        margin-bottom: 5px;
+      }
+
+      pre {
+        background-color: var(--card-bg);
+        border-left: 4px solid var(--link-color);
+        border-radius: 0;
+        padding: 12px;
+        margin: 15px 0;
+        color: var(--text-color);
+        font-size: 12px;
+        line-height: 1.4;
+      }
+
+      .contact-icons {
+        margin-top: 15px;
+      }
+
+      .contact-icons a {
+        color: var(--link-color);
+        font-size: 18px;
+        margin-right: 15px;
+        text-decoration: none;
+        transition: color 0.3s ease;
+      }
+
+      .contact-icons a:hover {
+        color: var(--text-color);
+      }
+
+      .img-fluid {
+        max-width: 100%;
+        height: auto;
+      }
+
+      .z-depth-1 {
+        box-shadow: var(--shadow);
+      }
+
+      .rounded {
+        border-radius: 0.25rem;
+      }
+
+      .mt-3 {
+        margin-top: 1rem !important;
+      }
+
+      .clearfix::after {
+        content: "";
+        clear: both;
+        display: table;
+      }
+
+      h2 {
+        font-size: 1.8em;
+        font-weight: 500;
+        margin: 30px 0 20px 0;
+        color: var(--link-color);
+        border-bottom: 2px solid var(--link-color);
+        padding-bottom: 10px;
+      }
+
+      h2#bios, h2#awards--grants {
+        color: var(--link-color);
+      }
+
+      p {
+        font-size: 16px;
+        line-height: 1.6;
+        margin-bottom: 15px;
+        color: var(--text-color);
+      }
+
+      p strong {
+        color: var(--text-color);
+        font-weight: 600;
+      }
+
+      p a {
+        color: var(--link-color) !important;
+        text-decoration: none;
+      }
+
+      p a:hover {
+        color: var(--link-color) !important;
+        text-decoration: underline;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 20px 0;
+      }
+
+      table td {
+        padding: 8px 0;
+        border: none;
+        background-color: transparent !important;
+        vertical-align: top;
+      }
+
+      table td:first-child {
+        padding-right: 20px;
+        white-space: nowrap;
+        background-color: transparent !important;
+      }
+
+      table td:last-child {
+        background-color: transparent !important;
+      }
+
+      table tr {
+        background-color: transparent !important;
+      }
+
+      table tr:hover {
+        background-color: transparent !important;
+      }
+
+      .table {
+        background-color: transparent !important;
+      }
+
+      .table td, .table th {
+        background-color: transparent !important;
+        border-color: var(--border-color) !important;
+      }
+
+      .table-striped > tbody > tr:nth-of-type(odd) {
+        background-color: transparent !important;
+      }
+
+      .table-hover > tbody > tr:hover {
+        background-color: transparent !important;
+      }
+
+      .publications {
+        margin-top: 20px;
+      }
+
+      .bibliography {
+        list-style: none;
+        padding: 0;
+      }
+
+      .bibliography li {
+        margin-bottom: 30px;
+      }
+
+      .bibliography .row {
+        display: flex;
+        align-items: flex-start;
+      }
+
+      .bibliography .abbr {
+        width: 120px;
+        margin-right: 20px;
+        flex-shrink: 0;
+      }
+
+      .bibliography .badge {
+        background-color: var(--link-color);
+        color: var(--bg-color);
+        font-size: 12px;
+        padding: 4px 8px;
+        border-radius: 4px;
+        font-weight: 500;
+        display: block;
+        text-align: center;
+      }
+
+      .bibliography .title {
+        font-size: 16px;
+        margin-bottom: 8px;
+        font-weight: 500;
+        color: var(--text-color);
+      }
+
+      .bibliography .title a {
+        color: var(--text-color);
+        text-decoration: none;
+      }
+
+      .bibliography .title a:hover {
+        color: var(--text-color);
+        text-decoration: none;
+      }
+
+      .bibliography .author {
+        font-size: 14px;
+        margin-bottom: 5px;
+        color: var(--text-color);
+      }
+
+      .bibliography .author em {
+        color: var(--link-color);
+        font-style: normal;
+      }
+
+      .bibliography .periodical {
+        font-size: 14px;
+        margin-bottom: 10px;
+        color: var(--text-color);
+        font-style: italic;
+      }
+
+      .bibliography .links {
+        margin-top: 8px;
+      }
+
+      .bibliography .btn {
+        border: 1px solid var(--text-color);
+        color: var(--text-color);
+        background-color: transparent;
+        font-size: 12px;
+        padding: 4px 8px;
+        margin-right: 8px;
+        text-decoration: none;
+        border-radius: 4px;
+        transition: all 0.3s ease;
+      }
+
+      .bibliography .btn:hover {
+        background-color: var(--text-color);
+        border-color: var(--text-color);
+        color: var(--bg-color);
+        text-decoration: none;
+      }
+
+      .news {
+        margin-top: 20px;
+      }
+
+      .news .table-responsive {
+        max-height: 60vw;
+      }
+
+      .news .table {
+        background-color: transparent !important;
+      }
+
+      .news .table td, .news .table th {
+        background-color: transparent !important;
+        border: none;
+        padding: 8px 0;
+      }
+
+      .news .table th {
+        width: 12%;
+        font-weight: 600;
+        color: var(--text-color);
+      }
+
+      .news .table td {
+        color: var(--text-color);
+      }
+
+      .news .table td a {
+        color: var(--link-color);
+        text-decoration: none;
+      }
+
+      .news .table td a:hover {
+        color: var(--link-color);
+        text-decoration: underline;
+      }
+
+      footer {
+        background-color: var(--navbar-bg);
+        color: var(--text-color);
+        padding: 20px 0;
+        margin-top: 50px;
+        border-top: 1px solid var(--border-color);
+      }
+
+      footer a {
+        color: var(--link-color);
+        text-decoration: none;
+      }
+
+      footer a:hover {
+        color: var(--link-color);
+        text-decoration: underline;
+      }
+
+      .posts-container {
+        margin-top: 30px;
+      }
+
+      .post-item {
+        background-color: var(--card-bg);
+        border: 1px solid var(--border-color);
+        border-radius: 8px;
+        padding: 20px;
+        margin-bottom: 20px;
+        transition: all 0.3s ease;
+        box-shadow: var(--shadow);
+      }
+
+      .post-item:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      }
+
+      .post-item h3 {
+        margin: 0 0 10px 0;
+        font-size: 1.4em;
+        font-weight: 500;
+        color: var(--link-color);
+      }
+
+      .post-item h3 a {
+        color: var(--link-color);
+        text-decoration: none;
+        transition: color 0.3s ease;
+      }
+
+      .post-item h3 a:hover {
+        color: var(--text-color);
+        text-decoration: none;
+      }
+
+      .post-item p {
+        margin: 0;
+        color: var(--text-color);
+        font-size: 14px;
+        line-height: 1.5;
+      }
+
+      .post-item p a {
+        color: var(--link-color);
+        text-decoration: none;
+      }
+
+      .post-item p a:hover {
+        color: var(--text-color);
+        text-decoration: underline;
+      }
+
+      .filters {
+        margin-bottom: 30px;
+        padding: 20px;
+        background-color: var(--card-bg);
+        border: 1px solid var(--border-color);
+        border-radius: 8px;
+      }
+
+      .filters .form-control {
+        background-color: var(--bg-color);
+        border: 1px solid var(--border-color);
+        color: var(--text-color);
+        border-radius: 4px;
+      }
+
+      .filters .form-control:focus {
+        background-color: var(--bg-color);
+        border-color: var(--link-color);
+        color: var(--text-color);
+        box-shadow: 0 0 0 0.2rem rgba(144, 238, 144, 0.25);
+      }
+
+      .filters .form-control::placeholder {
+        color: var(--text-color);
+        opacity: 0.7;
+      }
+
+      .filters label {
+        color: var(--text-color);
+        font-weight: 500;
+        margin-bottom: 5px;
+      }
+
+      @media (max-width: 768px) {
+        .post-title {
+          font-size: 1.8em;
+        }
+        
+        .desc {
+          font-size: 1em;
+        }
+        
+        .navbar-nav > li > a {
+          font-size: 12px;
+          margin: 0 8px;
+        }
+
+        .post-item {
+          padding: 15px;
+        }
+
+        .filters {
+          padding: 15px;
+        }
+      }
+    </style>
+
+    <!-- Dark Mode Script -->
+    <script>
+      function initTheme() {
+        const currentTheme = localStorage.getItem('theme') || 'dark';
+        document.documentElement.setAttribute('data-theme', currentTheme);
+        
+        const toggle = document.getElementById('light-toggle');
+        if (toggle) {
+          if (currentTheme === 'light') {
+            toggle.innerHTML = '<i class="fa fa-moon-o"></i>';
+          } else {
+            toggle.innerHTML = '<i class="fa fa-sun-o"></i>';
+          }
+        }
+      }
+
+      document.addEventListener('DOMContentLoaded', function() {
+        initTheme();
+        
+        const toggle = document.getElementById('light-toggle');
+        if (toggle) {
+          toggle.addEventListener('click', function() {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            
+            document.documentElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            
+            if (newTheme === 'light') {
+              toggle.innerHTML = '<i class="fa fa-moon-o"></i>';
+            } else {
+              toggle.innerHTML = '<i class="fa fa-sun-o"></i>';
+            }
+          });
+        }
+      });
+    </script>
 </head>
-<body id="top" data-spy="scroll" data-target="#navbar-main" data-offset="71">
-<nav class="navbar navbar-default navbar-fixed-top" id="navbar-main">
+
+  <!-- Body -->
+  <body class="fixed-top-nav">
+    <!-- Header -->
+    <header>
+      <!-- Nav Bar -->
+      <nav id="navbar" class="navbar navbar-light navbar-expand-sm fixed-top" role="navigation">
 <div class="container">
-<div class="navbar-header">
-<button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-data-target=".navbar-collapse" aria-expanded="false">
+          
+          <!-- Navbar Toggle -->
+          <button class="navbar-toggler collapsed ml-auto" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
 <span class="sr-only">Toggle navigation</span>
-<span class="icon-bar"></span>
-<span class="icon-bar"></span>
-<span class="icon-bar"></span>
-<span class="icon-bar"></span>
-<span class="icon-bar"></span>
+            <span class="icon-bar top-bar"></span>
+            <span class="icon-bar middle-bar"></span>
+            <span class="icon-bar bottom-bar"></span>
 </button>
-<a class="navbar-brand" href="/">Xingjian Xu</a>
-</div>
-<div class="collapse navbar-collapse">
-<ul class="nav navbar-nav navbar-right">
+
+          <div class="collapse navbar-collapse text-right" id="navbarNav">
+            <ul class="navbar-nav ml-auto flex-nowrap">
+              
+              <!-- About -->
 <li class="nav-item">
-<a href="/#about" data-target="#about">
-<span>Home</span>
-</a>
+                <a class="nav-link" href="/">About</a>
 </li>
+
+              <!-- Publications -->
 <li class="nav-item">
-<a href="/#Courses" data-target="#Courses">
-<span>Courses</span>
-</a>
+                <a class="nav-link" href="/#publications">Publications</a>
 </li>
+
+              <!-- Research -->
+              <li class="nav-item">
+                <a class="nav-link" href="/#research">Research</a>
 </li>
+
+              <!-- Services -->
 <li class="nav-item">
-<a href="/#Recent posts" data-target="#Recent posts">
-<span>Recent posts</span>
-</a>
+                <a class="nav-link" href="/#services">Services</a>
 </li>
+
+              <!-- Teaching -->
 <li class="nav-item">
-<a href="/#Blogs" data-target="#Blogs">
-<span>Blogs</span>
+                <a class="nav-link" href="/Teaching/">Teaching</a>
+              </li>
+
+              <!-- Post -->
+              <li class="nav-item active">
+                <a class="nav-link" href="/post/">Post
+                  <span class="sr-only">(current)</span>
 </a>
 </li>
 
-<li class="nav-item">
-<a href="/#contact" data-target="#contact">
-<span>Contact</span>
-</a>
+              <!-- Toggle theme mode -->
+              <li class="toggle-container">
+                <button id="light-toggle" title="Change theme">
+                  <i class="fa fa-moon-o"></i>
+                </button>
 </li>
+              
 </ul>
 </div>
 </div>
 </nav>
+    </header>
 
-<div class=page-body><div class="universal-wrapper pt-3"><h1>Posts</h1></div><div class=universal-wrapper><div class=row><div class=col-lg-12><div class="form-row mb-4"><div class=col-auto><input type=search class=filter-search placeholder=Search... autocapitalize=off autocomplete=off autocorrect=off role=textbox spellcheck=false></div><div class=col-auto><select class="pub-filters pubtype-select form-control form-control-sm" data-filter-group=pubtype><option value=*>Type</option><option value=.pubtype-1>
-Personal News</option><option value=.pubtype-2>
-Academic News</option><option value=.pubtype-4>
-Talk News</option></select></div><div class=col-auto><select class="pub-filters form-control form-control-sm" data-filter-group=year><option value=*>Date</option><option value=.year-2024>
-2024</option><option value=.year-2020>
-2020</option></select></div></div><div id=container-publications><div class="grid-sizer col-lg-12 isotope-item pubtype-1 year-2023"><div class=pub-list-item style=margin-bottom:1rem><i class="far fa-file-alt pub-icon" aria-hidden=true></i>
+    <!-- Content -->
+    <div class="container mt-5" role="main">
+      <div class="post">
+        <header class="post-header">
+          <h1 class="post-title">Posts</h1>
+        </header>
 
-
-
-<a href="http://xxjan719.github.io/post/Finite_Element/" itemprop="url">
-Fortunately participate in the short course of “finite element method and its application"
-</a>
-
-    
-      <div class="row mb-4"> <!-- Add mb-4 class for spacing -->
-        <div class="col-lg-12">
-          <div class="form-row mb-4">
-            <div class="col-auto">
-              <a href="http://xxjan719.github.io/post/resume/" itemprop="url">
-                <span itemprop="headline">
-                    Personal resume provides online preview and pdf format download.
-                </span>
-              </a>
+        <div class="posts-container">
+          <!-- Filters -->
+          <div class="filters">
+            <div class="row">
+              <div class="col-md-4">
+                <label for="searchInput">Search</label>
+                <input type="search" id="searchInput" class="form-control" placeholder="Search posts..." autocomplete="off">
+              </div>
+              <div class="col-md-4">
+                <label for="typeFilter">Type</label>
+                <select id="typeFilter" class="form-control">
+                  <option value="">All Types</option>
+                  <option value="personal">Personal News</option>
+                  <option value="academic">Academic News</option>
+                  <option value="talk">Talk News</option>
+                </select>
+              </div>
+              <div class="col-md-4">
+                <label for="yearFilter">Date</label>
+                <select id="yearFilter" class="form-control">
+                  <option value="">All Years</option>
+                  <option value="2024">2024</option>
+                  <option value="2020">2020</option>
+                </select>
+              </div>
             </div>
+          </div>
+
+          <!-- Posts List -->
+          <div class="post-item" data-type="academic" data-year="2020">
+            <h3>
+              <a href="/post/Finite_Element/">
+                Fortunately participate in the short course of "finite element method and its application"
+              </a>
+            </h3>
+            <p>Academic News • 2020</p>
+          </div>
+
+          <div class="post-item" data-type="personal" data-year="2024">
+            <h3>
+              <a href="/post/resume/">
+                Personal resume provides online preview and pdf format download
+              </a>
+            </h3>
+            <p>Personal News • 2024</p>
           </div>
         </div>
       </div>
     </div>
-  </div>
-<footer class="site-footer">
-  <div class="container">
-    <p class="powered-by">
 
-      &copy; 2024 Xingjian Xu &middot; 
-
-      Powered by the <a href="https://github.com/gcushen/hugo-academic" target="_blank">Academic
-      theme</a> for <a href="http://gohugo.io" target="_blank">Hugo</a>.
-
-      <span class="pull-right" aria-hidden="true">
-        <a href="#" id="back_to_top">
-          <span class="button_icon">
-            <i class="fa fa-chevron-up fa-2x"></i>
-          </span>
-        </a>
-      </span>
-
-    </p>
+    <!-- Footer -->
+    <footer class="fixed-bottom" role="contentinfo">
+      <div class="container mt-0">
+        © Copyright 2025 Xingjian Xu (Hsu). Powered by <a href="https://jekyllrb.com/" target="_blank" rel="external nofollow noopener">Jekyll</a> with <a href="https://github.com/alshedivat/al-folio" rel="external nofollow noopener" target="_blank">al-folio</a> theme.
   </div>
 </footer>
 
-    
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js" integrity="sha512-jGsMH83oKe9asCpkOVkBnUrDDTp8wl+adkB2D+//JtlxO4SrLoJdhbOysIFQJloQFD+C4Fl1rMsQZF76JjV0eQ==" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.2/imagesloaded.pkgd.min.js" integrity="sha512-iHzEu7GbSc705hE2skyH6/AlTpOfBmkx7nUqTLGzPYR+C1tRaItbRlJ7hT/D3YQ9SV0fqLKzp4XY9wKulTBGTw==" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.1/TweenMax.min.js" integrity="sha512-Z5heTz36xTemt1TbtbfXtTq5lMfYnOkXM2/eWcTTiLU01+Sw4ku1i7vScDc8fWhrP2abz9GQzgKH5NGBLoYlAw==" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.1/plugins/ScrollToPlugin.min.js" integrity="sha512-CDeU7pRtkPX6XJtF/gcFWlEwyaX7mcAp5sO3VIu/ylsdR74wEw4wmBpD5yYTrmMAiAboi9thyBUr1vXRPA7t0Q==" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha512-iztkobsvnjKfAtTNdHkGVjAYTrrtlC7mGp/54c40wowO7LhURYl3gVzzcEqGl/qKXQltJ2HwMrdLcNUdo+N/RQ==" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.4/isotope.pkgd.min.js" integrity="sha512-VDBOIlDbuC4VWxGJNmuFRQ0Li0SKkDpmGyuhAG5LTDLd/dJ/S0WMVxriR2Y+CyPL5gzjpN4f/6iqWVBJlht0tQ==" crossorigin="anonymous"></script>
-    
-    <script src="/js/hugo-academic.js"></script>
-    
+    <!-- JavaScripts -->
+    <!-- jQuery -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
 
-    
-    
-      
-      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/highlight.min.js"></script>
+    <!-- Bootstrap & MDB scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mdbootstrap@4.20.0/js/mdb.min.js"></script>
 
-      
+    <!-- Filter functionality -->
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        const searchInput = document.getElementById('searchInput');
+        const typeFilter = document.getElementById('typeFilter');
+        const yearFilter = document.getElementById('yearFilter');
+        const postItems = document.querySelectorAll('.post-item');
 
-      
+        function filterPosts() {
+          const searchTerm = searchInput.value.toLowerCase();
+          const selectedType = typeFilter.value;
+          const selectedYear = yearFilter.value;
 
-      <script>hljs.initHighlightingOnLoad();</script>
-    
+          postItems.forEach(item => {
+            const title = item.querySelector('h3 a').textContent.toLowerCase();
+            const type = item.getAttribute('data-type');
+            const year = item.getAttribute('data-year');
 
-    
-    
+            const matchesSearch = title.includes(searchTerm);
+            const matchesType = !selectedType || type === selectedType;
+            const matchesYear = !selectedYear || year === selectedYear;
 
+            if (matchesSearch && matchesType && matchesYear) {
+              item.style.display = 'block';
+            } else {
+              item.style.display = 'none';
+            }
+          });
+        }
+
+        searchInput.addEventListener('input', filterPosts);
+        typeFilter.addEventListener('change', filterPosts);
+        yearFilter.addEventListener('change', filterPosts);
+      });
+    </script>
   </body>
 </html>
