@@ -210,6 +210,7 @@ def main():
     plt.ylabel('Row index')
     
     plt.tight_layout()
+    plt.savefig('FEM_results.png', dpi=300, bbox_inches='tight')
     plt.show()
     
     # Print matrix and vector information

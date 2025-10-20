@@ -9,9 +9,9 @@
   <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Finite Element Method and its Application | Xingjian Xu (Hsu)</title>
+    <title>Presentation on Siam Applied book club(ABC) | Xingjian Xu (Hsu)</title>
     <meta name="author" content="Xingjian Xu (Hsu)">
-    <meta name="description" content="Fortunately participate in the short course of finite element method and its application">
+    <meta name="description" content="Presentation on Siam Applied book club(ABC) - Finite Element Method for special differential equations">
 
     <!-- Bootstrap & MDB -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
@@ -649,64 +649,137 @@
     <div class="container mt-5" role="main">
       <div class="post">
         <header class="post-header">
-          <h1 class="post-title">Fortunately participate in the short course of "finite element method and its application"</h1>
+          <h1 class="post-title">Presentation on Siam Applied book club(ABC)</h1>
           
           <div class="article-meta">
-            <span class="date">Last updated on Nov 23, 2020</span>
+            <span class="date">Last updated on Oct 20, 2025</span>
             <span class="reading-time">2 min read</span>
           </div>
         </header>
 
         <article class="article-content">
           <h3>Abstract</h3>
-          <p>Massively multiplayer online role-playing games (MMORPGs) create quasi-real social systems in which players can interact with one another, and quasi-real economic systems where players can consume and trade in-game items with virtual currency. The in-game currency price, an important indicator of a virtual economy, is highly contingent on players' behavioral interaction in MMORPGs. The purpose of this paper is to adopt a network perspective to examine how topological characteristics of social networks in an MMORPG, namely, network externalities, density, and closure, would exert impacts on the in-game currency price. Players' behavioral data were collected from a popular MMORPG in China on a weekly basis for 52 weeks. With a time series analytical approach, the empirical model for the price function of in-game currency was estimated with vector autoregression.</p>
+          <p>This session, we will focus on a general question regarding the finite element method for handling the special differential equation, giving some basic ideas and definitions. We also may look at some codes. The topic will cover the first 3 sections of this slideshow.</p>
 
-          <div class="row">
-            <div class="col-sm-1"></div>
-            <div class="col-sm-10">
-              <div class="row">
-                <div class="col-xs-12 col-sm-3" style="font-weight: 600; color: var(--link-color);">Type</div>
-                <div class="col-xs-12 col-sm-9">
-                  <a href="/publication/#1" style="color: var(--link-color);">
-                    Conference proceedings
-                  </a>
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-1"></div>
+          <h3>Mathematical Formulation</h3>
+          <p>The 1D second-order elliptic equation we solve is:</p>
+          <div style="text-align: center; margin: 20px 0;">
+            <p><strong>$$-\frac{d}{dx}\left(c(x) \frac{du}{dx}\right) = f(x), \quad a < x < b$$</strong></p>
+            <p>with boundary conditions: <strong>$u(a) = g_a, \quad u(b) = g_b$</strong></p>
           </div>
+          
+          <p>For our example: $c(x) = 1$, $f(x) = 2$, $a = 0$, $b = 1$, $g_a = 0$, $g_b = 1$</p>
+          
+          <p>The weak formulation leads to the linear system $Au = b$ where:</p>
+          <ul>
+            <li><strong>Stiffness matrix:</strong> $A_{ij} = \int_a^b c(x) \phi_i'(x) \phi_j'(x) dx$</li>
+            <li><strong>Load vector:</strong> $b_i = \int_a^b f(x) \phi_i(x) dx$</li>
+          </ul>
 
-          <div class="row" style="margin-top: 15px;">
-            <div class="col-sm-1"></div>
-            <div class="col-sm-10">
-              <div class="row">
-                <div class="col-xs-12 col-sm-3" style="font-weight: 600; color: var(--link-color);">Publication</div>
-                <div class="col-xs-12 col-sm-9">In <em>Internet Research (IntR)</em>.</div>
-              </div>
-            </div>
-            <div class="col-sm-1"></div>
-          </div>
+          <h3>Implementation</h3>
+          
+          <h4>Stiffness Matrix Generation</h4>
+          <pre><code>def generate_stiff_matrix_by_linear(node_sum, mesh_size, c_func=None):
+    """
+    Generate stiffness matrix for 1D finite element method
+    
+    For the equation -d/dx(c(x) * du/dx) = f(x), the stiffness matrix is:
+    A[i,j] = ∫[0,1] c(x) * φ'_i(x) * φ'_j(x) dx
+    """
+    N = node_sum
+    h = mesh_size
+    
+    # Default c(x) = 1 if no function provided
+    if c_func is None:
+        c_func = lambda x: 1.0
+    
+    # Initialize the matrix
+    A = np.zeros((N + 1, N + 1))
+    
+    # Process each element [x_i, x_{i+1}] for i = 0, 1, ..., N-1
+    for i in range(N):  # i = 0 to N-1 (N elements)
+        x_i = i * h
+        x_i_plus_1 = (i + 1) * h
+        
+        # Compute integral of c(x) over element [x_i, x_{i+1}]
+        c_integral = compute_integral(c_func, x_i, x_i_plus_1)
+        element_contribution = c_integral / h
+        
+        # Add contribution to diagonal terms
+        A[i, i] += element_contribution
+        A[i + 1, i + 1] += element_contribution
+        
+        # Add contribution to off-diagonal terms
+        A[i, i + 1] -= element_contribution
+        A[i + 1, i] -= element_contribution
+    
+    # Scale the matrix by 1/h for the 1D Poisson equation
+    A = A / h
+    
+    return A</code></pre>
 
-          <div class="row" style="margin-top: 15px;">
-            <div class="col-sm-1"></div>
-            <div class="col-sm-10">
-              <div class="row">
-                <div class="col-xs-12 col-sm-3" style="font-weight: 600; color: var(--link-color);">Date</div>
-                <div class="col-xs-12 col-sm-9">
-                  July, 2017
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-1"></div>
+          <h4>Load Vector Generation</h4>
+          <pre><code>def generate_load_vector_by_linear(node_sum, mesh_size, f_func=None):
+    """
+    Generate load vector for 1D finite element method
+    
+    For the equation -d/dx(c(x) * du/dx) = f(x), the load vector is:
+    b[i] = ∫[0,1] f(x) * φ_i(x) dx
+    """
+    N = node_sum
+    h = mesh_size
+    
+    # Default f(x) = 1 if no function provided
+    if f_func is None:
+        f_func = lambda x: 1.0
+    
+    # Initialize the load vector
+    b = np.zeros((N + 1, 1))
+    
+    # Process each element [x_i, x_{i+1}] for i = 0, 1, ..., N-1
+    for i in range(N):  # i = 0 to N-1 (N elements)
+        x_i = i * h
+        x_i_plus_1 = (i + 1) * h
+        
+        # For element [x_i, x_{i+1}], the basis functions are:
+        # φ_i(x) = (x_{i+1} - x) / h
+        # φ_{i+1}(x) = (x - x_i) / h
+        
+        # Contribution to b[i] from element [x_i, x_{i+1}]
+        integrand_i = lambda x: f_func(x) * (x_i_plus_1 - x) / h
+        b[i] += compute_integral(integrand_i, x_i, x_i_plus_1)
+        
+        # Contribution to b[i+1] from element [x_i, x_{i+1}]
+        integrand_i_plus_1 = lambda x: f_func(x) * (x - x_i) / h
+        b[i + 1] += compute_integral(integrand_i_plus_1, x_i, x_i_plus_1)
+    
+    return b</code></pre>
+
+          <h3>Numerical Results</h3>
+          <p>Here are the results from our FEM implementation for the 1D second-order elliptic equation:</p>
+          
+          <div style="text-align: center; margin: 20px 0;">
+            <img src="FEM_results.png" alt="FEM Results" class="img-fluid" style="max-width: 100%; height: auto; border: 1px solid var(--border-color); border-radius: 8px;">
+            <p style="font-size: 14px; color: var(--text-color); margin-top: 10px;">
+              <em>Finite Element Method results showing solution comparison, error distribution, convergence study, and stiffness matrix visualization</em>
+            </p>
           </div>
+          
+          <h4>Performance Summary</h4>
+          <ul>
+            <li><strong>L2 Error:</strong> 3.02 × 10⁻²</li>
+            <li><strong>L∞ Error:</strong> 4.34 × 10⁻²</li>
+            <li><strong>Mesh size:</strong> h = 0.0909 (N = 10 internal nodes)</li>
+            <li><strong>Analytical solution:</strong> u(x) = -x² + 2x</li>
+          </ul>
 
           <div class="row" style="margin-top: 15px; padding-top: 10px">
             <div class="col-sm-1"></div>
             <div class="col-sm-10">
               <div class="row">
-                <div class="col-xs-12 col-sm-3" style="font-weight: 600; color: var(--link-color); line-height:34px;">Links</div>
+                <div class="col-xs-12 col-sm-3" style="font-weight: 600; color: var(--link-color); line-height:34px;">Slideshow</div>
                 <div class="col-xs-12 col-sm-9">
-                  <a class="btn btn-primary btn-outline" href="https://xxjan719.github.io/post/Finite_Element/Finite_element.pdf">
+                  <a class="btn btn-primary btn-outline" href="https://bpb-us-e2.wpmucdn.com/sites.mst.edu/dist/a/189/files/2023/09/Finite_Elements_Chapter_1.pdf" target="_blank">
                     PDF
                   </a>
                 </div>
