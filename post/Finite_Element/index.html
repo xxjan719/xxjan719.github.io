@@ -1,266 +1,753 @@
 <!DOCTYPE html>
-<html lang="en-us">
+<html lang="en">
+  <!-- Head -->
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="theme" content="hugo-academic">
-<meta name="generator" content="Hugo 0.27.1" />
-<meta name="author" content="Xingjian Xu">
-<meta name="description" content=" ">
-  
-    
-<link rel="stylesheet" href="/css/highlight.min.css"> 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha512-6MXa8B6uaO18Hid6blRMetEIoPqHf7Ux1tnyIQdpt9qI5OACx7C+O3IVTr98vwGnlcg0LOLa02i9Y1HpVhlfiw==" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.8.1/css/academicons.min.css" integrity="sha512-NThgw3XKQ1absAahW6to7Ey42uycrVvfNfyjqcFNgCmOCQ5AR4AO0SiXrN+8ZtYeappp56lk1WtvjVmEa+VR6A==" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha512-SfTiTlX6kk+qitfevl/7LibUOeJWlt9rbyDn92a1DqWOw9vWG2MFoays0sgObmWazO5BQPiFucnnEAjpAB+/Sw==" crossorigin="anonymous">
-  
-  
-  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:400,700%7CMerriweather%7CRoboto+Mono">
-  <link rel="stylesheet" href="/css/hugo-academic.css">  
-  <link rel="alternate" href="https://xxjan719.github.io/index.xml" type="application/rss+xml" title="Xingjian Xu">
-  <link rel="feed" href="https://xxjan719.github.io/index.xml" type="application/rss+xml" title="Xingjian Xu">
-  <link rel="icon" type="image/png" href="/img/icon.png">
-  <link rel="apple-touch-icon" type="image/png" href="/img/apple-touch-icon.png">
-  <link rel="canonical" href="https://xxjan719.github.io/post/Finite_Element/">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-  <meta property="twitter:card" content="summary_large_image">
-  <meta property="og:site_name" content="Xingjian Xu">
-  <meta property="og:url" content="https://xxjan719.github.io/post/Finite_Element/">
-  <meta property="og:title" content="Fortunately participate in the short course of “finite element method and its application | Xingjian Xu">
-  <meta property="og:description" content="  ">
-  <meta property="og :locale" content="en-us">
-  <meta property="article:published_time" content="2020-11-23T00:00:00+17:45:23">
-  <meta property="article:modified_time" content="2020-11-24T00:00:00+18:00:00">
-  <title>"Fortunately participate in the short course of “finite element method and its application | Xingjian Xu"</title>
-</head>
+    <!-- Metadata, OpenGraph and Schema.org -->
+    <!-- Standard metadata -->
+  <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Finite Element Method and its Application | Xingjian Xu (Hsu)</title>
+    <meta name="author" content="Xingjian Xu (Hsu)">
+    <meta name="description" content="Fortunately participate in the short course of finite element method and its application">
 
+    <!-- Bootstrap & MDB -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdbootstrap@4.20.0/css/mdb.min.css">
 
+    <!-- Fonts & Icons -->
+    <link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/academicons@1.9.1/css/academicons.min.css">
+    <link defer rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link defer rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:100,300,400,500,700|Material+Icons&display=swap">
 
-<body id="top" data-spy="scroll" data-target="#navbar-main" data-offset="71">
+    <!-- Code Syntax Highlighting -->
+    <link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@5.2.0/github-markdown.min.css">
 
-<nav class="navbar navbar-default navbar-fixed-top" id="navbar-main">
-  <div class="container">
-<div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-              data-target=".navbar-collapse" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-</button>
-<a class="navbar-brand" href="/">Xingjian Xu</a>
-</div>
+    <!-- Styles -->
+    <link rel="shortcut icon" href="data:image/svg+xml,&lt;svg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20100%20100%22&gt;&lt;text%20y=%22.9em%22%20font-size=%2290%22&gt;%E2%9A%9B%EF%B8%8F&lt;/text&gt;&lt;/svg&gt;">
 
-    
-<div class="collapse navbar-collapse"> 
-<ul class="nav navbar-nav navbar-right">
-<li class="nav-item">
-<a href="/#about">           
-<span>Home</span>
-</a>
-</li>
-<li class="nav-item">
-<a href="/#Courses">
-<span>Courses</span>
-</a>
-</li>
-</li>
-<li class="nav-item">
-<a href="/#Recent posts">
-<span>Recent posts</span>
-</a>
-</li>
-<li class="nav-item">
-<a href="/#Blogs">
-<span>Blogs</span>
-</a>
-</li>        
-<li class="nav-item">
-<a href="/#contact">
-<span>Contact</span>
-</a>
-</li>
-</ul>
-</div>
-</div>
-</nav>
+    <style>
+      :root {
+        --bg-color: #1a1a1a;
+        --text-color: #ffffff;
+        --link-color: #90EE90;
+        --navbar-bg: #1a1a1a;
+        --navbar-text: #ffffff;
+        --card-bg: #2a2a2a;
+        --border-color: #404040;
+        --shadow: 0 2px 4px rgba(0,0,0,0.3);
+      }
 
-<div class="pub" itemscope itemtype="http://schema.org/CreativeWork">
+      [data-theme="light"] {
+        --bg-color: #ffffff;
+        --text-color: #333333;
+        --link-color: #007bff;
+        --navbar-bg: #ffffff;
+        --navbar-text: #333333;
+        --card-bg: #f8f9fa;
+        --border-color: #dee2e6;
+        --shadow: 0 2px 4px rgba(0,0,0,0.1);
+      }
 
-  <div class="container pub-title">
-    <h1 itemprop="name">Fortunately participate in the short course of “finite element method and its application</h1>
- <div class="metadata">
- <span itemscope itemprop='author' itemtype="http://schema.org/Person">
- <meta itemprop="name" content="Xingjian Xu"></span>
- <span class="article-date">Last updated on
- <meta content="2020-11-23 00:00:00 +0800 CST" itemprop="datePublished">
- <time datetime="2020-11-24 00:00:00 +0800 CST" itemprop="dateModified">Nov 23,2020</time>
- </span>
- <span class="middot-divider"></span>
- <span class="article-reading-time"> 2 min read</span>
+      body {
+        background-color: var(--bg-color);
+        color: var(--text-color);
+        font-family: 'Roboto', sans-serif;
+        transition: background-color 0.3s ease, color 0.3s ease;
+      }
 
- </div>
+      .navbar {
+        background-color: var(--navbar-bg) !important;
+        box-shadow: var(--shadow);
+        transition: background-color 0.3s ease;
+        padding: 8px 0;
+      }
 
- </div>
+      .navbar-brand {
+        display: none !important;
+      }
 
+      .navbar-nav {
+        float: right !important;
+      }
 
-<div class="article-container">
-<h3>Abstract</h3>
-  <p class="pub-abstract" itemprop="text">Massively multiplayer online role-playing games (MMORPGs) create quasi-real social systems in which players can interact with one another, and quasi-real economic systems where players can consume and trade in-game items with virtual currency. The in-game currency price, an important indicator of a virtual economy, is highly contingent on players’ behavioral interaction in MMORPGs. The purpose of this paper is to adopt a network perspective to examine how topological characteristics of social networks in an MMORPG, namely, network externalities, density, and closure, would exert impacts on the in-game currency price. Players’ behavioral data were collected from a popular MMORPG in China on a weekly basis for 52 weeks. With a time series analytical approach, the empirical model for the price function of in-game currency was estimated with vector autoregression.</p>
+      .navbar-nav > li > a {
+        color: var(--navbar-text) !important;
+        font-size: 14px;
+        margin: 0 10px;
+        text-decoration: none;
+        transition: color 0.3s ease;
+      }
 
-  
-  <div class="row">
-    <div class="col-sm-1"></div>
-    <div class="col-sm-10">
-      <div class="row">
-        <div class="col-xs-12 col-sm-3 pub-row-heading">Type</div>
-        <div class="col-xs-12 col-sm-9">
+      .navbar-nav > li > a:hover {
+        color: var(--link-color) !important;
+      }
+
+      .navbar-nav > li > a:visited {
+        color: var(--navbar-text) !important;
+      }
+
+      .toggle-container {
+        margin-left: 15px;
+      }
+
+      #light-toggle {
+        background: none;
+        border: none;
+        color: var(--navbar-text);
+        font-size: 14px;
+        cursor: pointer;
+        transition: color 0.3s ease;
+      }
+
+      #light-toggle:hover {
+        color: var(--link-color);
+      }
+
+      .container {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 0 15px;
+      }
+
+      .mt-5 {
+        margin-top: 3rem !important;
+      }
+
+      .post {
+        padding: 20px 0;
+      }
+
+      .post-header {
+        margin-bottom: 30px;
+      }
+
+      .post-title {
+        font-size: 2.2em;
+        font-weight: 300;
+        margin-bottom: 10px;
+        color: var(--link-color);
+      }
+
+      .post-title .font-weight-bold {
+        font-weight: 700;
+      }
+
+      .desc {
+        font-size: 1.2em;
+        margin-bottom: 10px;
+        color: var(--text-color);
+      }
+
+      .desc a {
+        color: var(--link-color);
+        text-decoration: none;
+      }
+
+      .desc a:hover {
+        color: var(--link-color);
+        text-decoration: underline;
+      }
+
+      .contact-note {
+        font-size: 14px;
+        margin-bottom: 15px;
+        color: var(--text-color);
+      }
+
+      .contact-note br {
+        margin-bottom: 5px;
+      }
+
+      pre {
+        background-color: var(--card-bg);
+        border-left: 4px solid var(--link-color);
+        border-radius: 0;
+        padding: 12px;
+        margin: 15px 0;
+        color: var(--text-color);
+        font-size: 12px;
+        line-height: 1.4;
+      }
+
+      .contact-icons {
+        margin-top: 15px;
+      }
+
+      .contact-icons a {
+        color: var(--link-color);
+        font-size: 18px;
+        margin-right: 15px;
+        text-decoration: none;
+        transition: color 0.3s ease;
+      }
+
+      .contact-icons a:hover {
+        color: var(--text-color);
+      }
+
+      .img-fluid {
+        max-width: 100%;
+        height: auto;
+      }
+
+      .z-depth-1 {
+        box-shadow: var(--shadow);
+      }
+
+      .rounded {
+        border-radius: 0.25rem;
+      }
+
+      .mt-3 {
+        margin-top: 1rem !important;
+      }
+
+      .clearfix::after {
+        content: "";
+        clear: both;
+        display: table;
+      }
+
+      h2 {
+        font-size: 1.8em;
+        font-weight: 500;
+        margin: 30px 0 20px 0;
+        color: var(--link-color);
+        border-bottom: 2px solid var(--link-color);
+        padding-bottom: 10px;
+      }
+
+      h2#bios, h2#awards--grants {
+        color: var(--link-color);
+      }
+
+      p {
+        font-size: 16px;
+        line-height: 1.6;
+        margin-bottom: 15px;
+        color: var(--text-color);
+      }
+
+      p strong {
+        color: var(--text-color);
+        font-weight: 600;
+      }
+
+      p a {
+        color: var(--link-color) !important;
+        text-decoration: none;
+      }
+
+      p a:hover {
+        color: var(--link-color) !important;
+        text-decoration: underline;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 20px 0;
+      }
+
+      table td {
+        padding: 8px 0;
+        border: none;
+        background-color: transparent !important;
+        vertical-align: top;
+      }
+
+      table td:first-child {
+        padding-right: 20px;
+        white-space: nowrap;
+        background-color: transparent !important;
+      }
+
+      table td:last-child {
+        background-color: transparent !important;
+      }
+
+      table tr {
+        background-color: transparent !important;
+      }
+
+      table tr:hover {
+        background-color: transparent !important;
+      }
+
+      .table {
+        background-color: transparent !important;
+      }
+
+      .table td, .table th {
+        background-color: transparent !important;
+        border-color: var(--border-color) !important;
+      }
+
+      .table-striped > tbody > tr:nth-of-type(odd) {
+        background-color: transparent !important;
+      }
+
+      .table-hover > tbody > tr:hover {
+        background-color: transparent !important;
+      }
+
+      .publications {
+        margin-top: 20px;
+      }
+
+      .bibliography {
+        list-style: none;
+        padding: 0;
+      }
+
+      .bibliography li {
+        margin-bottom: 30px;
+      }
+
+      .bibliography .row {
+        display: flex;
+        align-items: flex-start;
+      }
+
+      .bibliography .abbr {
+        width: 120px;
+        margin-right: 20px;
+        flex-shrink: 0;
+      }
+
+      .bibliography .badge {
+        background-color: var(--link-color);
+        color: var(--bg-color);
+        font-size: 12px;
+        padding: 4px 8px;
+        border-radius: 4px;
+        font-weight: 500;
+        display: block;
+        text-align: center;
+      }
+
+      .bibliography .title {
+        font-size: 16px;
+        margin-bottom: 8px;
+        font-weight: 500;
+        color: var(--text-color);
+      }
+
+      .bibliography .title a {
+        color: var(--text-color);
+        text-decoration: none;
+      }
+
+      .bibliography .title a:hover {
+        color: var(--text-color);
+        text-decoration: none;
+      }
+
+      .bibliography .author {
+        font-size: 14px;
+        margin-bottom: 5px;
+        color: var(--text-color);
+      }
+
+      .bibliography .author em {
+        color: var(--link-color);
+        font-style: normal;
+      }
+
+      .bibliography .periodical {
+        font-size: 14px;
+        margin-bottom: 10px;
+        color: var(--text-color);
+        font-style: italic;
+      }
+
+      .bibliography .links {
+        margin-top: 8px;
+      }
+
+      .bibliography .btn {
+        border: 1px solid var(--text-color);
+        color: var(--text-color);
+        background-color: transparent;
+        font-size: 12px;
+        padding: 4px 8px;
+        margin-right: 8px;
+        text-decoration: none;
+        border-radius: 4px;
+        transition: all 0.3s ease;
+      }
+
+      .bibliography .btn:hover {
+        background-color: var(--text-color);
+        border-color: var(--text-color);
+        color: var(--bg-color);
+        text-decoration: none;
+      }
+
+      .news {
+        margin-top: 20px;
+      }
+
+      .news .table-responsive {
+        max-height: 60vw;
+      }
+
+      .news .table {
+        background-color: transparent !important;
+      }
+
+      .news .table td, .news .table th {
+        background-color: transparent !important;
+        border: none;
+        padding: 8px 0;
+      }
+
+      .news .table th {
+        width: 12%;
+        font-weight: 600;
+        color: var(--text-color);
+      }
+
+      .news .table td {
+        color: var(--text-color);
+      }
+
+      .news .table td a {
+        color: var(--link-color);
+        text-decoration: none;
+      }
+
+      .news .table td a:hover {
+        color: var(--link-color);
+        text-decoration: underline;
+      }
+
+      footer {
+        background-color: var(--navbar-bg);
+        color: var(--text-color);
+        padding: 20px 0;
+        margin-top: 50px;
+        border-top: 1px solid var(--border-color);
+      }
+
+      footer a {
+        color: var(--link-color);
+        text-decoration: none;
+      }
+
+      footer a:hover {
+        color: var(--link-color);
+        text-decoration: underline;
+      }
+
+      .article-meta {
+        font-size: 14px;
+        color: var(--text-color);
+        margin-bottom: 20px;
+        padding-bottom: 15px;
+        border-bottom: 1px solid var(--border-color);
+      }
+
+      .article-meta .date {
+        color: var(--link-color);
+        font-weight: 500;
+      }
+
+      .article-meta .reading-time {
+        margin-left: 15px;
+        color: var(--text-color);
+      }
+
+      .article-content {
+        font-size: 16px;
+        line-height: 1.8;
+        color: var(--text-color);
+      }
+
+      .article-content h3 {
+        font-size: 1.5em;
+        font-weight: 500;
+        margin: 30px 0 15px 0;
+        color: var(--link-color);
+      }
+
+      .article-content p {
+        margin-bottom: 20px;
+      }
+
+      .btn-primary {
+        background-color: var(--link-color);
+        border-color: var(--link-color);
+        color: var(--bg-color);
+        padding: 8px 16px;
+        text-decoration: none;
+        border-radius: 4px;
+        display: inline-block;
+        transition: all 0.3s ease;
+      }
+
+      .btn-primary:hover {
+        background-color: var(--text-color);
+        border-color: var(--text-color);
+        color: var(--bg-color);
+        text-decoration: none;
+      }
+
+      .btn-outline {
+        background-color: transparent;
+        border: 1px solid var(--link-color);
+        color: var(--link-color);
+      }
+
+      .btn-outline:hover {
+        background-color: var(--link-color);
+        color: var(--bg-color);
+      }
+
+      .pager {
+        margin: 30px 0;
+      }
+
+      .pager li a {
+        color: var(--link-color);
+        text-decoration: none;
+        padding: 8px 16px;
+        border: 1px solid var(--border-color);
+        border-radius: 4px;
+        transition: all 0.3s ease;
+      }
+
+      .pager li a:hover {
+        background-color: var(--link-color);
+        color: var(--bg-color);
+        border-color: var(--link-color);
+      }
+
+      @media (max-width: 768px) {
+        .post-title {
+          font-size: 1.8em;
+        }
+        
+        .desc {
+          font-size: 1em;
+        }
+        
+        .navbar-nav > li > a {
+          font-size: 12px;
+          margin: 0 8px;
+        }
+      }
+    </style>
+
+    <!-- Dark Mode Script -->
+    <script>
+      function initTheme() {
+        const currentTheme = localStorage.getItem('theme') || 'dark';
+        document.documentElement.setAttribute('data-theme', currentTheme);
+        
+        const toggle = document.getElementById('light-toggle');
+        if (toggle) {
+          if (currentTheme === 'light') {
+            toggle.innerHTML = '<i class="fa fa-moon-o"></i>';
+          } else {
+            toggle.innerHTML = '<i class="fa fa-sun-o"></i>';
+          }
+        }
+      }
+
+      document.addEventListener('DOMContentLoaded', function() {
+        initTheme();
+        
+        const toggle = document.getElementById('light-toggle');
+        if (toggle) {
+          toggle.addEventListener('click', function() {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            
+            document.documentElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            
+            if (newTheme === 'light') {
+              toggle.innerHTML = '<i class="fa fa-moon-o"></i>';
+            } else {
+              toggle.innerHTML = '<i class="fa fa-sun-o"></i>';
+            }
+          });
+        }
+      });
+    </script>
+  </head>
+
+  <!-- Body -->
+  <body class="fixed-top-nav">
+    <!-- Header -->
+    <header>
+      <!-- Nav Bar -->
+      <nav id="navbar" class="navbar navbar-light navbar-expand-sm fixed-top" role="navigation">
+        <div class="container">
           
-          <a href="/publication/#1">
-            Conference proceedings
-          </a>
+          <!-- Navbar Toggle -->
+          <button class="navbar-toggler collapsed ml-auto" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar top-bar"></span>
+            <span class="icon-bar middle-bar"></span>
+            <span class="icon-bar bottom-bar"></span>
+          </button>
+
+          <div class="collapse navbar-collapse text-right" id="navbarNav">
+            <ul class="navbar-nav ml-auto flex-nowrap">
+              
+              <!-- About -->
+              <li class="nav-item">
+                <a class="nav-link" href="/">About</a>
+              </li>
+
+              <!-- Publications -->
+              <li class="nav-item">
+                <a class="nav-link" href="/#publications">Publications</a>
+              </li>
+
+              <!-- Research -->
+              <li class="nav-item">
+                <a class="nav-link" href="/#research">Research</a>
+              </li>
+
+              <!-- Services -->
+              <li class="nav-item">
+                <a class="nav-link" href="/#services">Services</a>
+              </li>
+
+              <!-- Teaching -->
+              <li class="nav-item">
+                <a class="nav-link" href="/Teaching/">Teaching</a>
+              </li>
+
+              <!-- Post -->
+              <li class="nav-item active">
+                <a class="nav-link" href="/post/">Post
+                  <span class="sr-only">(current)</span>
+                </a>
+              </li>
+              
+              <!-- Toggle theme mode -->
+              <li class="toggle-container">
+                <button id="light-toggle" title="Change theme">
+                  <i class="fa fa-moon-o"></i>
+                </button>
+              </li>
+              
+            </ul>
+    </div>
+  </div>
+      </nav>
+    </header>
+
+    <!-- Content -->
+    <div class="container mt-5" role="main">
+      <div class="post">
+        <header class="post-header">
+          <h1 class="post-title">Fortunately participate in the short course of "finite element method and its application"</h1>
           
-        </div>
+          <div class="article-meta">
+            <span class="date">Last updated on Nov 23, 2020</span>
+            <span class="reading-time">2 min read</span>
+          </div>
+        </header>
+
+        <article class="article-content">
+          <h3>Abstract</h3>
+          <p>Massively multiplayer online role-playing games (MMORPGs) create quasi-real social systems in which players can interact with one another, and quasi-real economic systems where players can consume and trade in-game items with virtual currency. The in-game currency price, an important indicator of a virtual economy, is highly contingent on players' behavioral interaction in MMORPGs. The purpose of this paper is to adopt a network perspective to examine how topological characteristics of social networks in an MMORPG, namely, network externalities, density, and closure, would exert impacts on the in-game currency price. Players' behavioral data were collected from a popular MMORPG in China on a weekly basis for 52 weeks. With a time series analytical approach, the empirical model for the price function of in-game currency was estimated with vector autoregression.</p>
+
+          <div class="row">
+            <div class="col-sm-1"></div>
+            <div class="col-sm-10">
+              <div class="row">
+                <div class="col-xs-12 col-sm-3" style="font-weight: 600; color: var(--link-color);">Type</div>
+                <div class="col-xs-12 col-sm-9">
+                  <a href="/publication/#1" style="color: var(--link-color);">
+                    Conference proceedings
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-1"></div>
+          </div>
+
+          <div class="row" style="margin-top: 15px;">
+            <div class="col-sm-1"></div>
+            <div class="col-sm-10">
+              <div class="row">
+                <div class="col-xs-12 col-sm-3" style="font-weight: 600; color: var(--link-color);">Publication</div>
+                <div class="col-xs-12 col-sm-9">In <em>Internet Research (IntR)</em>.</div>
+              </div>
+            </div>
+            <div class="col-sm-1"></div>
+          </div>
+
+          <div class="row" style="margin-top: 15px;">
+            <div class="col-sm-1"></div>
+            <div class="col-sm-10">
+              <div class="row">
+                <div class="col-xs-12 col-sm-3" style="font-weight: 600; color: var(--link-color);">Date</div>
+                <div class="col-xs-12 col-sm-9">
+                  July, 2017
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-1"></div>
+          </div>
+
+          <div class="row" style="margin-top: 15px; padding-top: 10px">
+            <div class="col-sm-1"></div>
+            <div class="col-sm-10">
+              <div class="row">
+                <div class="col-xs-12 col-sm-3" style="font-weight: 600; color: var(--link-color); line-height:34px;">Links</div>
+                <div class="col-xs-12 col-sm-9">
+                  <a class="btn btn-primary btn-outline" href="https://xxjan719.github.io/post/Finite_Element/Finite_element.pdf">
+                    PDF
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-1"></div>
+          </div>
+
+          <div style="margin-top: 30px;">
+            <p>More detail can easily be written here using <em>Markdown</em> and $\rm \LaTeX$ math code.</p>
+          </div>
+        </article>
+
+        <nav>
+          <ul class="pager">
+            <li class="previous"><a href="/post/"><span aria-hidden="true">&larr;</span>Return to posts</a></li>
+          </ul>
+        </nav>
       </div>
     </div>
-    <div class="col-sm-1"></div>
-  </div>
-  <div class="visible-xs space-below"></div>
-  
 
-  <div class="row">
-    <div class="col-sm-1"></div>
-    <div class="col-sm-10">
-      <div class="row">
-        <div class="col-xs-12 col-sm-3 pub-row-heading">Publication</div>
-        <div class="col-xs-12 col-sm-9">In <em>Internet Research (IntR)</em>.</div>
-      </div>
-    </div>
-    <div class="col-sm-1"></div>
-  </div>
-  <div class="visible-xs space-below"></div>
-
-  <div class="row">
-    <div class="col-sm-1"></div>
-    <div class="col-sm-10">
-      <div class="row">
-        <div class="col-xs-12 col-sm-3 pub-row-heading">Date</div>
-        <div class="col-xs-12 col-sm-9" itemprop="datePublished">
-          July, 2017
-        </div>
-      </div>
-    </div>
-    <div class="col-sm-1"></div>
-  </div>
-  <div class="visible-xs space-below"></div>
-
-  <div class="row" style="padding-top: 10px">
-    <div class="col-sm-1"></div>
-    <div class="col-sm-10">
-      <div class="row">
-        <div class="col-xs-12 col-sm-3 pub-row-heading" style="line-height:34px;">Links</div>
-        <div class="col-xs-12 col-sm-9">
-
-          
-
-
-
-
-<a class="btn btn-primary btn-outline" href="https://xxjan719.github.io/post/Finite_Element/Finite_element.pdf">
-  PDF
-</a>
-
-
-
-
-
-
-
-
-
-        </div>
-      </div>
-    </div>
-    <div class="col-sm-1"></div>
-  </div>
-  <div class="visible-xs space-below"></div>
-
-  <div class="space-below"></div>
-
-  <div class="article-style"><p>More detail can easily be written here using <em>Markdown</em> and $\rm \LaTeX$ math code.</p>
-</div>
-
-</div>
-
-<div class="container">
-  <nav>
-  <ul class="pager">
-    
-    <li class="previous"><a href="https://xxjan719.github.io/post/Finite_Element/"><span
-      aria-hidden="true">&larr;</span>Return to top</a></li>
-    </ul>
-     <ul class="pager">
-    
-    <li class="previous"><a href="https://xxjan719.github.io/post/"><span
-      aria-hidden="true">&larr;</span>Return to posts</a></li>
-    </ul>
-</nav>
-
-</div>
-
-<footer class="site-footer">
-  <div class="container">
-    <p class="powered-by">
-
-      &copy; 2020 Xingjian Xu &middot; 
-
-      Powered by the <a href="https://github.com/gcushen/hugo-academic" target="_blank">Academic
-      theme</a> for <a href="http://gohugo.io" target="_blank">Hugo</a>.
-
-      <span class="pull-right" aria-hidden="true">
-        <a href="#" id="back_to_top">
-          <span class="button_icon">
-            <i class="fa fa-chevron-up fa-2x"></i>
-          </span>
-        </a>
-      </span>
-
-    </p>
+    <!-- Footer -->
+    <footer class="fixed-bottom" role="contentinfo">
+      <div class="container mt-0">
+        © Copyright 2025 Xingjian Xu (Hsu). Powered by <a href="https://jekyllrb.com/" target="_blank" rel="external nofollow noopener">Jekyll</a> with <a href="https://github.com/alshedivat/al-folio" rel="external nofollow noopener" target="_blank">al-folio</a> theme.
   </div>
 </footer>
 
-    
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js" integrity="sha512-jGsMH83oKe9asCpkOVkBnUrDDTp8wl+adkB2D+//JtlxO4SrLoJdhbOysIFQJloQFD+C4Fl1rMsQZF76JjV0eQ==" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.2/imagesloaded.pkgd.min.js" integrity="sha512-iHzEu7GbSc705hE2skyH6/AlTpOfBmkx7nUqTLGzPYR+C1tRaItbRlJ7hT/D3YQ9SV0fqLKzp4XY9wKulTBGTw==" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.1/TweenMax.min.js" integrity="sha512-Z5heTz36xTemt1TbtbfXtTq5lMfYnOkXM2/eWcTTiLU01+Sw4ku1i7vScDc8fWhrP2abz9GQzgKH5NGBLoYlAw==" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.1/plugins/ScrollToPlugin.min.js" integrity="sha512-CDeU7pRtkPX6XJtF/gcFWlEwyaX7mcAp5sO3VIu/ylsdR74wEw4wmBpD5yYTrmMAiAboi9thyBUr1vXRPA7t0Q==" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha512-iztkobsvnjKfAtTNdHkGVjAYTrrtlC7mGp/54c40wowO7LhURYl3gVzzcEqGl/qKXQltJ2HwMrdLcNUdo+N/RQ==" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.4/isotope.pkgd.min.js" integrity="sha512-VDBOIlDbuC4VWxGJNmuFRQ0Li0SKkDpmGyuhAG5LTDLd/dJ/S0WMVxriR2Y+CyPL5gzjpN4f/6iqWVBJlht0tQ==" crossorigin="anonymous"></script>
-<script src="/js/hugo-academic.js"></script>
-    
+    <!-- JavaScripts -->
+    <!-- jQuery -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
 
-    
-    
-      
-      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/highlight.min.js"></script>
+    <!-- Bootstrap & MDB scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mdbootstrap@4.20.0/js/mdb.min.js"></script>
 
-      
-
-      
-
-      <script>hljs.initHighlightingOnLoad();</script>
-    
-
-    
-    
+    <!-- MathJax -->
     <script type="text/x-mathjax-config">
         MathJax.Hub.Config({ tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']] } });
     </script>
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_CHTML" integrity="sha512-tOav5w1OjvsSJzePRtt2uQPFwBoHt1VZcUq8l8nm5284LEKE9FSJBQryzMBzHxY5P0zRdNqEcpLIRVYFNgu1jw==" crossorigin="anonymous"></script>
-    
-    
-
   </body>
 </html>
