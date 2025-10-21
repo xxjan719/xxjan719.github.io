@@ -22,7 +22,7 @@ def solve_1d_elliptic_fem(a, b, N, c_func, f_func, ga, gb):
     tuple: (x_nodes, u_fem, u_analytical, error)
     """
     # Mesh setup
-    h = (b - a) / (N + 1)  # Mesh size
+    h = (b - a) / N  # Mesh size
     x_nodes = np.linspace(a, b, N + 1)  # All nodes including boundaries (N+1 total nodes)
     
     # Generate stiffness matrix A
@@ -119,7 +119,7 @@ def main():
     print(f"Boundary conditions: u({a}) = {ga}, u({b}) = {gb}")
     print(f"c(x) = 1, f(x) = 2")
     print(f"Number of internal nodes: {N}")
-    print(f"Mesh size: h = {(b-a)/(N+1):.4f}")
+    print(f"Mesh size: h = {(b-a)/N:.4f}")
     print()
     
     # Solve using FEM
@@ -190,7 +190,7 @@ def main():
         l2_errors.append(l2_err)
         linf_errors.append(linf_err)
     
-    h_values = [(b-a)/(n+1) for n in N_values]
+    h_values = [(b-a)/n for n in N_values]
     plt.loglog(h_values, l2_errors, 'bo-', label='L2 Error')
     plt.loglog(h_values, linf_errors, 'ro-', label='L∞ Error')
     plt.loglog(h_values, [h**2 for h in h_values], 'k--', label='O(h²)')
@@ -202,7 +202,7 @@ def main():
     
     # Plot 4: Matrix visualization
     plt.subplot(2, 2, 4)
-    A = generate_stiff_matrix_by_linear(N, (b-a)/(N+1), c_func)
+    A = generate_stiff_matrix_by_linear(N, (b-a)/N, c_func)
     plt.imshow(A, cmap='viridis', aspect='auto')
     plt.colorbar()
     plt.title('Stiffness Matrix A')
@@ -217,8 +217,8 @@ def main():
     print("\n" + "=" * 60)
     print("MATRIX AND VECTOR INFORMATION")
     print("=" * 60)
-    A = generate_stiff_matrix_by_linear(N, (b-a)/(N+1), c_func)
-    b_vector = generate_load_vector_by_linear(N, (b-a)/(N+1), f_func)
+    A = generate_stiff_matrix_by_linear(N, (b-a)/N, c_func)
+    b_vector = generate_load_vector_by_linear(N, (b-a)/N, f_func)
     print(f"Stiffness matrix A shape: {A.shape}")
     print(f"Load vector b shape: {b_vector.shape}")
     print(f"Condition number of A: {np.linalg.cond(A):.2e}")
