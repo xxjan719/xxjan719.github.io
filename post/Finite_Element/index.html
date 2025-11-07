@@ -755,6 +755,77 @@
     
     return b</code></pre>
 
+          <h3>Example 1: Numerical Example with Variable Coefficient</h3>
+          <p>We solve the following 1D second-order elliptic equation using the linear finite element method:</p>
+          
+          <div style="text-align: center; margin: 20px 0;">
+            <p><strong>$$-\frac{d}{dx}\left(e^x \frac{du}{dx}\right) = -e^x[\cos(x) - 2\sin(x) - x\cos(x) - x\sin(x)], \quad 0 \leq x \leq 1$$</strong></p>
+            <p>with boundary conditions: <strong>$u(0) = 0, \quad u(1) = \cos(1)$</strong></p>
+          </div>
+          
+          <p>The analytical solution of this problem is <strong>$u(x) = x\cos(x)$</strong>, which can be used to compute the error of the numerical solution.</p>
+          
+          <h4>Results</h4>
+          <p>Using the assembly-based implementation (Algorithms IV, V, and VI), we obtain the following results:</p>
+          
+          <div style="text-align: center; margin: 20px 0;">
+            <img src="FEM_assembly_results.png?v=20251021" alt="FEM Assembly Results" class="img-fluid" style="max-width: 100%; height: auto; border: 1px solid var(--border-color); border-radius: 8px;">
+            <p style="font-size: 14px; color: var(--text-color); margin-top: 10px;">
+              <em>FEM assembly results showing solution comparison, error distribution, convergence study, stiffness matrix, node coordinates, and element connectivity</em>
+            </p>
+          </div>
+          
+          <h4>Maximum Numerical Errors at All Mesh Nodes</h4>
+          <p>The following table shows the maximum absolute error at all mesh nodes for different mesh sizes $h$:</p>
+          
+          <div style="overflow-x: auto; margin: 20px 0;">
+            <table style="width: 100%; border-collapse: collapse; margin: 20px auto; font-family: monospace;">
+              <thead>
+                <tr style="background-color: var(--navbar-bg); border-bottom: 2px solid var(--border-color);">
+                  <th style="padding: 10px; text-align: center; border: 1px solid var(--border-color);">$h$</th>
+                  <th style="padding: 10px; text-align: center; border: 1px solid var(--border-color);">Maximum absolute error at all nodes</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="padding: 10px; text-align: center; border: 1px solid var(--border-color);">$1/4$</td>
+                  <td style="padding: 10px; text-align: center; border: 1px solid var(--border-color);">$2.3334 \times 10^{-3}$</td>
+                </tr>
+                <tr style="background-color: var(--card-bg);">
+                  <td style="padding: 10px; text-align: center; border: 1px solid var(--border-color);">$1/8$</td>
+                  <td style="padding: 10px; text-align: center; border: 1px solid var(--border-color);">$5.8303 \times 10^{-4}$</td>
+                </tr>
+                <tr>
+                  <td style="padding: 10px; text-align: center; border: 1px solid var(--border-color);">$1/16$</td>
+                  <td style="padding: 10px; text-align: center; border: 1px solid var(--border-color);">$1.4641 \times 10^{-4}$</td>
+                </tr>
+                <tr style="background-color: var(--card-bg);">
+                  <td style="padding: 10px; text-align: center; border: 1px solid var(--border-color);">$1/32$</td>
+                  <td style="padding: 10px; text-align: center; border: 1px solid var(--border-color);">$3.6666 \times 10^{-5}$</td>
+                </tr>
+                <tr>
+                  <td style="padding: 10px; text-align: center; border: 1px solid var(--border-color);">$1/64$</td>
+                  <td style="padding: 10px; text-align: center; border: 1px solid var(--border-color);">$9.1678 \times 10^{-6}$</td>
+                </tr>
+                <tr style="background-color: var(--card-bg);">
+                  <td style="padding: 10px; text-align: center; border: 1px solid var(--border-color);">$1/128$</td>
+                  <td style="padding: 10px; text-align: center; border: 1px solid var(--border-color);">$2.2924 \times 10^{-6}$</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          
+          <h4>Convergence Analysis</h4>
+          <p>The convergence rate check shows that when the mesh size $h$ is halved, the error decreases by approximately a factor of 4, confirming $O(h^2)$ convergence:</p>
+          <ul>
+            <li>Error($h=1/4$) / Error($h=1/8$) = 4.0022</li>
+            <li>Error($h=1/8$) / Error($h=1/16$) = 3.9822</li>
+            <li>Error($h=1/16$) / Error($h=1/32$) = 3.9930</li>
+            <li>Error($h=1/32$) / Error($h=1/64$) = 3.9995</li>
+            <li>Error($h=1/64$) / Error($h=1/128$) = 3.9993</li>
+          </ul>
+          <p>This demonstrates the expected quadratic convergence rate for linear finite elements, where the error is proportional to $h^2$.</p>
+
           <h3>Numerical Results</h3>
           <p>Here are the results from our FEM implementation for the 1D second-order elliptic equation:</p>
           
