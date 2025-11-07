@@ -668,7 +668,7 @@
             <p>with boundary conditions: <strong>$u(a) = g_a, \quad u(b) = g_b$</strong></p>
           </div>
           
-          <p>For our example: $c(x) = 1$, $f(x) = 2$, $a = 0$, $b = 1$, $g_a = 0$, $g_b = 1$</p>
+          <p>For Example 1: $c(x) = 1$, $f(x) = 2$, $a = 0$, $b = 1$, $g_a = 0$, $g_b = 1$</p>
           
           <p>The weak formulation leads to the linear system $Au = b$ where:</p>
           <ul>
@@ -755,8 +755,20 @@
     
     return b</code></pre>
 
-          <h3>Numerical Results</h3>
-          <p>Here are the results from our FEM implementation for the 1D second-order elliptic equation:</p>
+          <h3>Example 1: Simple Constant Coefficient Case</h3>
+          <p>We solve a simple case with constant coefficients:</p>
+          
+          <div style="text-align: center; margin: 20px 0;">
+            <p><strong>$$-\frac{d}{dx}\left(c(x) \frac{du}{dx}\right) = f(x), \quad 0 < x < 1$$</strong></p>
+            <p>with boundary conditions: <strong>$u(0) = 0, \quad u(1) = 1$</strong></p>
+          </div>
+          
+          <p>For this example: $c(x) = 1$, $f(x) = 2$, $a = 0$, $b = 1$, $g_a = 0$, $g_b = 1$</p>
+          
+          <p>The analytical solution of this problem is <strong>$u(x) = -x^2 + 2x$</strong>, which can be verified by direct substitution.</p>
+          
+          <h4>Results</h4>
+          <p>Here are the results from our FEM implementation:</p>
           
           <div style="text-align: center; margin: 20px 0;">
             <img src="FEM_results.png?v=20251021" alt="FEM Results" class="img-fluid" style="max-width: 100%; height: auto; border: 1px solid var(--border-color); border-radius: 8px;">
@@ -773,8 +785,10 @@
             <li><strong>Analytical solution:</strong> u(x) = -x² + 2x</li>
             <li><strong>Result:</strong> Essentially exact solution due to quadratic exactness of linear FEM</li>
           </ul>
+          
+          <p>This example demonstrates that for problems where the analytical solution is a quadratic polynomial, the linear finite element method achieves machine precision accuracy, as the method is exact for polynomials of degree up to 1, and the integration is exact for quadratic functions.</p>
 
-          <h3>Example 1: Numerical Example with Variable Coefficient</h3>
+          <h3>Example 2: Numerical Example with Variable Coefficient</h3>
           <p>We solve the following 1D second-order elliptic equation using the linear finite element method:</p>
           
           <div style="text-align: center; margin: 20px 0;">
