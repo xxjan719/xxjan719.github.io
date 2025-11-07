@@ -784,6 +784,163 @@
           
           <p>The analytical solution of this problem is <strong>$u(x) = x\cos(x)$</strong>, which can be used to compute the error of the numerical solution.</p>
           
+          <h4>Implementation Steps</h4>
+          
+          <h5>1. Construct P Matrix (Node Coordinates)</h5>
+          <pre><code>def construct_P_matrix_linear(a, b, N):
+    """
+    Construct P matrix (node coordinates matrix) for linear finite elements
+    The j-th column stores the coordinates of the j-th finite element node.
+    """
+    h = (b - a) / N
+    x_nodes = np.array([a + j * h for j in range(N + 1)])
+    
+    # For 1D linear elements, P is (2, N+1) where each column is [x_j, x_j]
+    P = np.zeros((2, N + 1))
+    P[0, :] = x_nodes
+    P[1, :] = x_nodes
+    
+    return P</code></pre>
+
+          <h5>2. Construct T Matrix (Element Connectivity)</h5>
+          <pre><code>def construct_T_matrix_linear(N):
+    """
+    Construct T matrix (element connectivity matrix) for linear finite elements
+    The n-th column stores the global node indices of the n-th mesh element.
+    """
+    # For 1D linear elements, T is (2, N) where n-th column is [n, n+1]^T
+    T = np.zeros((2, N), dtype=int)
+    for n in range(N):
+        T[0, n] = n      # First node of element n
+        T[1, n] = n + 1  # Second node of element n
+    
+    return T</code></pre>
+
+          <h5>3. Construct Stiffness Matrix A (Algorithm IV)</h5>
+          <pre><code>def generate_stiff_matrix_by_assembly(P, T, c_func=None):
+    """
+    Generate stiffness matrix using Algorithm IV (local assembly)
+    
+    Algorithm IV:
+    FOR n = 1, ..., N:
+        FOR α = 1, ..., Nlb:
+            FOR β = 1, ..., Nlb:
+                Compute r = ∫_{x_n}^{x_{n+1}} c ψ'_{nα} ψ'_{nβ} dx
+                Add r to A(Tb(β, n), Tb(α, n))
+    """
+    Nb = P.shape[1]  # Number of global basis functions (nodes)
+    N = T.shape[1]   # Number of elements
+    Nlb = 2          # Number of local basis functions for linear elements
+    
+    if c_func is None:
+        c_func = lambda x: 1.0
+    
+    A = np.zeros((Nb, Nb))
+    
+    for n in range(N):
+        i_global_1 = T[0, n]
+        i_global_2 = T[1, n]
+        x_n = P[0, i_global_1]
+        x_n_plus_1 = P[0, i_global_2]
+        h = x_n_plus_1 - x_n
+        
+        # Local basis derivatives: ψ'_{n1} = -1/h, ψ'_{n2} = 1/h
+        psi_prime_1 = -1.0 / h
+        psi_prime_2 = 1.0 / h
+        
+        for alpha in range(1, Nlb + 1):
+            for beta in range(1, Nlb + 1):
+                psi_prime_alpha = psi_prime_1 if alpha == 1 else psi_prime_2
+                psi_prime_beta = psi_prime_1 if beta == 1 else psi_prime_2
+                
+                # Compute r = ∫_{x_n}^{x_{n+1}} c(x) * ψ'_{nα} * ψ'_{nβ} dx
+                c_integral = compute_integral(c_func, x_n, x_n_plus_1)
+                r = psi_prime_alpha * psi_prime_beta * c_integral
+                
+                # Map to global indices
+                i_global_beta = T[beta - 1, n]
+                i_global_alpha = T[alpha - 1, n]
+                
+                # Add r to A(Tb(β, n), Tb(α, n))
+                A[i_global_beta, i_global_alpha] += r
+    
+    return A</code></pre>
+
+          <h5>4. Construct Load Vector b (Algorithm V)</h5>
+          <pre><code>def generate_load_vector_by_assembly(P, T, f_func=None):
+    """
+    Generate load vector using Algorithm V (local assembly)
+    
+    Algorithm V:
+    b = zeros(N_b, 1)
+    FOR n = 1, ..., N:
+        FOR β = 1, ..., N_lb:
+            Compute r = ∫_{x_n}^{x_{n+1}} f * ψ_{nβ} dx
+            b(T_b(β, n), 1) = b(T_b(β, n), 1) + r
+    """
+    Nb = P.shape[1]
+    N = T.shape[1]
+    Nlb = 2
+    
+    if f_func is None:
+        f_func = lambda x: 1.0
+    
+    b = np.zeros((Nb, 1))
+    
+    for n in range(N):
+        i_global_1 = T[0, n]
+        i_global_2 = T[1, n]
+        x_n = P[0, i_global_1]
+        x_n_plus_1 = P[0, i_global_2]
+        h = x_n_plus_1 - x_n
+        
+        for beta in range(1, Nlb + 1):
+            # Compute r = ∫_{x_n}^{x_{n+1}} f(x) * ψ_{nβ}(x) dx
+            def integrand(x):
+                if beta == 1:
+                    psi_beta = (x_n_plus_1 - x) / h
+                else:
+                    psi_beta = (x - x_n) / h
+                return f_func(x) * psi_beta
+            
+            r = compute_integral(integrand, x_n, x_n_plus_1)
+            
+            # Map to global index
+            i_global_beta = T[beta - 1, n]
+            b[i_global_beta, 0] += r
+    
+    return b</code></pre>
+
+          <h5>5. Apply Dirichlet Boundary Conditions (Algorithm VI)</h5>
+          <pre><code>def apply_dirichlet_boundary_conditions(A, b, P, boundary_nodes, g_func):
+    """
+    Apply Dirichlet boundary conditions using Algorithm VI
+    
+    Algorithm VI:
+    FOR k = 1, ..., nbn:
+        IF boundarynodes(1, k) shows Dirichlet condition, THEN
+            i = boundarynodes(2, k)
+            A(i, :) = 0
+            A(i, i) = 1
+            b(i) = g(Pb(i))
+        ENDIF
+    END
+    """
+    A_mod = A.copy()
+    b_mod = b.copy()
+    nbn = boundary_nodes.shape[1]
+    
+    for k in range(nbn):
+        condition_type = boundary_nodes[0, k]
+        if condition_type == 1:  # Dirichlet condition
+            i = int(boundary_nodes[1, k])
+            A_mod[i, :] = 0
+            A_mod[i, i] = 1
+            x_i = P[0, i]
+            b_mod[i, 0] = g_func(x_i)
+    
+    return A_mod, b_mod</code></pre>
+          
           <h4>Results</h4>
           <p>Using the assembly-based implementation (Algorithms IV, V, and VI), we obtain the following results:</p>
           
