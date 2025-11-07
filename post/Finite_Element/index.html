@@ -755,6 +755,25 @@
     
     return b</code></pre>
 
+          <h3>Numerical Results</h3>
+          <p>Here are the results from our FEM implementation for the 1D second-order elliptic equation:</p>
+          
+          <div style="text-align: center; margin: 20px 0;">
+            <img src="FEM_results.png?v=20251021" alt="FEM Results" class="img-fluid" style="max-width: 100%; height: auto; border: 1px solid var(--border-color); border-radius: 8px;">
+            <p style="font-size: 14px; color: var(--text-color); margin-top: 10px;">
+              <em>Finite Element Method results showing solution comparison, error distribution, convergence study, and stiffness matrix visualization</em>
+            </p>
+          </div>
+          
+          <h4>Performance Summary</h4>
+          <ul>
+            <li><strong>L2 Error:</strong> 3.79 × 10⁻¹⁶ (machine precision)</li>
+            <li><strong>L∞ Error:</strong> 6.66 × 10⁻¹⁶ (machine precision)</li>
+            <li><strong>Mesh size:</strong> h = 0.1 (N = 10 internal nodes)</li>
+            <li><strong>Analytical solution:</strong> u(x) = -x² + 2x</li>
+            <li><strong>Result:</strong> Essentially exact solution due to quadratic exactness of linear FEM</li>
+          </ul>
+
           <h3>Example 1: Numerical Example with Variable Coefficient</h3>
           <p>We solve the following 1D second-order elliptic equation using the linear finite element method:</p>
           
@@ -825,25 +844,6 @@
             <li>Error($h=1/64$) / Error($h=1/128$) = 3.9993</li>
           </ul>
           <p>This demonstrates the expected quadratic convergence rate for linear finite elements, where the error is proportional to $h^2$.</p>
-
-          <h3>Numerical Results</h3>
-          <p>Here are the results from our FEM implementation for the 1D second-order elliptic equation:</p>
-          
-          <div style="text-align: center; margin: 20px 0;">
-            <img src="FEM_results.png?v=20251021" alt="FEM Results" class="img-fluid" style="max-width: 100%; height: auto; border: 1px solid var(--border-color); border-radius: 8px;">
-            <p style="font-size: 14px; color: var(--text-color); margin-top: 10px;">
-              <em>Finite Element Method results showing solution comparison, error distribution, convergence study, and stiffness matrix visualization</em>
-            </p>
-          </div>
-          
-          <h4>Performance Summary</h4>
-          <ul>
-            <li><strong>L2 Error:</strong> 3.79 × 10⁻¹⁶ (machine precision)</li>
-            <li><strong>L∞ Error:</strong> 6.66 × 10⁻¹⁶ (machine precision)</li>
-            <li><strong>Mesh size:</strong> h = 0.1 (N = 10 internal nodes)</li>
-            <li><strong>Analytical solution:</strong> u(x) = -x² + 2x</li>
-            <li><strong>Result:</strong> Essentially exact solution due to quadratic exactness of linear FEM</li>
-          </ul>
 
           <div class="row" style="margin-top: 15px; padding-top: 10px">
             <div class="col-sm-1"></div>
