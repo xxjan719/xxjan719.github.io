@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MAC2312 Calculus II - Xingjian Xu (Hsu)</title>
+    <meta name="description" content="MAC2312 Calculus II course page - University of Florida">
+    <meta name="author" content="Xingjian Xu (Hsu)">
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Academicons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/academicons@1.9.1/css/academicons.min.css">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <style>
+        :root {
+            --bg-color: #ffffff;
+            --text-color: #333333;
+            --link-color: #007bff;
+            --navbar-bg: #f8f9fa;
+            --navbar-text: #333333;
+            --card-bg: #ffffff;
+            --border-color: #dee2e6;
+            --shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        [data-theme="dark"] {
+            --bg-color: #1a1a1a;
+            --text-color: #ffffff;
+            --link-color: #90EE90;
+            --navbar-bg: #2d2d2d;
+            --navbar-text: #ffffff;
+            --card-bg: #2d2d2d;
+            --border-color: #404040;
+            --shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            transition: background-color 0.3s ease, color 0.3s ease;
+            line-height: 1.6;
+        }
+
+        .navbar {
+            background-color: var(--navbar-bg) !important;
+            border-bottom: 1px solid var(--border-color);
+            padding: 8px 0;
+            transition: all 0.3s ease;
+        }
+
+        .navbar-nav > li > a {
+            color: var(--navbar-text) !important;
+            font-size: 14px;
+            margin: 0 10px;
+            font-weight: 400;
+            transition: color 0.3s ease;
+        }
+
+        .navbar-nav > li > a:hover {
+            color: var(--link-color) !important;
+        }
+
+        .navbar-nav > li.active > a {
+            color: var(--link-color) !important;
+            font-weight: 500;
+        }
+
+        .light-toggle {
+            background: var(--navbar-bg);
+            border: 2px solid var(--border-color);
+            color: var(--navbar-text);
+            font-size: 18px;
+            cursor: pointer;
+            padding: 10px 15px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            margin-left: 20px;
+            min-width: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .light-toggle:hover {
+            background-color: var(--link-color);
+            color: var(--bg-color);
+            border-color: var(--link-color);
+            transform: scale(1.05);
+        }
+
+        .light-toggle:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px var(--link-color);
+        }
+
+        .light-toggle:active {
+            transform: scale(0.95);
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .course-header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 30px 0;
+            border-bottom: 2px solid var(--link-color);
+        }
+
+        .course-title {
+            font-size: 2.5em;
+            font-weight: 300;
+            color: var(--link-color);
+            margin-bottom: 10px;
+        }
+
+        .course-subtitle {
+            font-size: 1.2em;
+            color: var(--text-color);
+            opacity: 0.8;
+        }
+
+        .section {
+            margin-bottom: 40px;
+            padding: 25px;
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+        }
+
+        .section-title {
+            font-size: 1.5em;
+            font-weight: 500;
+            color: var(--link-color);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        .section-content {
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        .section-content a {
+            color: var(--link-color);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .section-content a:hover {
+            text-decoration: underline;
+        }
+
+        .schedule-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        .schedule-table th,
+        .schedule-table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .schedule-table th {
+            background-color: var(--navbar-bg);
+            color: var(--link-color);
+            font-weight: 500;
+            font-size: 14px;
+        }
+
+        .schedule-table td {
+            color: var(--text-color);
+            font-size: 14px;
+        }
+
+        .schedule-table tr:hover {
+            background-color: var(--navbar-bg);
+        }
+
+        .contact-info {
+            background-color: var(--navbar-bg);
+            padding: 20px;
+            border-radius: 6px;
+            border-left: 4px solid var(--link-color);
+        }
+
+        .contact-item {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .contact-icon {
+            margin-right: 10px;
+            color: var(--link-color);
+            width: 20px;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: var(--link-color);
+            color: var(--bg-color);
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .back-link:hover {
+            background-color: var(--text-color);
+            color: var(--bg-color);
+            text-decoration: none;
+        }
+
+        /* Light theme specific styling */
+        [data-theme="light"] body {
+            background-color: #ffffff;
+        }
+
+        [data-theme="light"] .navbar {
+            background-color: #f8f9fa !important;
+            border-bottom: 1px solid #dee2e6;
+        }
+
+        [data-theme="light"] .navbar-nav > li > a {
+            color: #333333 !important;
+        }
+
+        [data-theme="light"] .navbar-nav > li > a:hover {
+            color: #007bff !important;
+        }
+
+        [data-theme="light"] .navbar-nav > li.active > a {
+            color: #007bff !important;
+        }
+
+        [data-theme="light"] .light-toggle {
+            background-color: #f8f9fa;
+            border-color: #dee2e6;
+            color: #333333;
+        }
+
+        [data-theme="light"] .light-toggle:hover {
+            background-color: #007bff;
+            color: #ffffff;
+            border-color: #007bff;
+        }
+
+        [data-theme="light"] .section {
+            background-color: #ffffff;
+            border: 1px solid #e9ecef;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        [data-theme="light"] .contact-info {
+            background-color: #f8f9fa;
+            border-left: 4px solid #007bff;
+        }
+
+        [data-theme="light"] .schedule-table th {
+            background-color: #e9ecef;
+            color: #007bff;
+        }
+
+        [data-theme="light"] .schedule-table tr:hover {
+            background-color: #f8f9fa;
+        }
+
+        [data-theme="light"] .course-subtitle {
+            color: #333333;
+        }
+
+        [data-theme="light"] .section-content {
+            color: #333333;
+        }
+
+        [data-theme="light"] .schedule-table td {
+            color: #333333;
+        }
+
+        [data-theme="light"] .contact-item span {
+            color: #333333;
+        }
+
+        [data-theme="light"] .course-title {
+            color: #007bff;
+        }
+
+        [data-theme="light"] .section-title {
+            color: #007bff;
+        }
+
+        [data-theme="light"] .section-content a {
+            color: #007bff;
+        }
+
+        [data-theme="light"] .back-link {
+            background-color: #007bff;
+            color: #ffffff;
+        }
+
+        [data-theme="light"] .back-link:hover {
+            background-color: #0056b3;
+            color: #ffffff;
+        }
+
+        [data-theme="light"] .contact-icon {
+            color: #007bff;
+        }
+
+        [data-theme="light"] .course-header {
+            border-bottom-color: #007bff;
+        }
+
+        @media (max-width: 768px) {
+            .course-title {
+                font-size: 2em;
+            }
+            
+            .section {
+                padding: 20px;
+            }
+            
+            .schedule-table {
+                font-size: 12px;
+            }
+            
+            .schedule-table th,
+            .schedule-table td {
+                padding: 8px;
+            }
+        }
+    </style>
+</head>
+<body data-theme="dark">
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="../#about">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../#publications">Publications</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../#research">Research</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../#services">Services</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="../index.html">Teaching</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../../post/index.html">Post</a>
+                </li>
+            </ul>
+            <button class="light-toggle" onclick="toggleTheme()">
+                <i class="fas fa-moon" id="theme-icon"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Course Header -->
+        <div class="course-header">
+            <h1 class="course-title">MAC2312 Calculus II</h1>
+            <p class="course-subtitle">University of Florida • Spring 2026</p>
+        </div>
+
+        <!-- Syllabus Section -->
+        <div class="section">
+            <h2 class="section-title">SYLLABUS</h2>
+            <div class="section-content">
+                <p>Here is the <a href="#" target="_blank">Syllabus</a> for MAC2312. Also, you can see it through Canvas.</p>
+            </div>
+        </div>
+
+        <!-- Problems and Quizzes Schedule Section -->
+        <div class="section">
+            <h2 class="section-title">PROBLEMS AND QUIZZES SCHEDULE</h2>
+            <div class="section-content">
+                <p>Schedule will be updated soon.</p>
+            </div>
+        </div>
+
+        <!-- Contact Information Section -->
+        <div class="section">
+            <h2 class="section-title">CONTACT INFORMATION</h2>
+            <div class="section-content">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fa fa-envelope contact-icon"></i>
+                        <span>Email: xingjianxu@ufl.edu</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fa fa-building contact-icon"></i>
+                        <span>Office: LIT 453</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fa fa-clock-o contact-icon"></i>
+                        <span>Office Hours: Tuesday Period 5, 6, and 7, or by appointment.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Back Link -->
+        <a href="../index.html" class="back-link">
+            <i class="fa fa-arrow-left"></i> Back to Teaching
+        </a>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <!-- Theme Toggle Script -->
+    <script>
+        // Check for saved theme preference or default to dark
+        const currentTheme = localStorage.getItem('theme') || 'dark';
+        document.documentElement.setAttribute('data-theme', currentTheme);
+        updateThemeIcon(currentTheme);
+
+        function toggleTheme() {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            
+            document.documentElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateThemeIcon(newTheme);
+        }
+
+        function updateThemeIcon(theme) {
+            const icon = document.getElementById('theme-icon');
+            if (theme === 'dark') {
+                icon.className = 'fas fa-moon';
+            } else {
+                icon.className = 'fas fa-sun';
+            }
+        }
+    </script>
+</body>
+</html>
+
