@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lecture 18: Lagrange multipliers - MAC2313</title>
+    <meta name="description" content="Interactive Lagrange multiplier examples for MAC2313 Calculus III">
+    <meta name="author" content="Xingjian Xu (Hsu)">
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Academicons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/academicons@1.9.1/css/academicons.min.css">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <style>
+        :root {
+            --bg-color: #ffffff;
+            --text-color: #333333;
+            --link-color: #007bff;
+            --navbar-bg: #f8f9fa;
+            --navbar-text: #333333;
+            --card-bg: #ffffff;
+            --border-color: #dee2e6;
+            --shadow: 0 2px 4px rgba(0,0,0,0.1);
+            --viz-soft: #5B6773;
+            --viz-constraint: #7c3aed;
+            --viz-level: #dc2626;
+            --viz-gradf: #2563eb;
+            --viz-gradg: #059669;
+            --viz-tangent: #ea580c;
+            --viz-grid: #eef2f7;
+            --viz-axis: #cbd5e1;
+            --viz-ghost: #f5b5b5;
+        }
+
+        [data-theme="dark"] {
+            --bg-color: #1a1a1a;
+            --text-color: #ffffff;
+            --link-color: #90EE90;
+            --navbar-bg: #2d2d2d;
+            --navbar-text: #ffffff;
+            --card-bg: #2d2d2d;
+            --border-color: #404040;
+            --shadow: 0 2px 4px rgba(0,0,0,0.3);
+            --viz-soft: #9AA6AF;
+            --viz-constraint: #c4b5fd;
+            --viz-level: #f06a6a;
+            --viz-gradf: #6A9BF2;
+            --viz-gradg: #46C99A;
+            --viz-tangent: #F0924F;
+            --viz-grid: #343e46;
+            --viz-axis: #5c6972;
+            --viz-ghost: #7a4545;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            transition: background-color 0.3s ease, color 0.3s ease;
+            line-height: 1.6;
+        }
+
+        .navbar {
+            background-color: var(--navbar-bg) !important;
+            border-bottom: 1px solid var(--border-color);
+            padding: 8px 0;
+            transition: all 0.3s ease;
+        }
+
+        .navbar-nav > li > a {
+            color: var(--navbar-text) !important;
+            font-size: 14px;
+            margin: 0 10px;
+            font-weight: 400;
+            transition: color 0.3s ease;
+        }
+
+        .navbar-nav > li > a:hover {
+            color: var(--link-color) !important;
+        }
+
+        .navbar-nav > li.active > a {
+            color: var(--link-color) !important;
+            font-weight: 500;
+        }
+
+        .light-toggle {
+            background: var(--navbar-bg);
+            border: 2px solid var(--border-color);
+            color: var(--navbar-text);
+            font-size: 18px;
+            cursor: pointer;
+            padding: 10px 15px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            margin-left: 20px;
+            min-width: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .light-toggle:hover {
+            background-color: var(--link-color);
+            color: var(--bg-color);
+            border-color: var(--link-color);
+            transform: scale(1.05);
+        }
+
+        .light-toggle:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px var(--link-color);
+        }
+
+        .light-toggle:active {
+            transform: scale(0.95);
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .course-header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 30px 0;
+            border-bottom: 2px solid var(--link-color);
+        }
+
+        .course-title {
+            font-size: 2.5em;
+            font-weight: 300;
+            color: var(--link-color);
+            margin-bottom: 10px;
+        }
+
+        .course-subtitle {
+            font-size: 1.2em;
+            color: var(--text-color);
+            opacity: 0.8;
+        }
+
+        .section {
+            margin-bottom: 40px;
+            padding: 25px;
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+        }
+
+        .section-title {
+            font-size: 1.5em;
+            font-weight: 500;
+            color: var(--link-color);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        .section-content {
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        .section-content a {
+            color: var(--link-color);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .section-content a:hover {
+            text-decoration: underline;
+        }
+
+        .schedule-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        .schedule-table th,
+        .schedule-table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .schedule-table th {
+            background-color: var(--navbar-bg);
+            color: var(--link-color);
+            font-weight: 500;
+            font-size: 14px;
+        }
+
+        .schedule-table td {
+            color: var(--text-color);
+            font-size: 14px;
+        }
+
+        .schedule-table tr:hover {
+            background-color: var(--navbar-bg);
+        }
+
+        .contact-info {
+            background-color: var(--navbar-bg);
+            padding: 20px;
+            border-radius: 6px;
+            border-left: 4px solid var(--link-color);
+        }
+
+        .contact-item {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .contact-icon {
+            margin-right: 10px;
+            color: var(--link-color);
+            width: 20px;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: var(--link-color);
+            color: var(--bg-color);
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .back-link:hover {
+            background-color: var(--text-color);
+            color: var(--bg-color);
+            text-decoration: none;
+        }
+
+        /* Light theme specific styling */
+        [data-theme="light"] body {
+            background-color: #ffffff;
+        }
+
+        [data-theme="light"] .navbar {
+            background-color: #f8f9fa !important;
+            border-bottom: 1px solid #dee2e6;
+        }
+
+        [data-theme="light"] .navbar-nav > li > a {
+            color: #333333 !important;
+        }
+
+        [data-theme="light"] .navbar-nav > li > a:hover {
+            color: #007bff !important;
+        }
+
+        [data-theme="light"] .navbar-nav > li.active > a {
+            color: #007bff !important;
+        }
+
+        [data-theme="light"] .light-toggle {
+            background-color: #f8f9fa;
+            border-color: #dee2e6;
+            color: #333333;
+        }
+
+        [data-theme="light"] .light-toggle:hover {
+            background-color: #007bff;
+            color: #ffffff;
+            border-color: #007bff;
+        }
+
+        [data-theme="light"] .section {
+            background-color: #ffffff;
+            border: 1px solid #e9ecef;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        [data-theme="light"] .contact-info {
+            background-color: #f8f9fa;
+            border-left: 4px solid #007bff;
+        }
+
+        [data-theme="light"] .schedule-table th {
+            background-color: #e9ecef;
+            color: #007bff;
+        }
+
+        [data-theme="light"] .schedule-table tr:hover {
+            background-color: #f8f9fa;
+        }
+
+        [data-theme="light"] .course-subtitle {
+            color: #333333;
+        }
+
+        [data-theme="light"] .section-content {
+            color: #333333;
+        }
+
+        [data-theme="light"] .schedule-table td {
+            color: #333333;
+        }
+
+        [data-theme="light"] .contact-item span {
+            color: #333333;
+        }
+
+        [data-theme="light"] .course-title {
+            color: #007bff;
+        }
+
+        [data-theme="light"] .section-title {
+            color: #007bff;
+        }
+
+        [data-theme="light"] .section-content a {
+            color: #007bff;
+        }
+
+        [data-theme="light"] .back-link {
+            background-color: #007bff;
+            color: #ffffff;
+        }
+
+        [data-theme="light"] .back-link:hover {
+            background-color: #0056b3;
+            color: #ffffff;
+        }
+
+        [data-theme="light"] .contact-icon {
+            color: #007bff;
+        }
+
+        [data-theme="light"] .course-header {
+            border-bottom-color: #007bff;
+        }
+
+        .math { font-family: Georgia, "Iowan Old Style", "Times New Roman", serif; font-style: italic; }
+        .tabs { display: flex; gap: 10px; flex-wrap: wrap; margin: 0 0 16px; }
+        .tab, .jump {
+            font: inherit;
+            font-size: 14px;
+            color: var(--text-color);
+            background: transparent;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 8px 14px;
+            cursor: pointer;
+        }
+        .tab:hover, .jump:hover { border-color: var(--link-color); color: var(--link-color); }
+        .tab.active { border-color: var(--link-color); color: var(--link-color); font-weight: 600; }
+        .jump.primary { border-color: var(--link-color); color: var(--link-color); }
+        .panel { display: none; }
+        .panel.active { display: block; }
+        .layout { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(280px, 0.75fr); gap: 16px; align-items: start; }
+        .figure, .controls {
+            background: var(--navbar-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 14px;
+        }
+        .legend { display: flex; gap: 8px 14px; flex-wrap: wrap; margin: 0 0 8px; font-size: 13px; color: var(--viz-soft); }
+        .swatch { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 6px; }
+        svg { width: 100%; height: auto; display: block; background: var(--navbar-bg); border-radius: 8px; }
+        .axis-line { stroke: var(--viz-axis); }
+        .constraint-curve { stroke: var(--viz-constraint); }
+        .constraint-label { fill: var(--viz-constraint); }
+        #level2, #incArrow { stroke: var(--viz-level); }
+        #level2Label { fill: var(--viz-level); }
+        #incArrow { stroke: var(--viz-soft); }
+        #incLabel { fill: var(--viz-soft); }
+        .axis-label { fill: var(--viz-soft); }
+        #tangent2 { stroke: var(--viz-tangent); }
+        #tangent2Label { fill: var(--viz-tangent); }
+        #gradF2 { stroke: var(--viz-gradf); }
+        #gradG2 { stroke: var(--viz-gradg); }
+        #gradF2Label { fill: var(--viz-gradf); }
+        #gradG2Label { fill: var(--viz-gradg); }
+        #arrBlue path, #arrF3 path { fill: var(--viz-gradf); }
+        #arrGreen path, #arrG3 path { fill: var(--viz-gradg); }
+        #arrGray path { fill: var(--viz-soft); }
+        #arrT3 path { fill: var(--viz-level); }
+        .mini-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 12px; }
+        .mini { border: 1px solid var(--border-color); border-radius: 8px; padding: 10px; font-size: 13px; background: var(--card-bg); }
+        .mini .muted { color: var(--viz-soft); }
+        .controls label { display: block; font-size: 14px; font-weight: 600; margin: 12px 0 2px; }
+        .controls input[type=range] { width: 100%; accent-color: var(--viz-gradf); height: 28px; }
+        .value-row { display: flex; justify-content: space-between; gap: 10px; flex-wrap: wrap; font-size: 14px; margin-top: 4px; }
+        .actions { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 10px; }
+        .hr { height: 1px; background: var(--border-color); margin: 14px 0; }
+        .steps { display: grid; gap: 10px; }
+        .step { display: grid; grid-template-columns: 28px 1fr; gap: 10px; align-items: start; }
+        .num {
+            width: 28px; height: 28px; border-radius: 50%;
+            display: grid; place-items: center;
+            border: 1px solid var(--border-color);
+            color: var(--link-color);
+            font-weight: 700; font-size: 13px;
+        }
+        .callout { border-left: 4px solid var(--viz-gradf); padding: 10px 12px; background: var(--card-bg); border-radius: 0 8px 8px 0; margin-top: 12px; }
+        .callout.green { border-left-color: var(--viz-gradg); }
+        .callout.orange { border-left-color: var(--viz-tangent); }
+        .bigmath { font-family: Georgia, "Times New Roman", serif; font-style: italic; font-size: 20px; text-align: center; margin: 10px 0 4px; }
+        .kpi { font-size: 14px; color: var(--viz-soft); margin: 12px 0 0; }
+        .kpi b { color: var(--text-color); }
+        .badge {
+            display: inline-block;
+            border: 1px solid var(--border-color);
+            border-radius: 999px;
+            padding: 4px 10px;
+            font-size: 13px;
+            color: var(--viz-soft);
+        }
+        .example-title { font-size: 1.25em; font-weight: 500; color: var(--link-color); margin: 0 0 8px; }
+
+        @media (max-width: 768px) {
+            .course-title {
+                font-size: 2em;
+            }
+            
+            .section {
+                padding: 20px;
+            }
+            
+            .schedule-table {
+                font-size: 12px;
+            }
+            
+            .schedule-table th,
+            .schedule-table td {
+                padding: 8px;
+            }
+
+            .layout, .mini-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body data-theme="dark">
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="../../#about">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../../#publications">Publications</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../../#research">Research</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../../#services">Services</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="../../index.html">Teaching</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../../../post/index.html">Post</a>
+                </li>
+            </ul>
+            <button class="light-toggle" onclick="toggleTheme()">
+                <i class="fas fa-moon" id="theme-icon"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Course Header -->
+        <div class="course-header">
+            <h1 class="course-title">Lecture 18: Lagrange multipliers</h1>
+            <p class="course-subtitle">MAC2313 Calculus III • Fall 2026</p>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">TWO GEOMETRIC EXAMPLES</h2>
+            <div class="section-content">
+                <p>The goal is not just to solve <span class="math">∇f = λ∇g</span>, but to see why that equation is forced by the geometry.</p>
+                <div class="tabs" role="tablist" aria-label="Examples">
+                    <button id="tab1" class="tab active" type="button" role="tab" aria-selected="true">Example 1 — 2D level curves</button>
+                    <button id="tab2" class="tab" type="button" role="tab" aria-selected="false">Example 2 — 3D surface + cylinder</button>
+                </div>
+
+                <section id="ex1" class="panel active" role="tabpanel">
+                    <h3 class="example-title">Example 1: Slide the level curve until it just touches the constraint</h3>
+                    <p>Optimize <span class="math">f(x, y) = x + y</span> subject to <span class="math">g(x, y) = x² + 4y² = 4</span>.</p>
+                    <div class="layout">
+                        <div class="figure">
+                            <div class="legend">
+                                <span><span class="swatch" style="background:var(--viz-constraint)"></span>constraint <span class="math">g = 4</span></span>
+                                <span><span class="swatch" style="background:var(--viz-level)"></span>moving level curve <span class="math">f = k</span></span>
+                                <span><span class="swatch" style="background:var(--viz-gradf)"></span><span class="math">∇f</span></span>
+                                <span><span class="swatch" style="background:var(--viz-gradg)"></span><span class="math">∇g</span></span>
+                                <span><span class="swatch" style="background:var(--viz-tangent)"></span>common tangent</span>
+                            </div>
+                            <svg id="svg2d" viewBox="0 0 700 500" aria-label="Interactive level curves and ellipse constraint">
+                                <defs>
+                                    <marker id="arrBlue" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9 Z"/></marker>
+                                    <marker id="arrGreen" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9 Z"/></marker>
+                                    <marker id="arrGray" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9 Z"/></marker>
+                                </defs>
+                                <g id="grid2"></g>
+                                <line class="axis-line" x1="50" y1="250" x2="650" y2="250" stroke-width="1.5"/>
+                                <line class="axis-line" x1="350" y1="35" x2="350" y2="465" stroke-width="1.5"/>
+                                <text class="axis-label" x="655" y="244" font-size="14">x</text>
+                                <text class="axis-label" x="358" y="48" font-size="14">y</text>
+                                <g id="ghostLevels"></g>
+                                <ellipse class="constraint-curve" cx="350" cy="250" rx="180" ry="90" fill="none" stroke-width="4"/>
+                                <text class="constraint-label" x="118" y="112" font-size="14">constraint: x² + 4y² = 4</text>
+                                <line id="level2" fill="none" stroke-width="4"/>
+                                <text id="level2Label" font-size="14"></text>
+                                <line id="incArrow" stroke-width="2.5" marker-end="url(#arrGray)"/>
+                                <text id="incLabel" font-size="13">increasing k</text>
+                                <circle id="touch2" r="7" opacity="0"/>
+                                <line id="tangent2" stroke-width="3" stroke-dasharray="8 5" opacity="0"/>
+                                <text id="tangent2Label" font-size="13" opacity="0">same tangent line</text>
+                                <line id="gradF2" stroke-width="4" marker-end="url(#arrBlue)" opacity="0"/>
+                                <line id="gradG2" stroke-width="4" marker-end="url(#arrGreen)" opacity="0"/>
+                                <text id="gradF2Label" font-size="14" opacity="0">∇f</text>
+                                <text id="gradG2Label" font-size="14" opacity="0">∇g</text>
+                                <g id="intersections2"></g>
+                            </svg>
+                            <div class="mini-grid">
+                                <div class="mini"><b>Before tangency</b><br><span class="muted">The level curve cuts the constraint at two feasible points.</span></div>
+                                <div class="mini"><b>At tangency</b><br><span class="muted">There is one touching point. The tangent directions agree.</span></div>
+                                <div class="mini"><b>After tangency</b><br><span class="muted">No feasible point lies on that larger level curve.</span></div>
+                            </div>
+                        </div>
+                        <div class="controls">
+                            <span class="badge">Goal: maximize or minimize f while staying on g = 4</span>
+                            <label for="k2">Move the level curve <span class="math">x + y = k</span></label>
+                            <input id="k2" type="range" min="-2.75" max="2.75" step="0.01" value="0">
+                            <div class="value-row"><span>k = <b id="k2out">0.00</b></span><span id="status2">Two intersections</span></div>
+                            <div class="actions">
+                                <button id="max2" class="jump primary" type="button">Jump to maximum</button>
+                                <button id="min2" class="jump" type="button">Jump to minimum</button>
+                            </div>
+                            <div class="hr"></div>
+                            <h3 class="example-title">What you should see</h3>
+                            <div class="steps">
+                                <div class="step"><div class="num">1</div><div>Every red line is one level curve <span class="math">f(x, y) = k</span>. Moving it changes the value of <span class="math">f</span>, not the constraint.</div></div>
+                                <div class="step"><div class="num">2</div><div>Only points on the purple ellipse are allowed. Keep sliding the red line and ask whether it still intersects the ellipse.</div></div>
+                                <div class="step"><div class="num">3</div><div>The largest possible level is the last red line that still touches the ellipse. That is a constrained maximum.</div></div>
+                                <div class="step"><div class="num">4</div><div>At that last touching point the two curves are tangent, so their normal vectors are parallel.</div></div>
+                            </div>
+                            <div class="callout green">
+                                <b>Geometric conclusion</b><br>
+                                <span class="math">∇f</span> is normal to the red level curve and <span class="math">∇g</span> is normal to the purple constraint. The same tangent line means the normals are parallel:
+                                <div class="bigmath">∇f = λ∇g</div>
+                            </div>
+                            <p id="details2" class="kpi"></p>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="ex2" class="panel" role="tabpanel">
+                    <h3 class="example-title">Example 2: The same idea in 3D</h3>
+                    <p>Optimize <span class="math">f(x, y) = x + 2y</span> subject to <span class="math">g(x, y) = x² + y² = 1</span>. Its graph is the plane <span class="math">z = f(x, y) = x + 2y</span>, and the constraint becomes a vertical cylinder.</p>
+                    <div class="layout">
+                        <div class="figure">
+                            <div class="legend">
+                                <span><span class="swatch" style="background:var(--viz-constraint)"></span>surface <span class="math">z = f(x, y)</span></span>
+                                <span><span class="swatch" style="background:var(--viz-gradg)"></span>constraint cylinder</span>
+                                <span><span class="swatch" style="background:var(--text-color)"></span>feasible intersection curve</span>
+                                <span><span class="swatch" style="background:var(--viz-level)"></span>tangent to feasible curve</span>
+                            </div>
+                            <svg id="svg3d" viewBox="0 0 760 560" aria-label="Interactive 3D Lagrange multiplier visualization">
+                                <defs>
+                                    <marker id="arrF3" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9 Z"/></marker>
+                                    <marker id="arrG3" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9 Z"/></marker>
+                                    <marker id="arrT3" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9 Z"/></marker>
+                                </defs>
+                                <g id="scene3"></g>
+                            </svg>
+                            <div class="callout orange">
+                                <b>3D interpretation.</b> The feasible points are not the whole plane. They are only the curve where the plane and cylinder intersect. The highest and lowest points on that curve are the constrained maximum and minimum.
+                            </div>
+                        </div>
+                        <div class="controls">
+                            <span class="badge">Move only along the feasible intersection curve</span>
+                            <label for="t3">Position on the constraint: <span class="math">x = cos t, y = sin t</span></label>
+                            <input id="t3" type="range" min="0" max="6.283185307" step="0.01" value="0.6">
+                            <div class="value-row"><span>t = <b id="t3out">0.60</b></span><span>height f = <b id="f3out">0.00</b></span></div>
+                            <div class="actions">
+                                <button id="max3" class="jump primary" type="button">Jump to maximum</button>
+                                <button id="min3" class="jump" type="button">Jump to minimum</button>
+                            </div>
+                            <label for="yaw3">Rotate left/right</label>
+                            <input id="yaw3" type="range" min="-3.14" max="3.14" step="0.01" value="-0.72">
+                            <label for="pitch3">Rotate up/down</label>
+                            <input id="pitch3" type="range" min="-1.20" max="1.20" step="0.01" value="0.58">
+                            <div class="hr"></div>
+                            <h3 class="example-title">What changes along the feasible curve?</h3>
+                            <p class="math">f(t) = cos t + 2 sin t</p>
+                            <p class="math">f'(t) = −sin t + 2 cos t</p>
+                            <div class="callout">
+                                At a constrained maximum or minimum, a tiny move along the allowed curve cannot change the height to first order. Therefore
+                                <div class="bigmath">f'(t) = 0</div>
+                            </div>
+                            <div class="callout green">
+                                In the <span class="math">xy</span>-plane, the tangent direction to the constraint is perpendicular to <span class="math">∇g</span>. At the optimum, that same direction is also perpendicular to <span class="math">∇f</span>. Therefore
+                                <div class="bigmath">∇f ∥ ∇g</div>
+                            </div>
+                            <p id="details3" class="kpi"></p>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+        <!-- Back Link -->
+        <a href="MAC2313.html" class="back-link">
+            <i class="fa fa-arrow-left"></i> Back to MAC2313
+        </a>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <!-- Theme Toggle Script -->
+    <script>
+        // Check for saved theme preference or default to dark
+        const currentTheme = localStorage.getItem('theme') || 'dark';
+        document.documentElement.setAttribute('data-theme', currentTheme);
+        document.body.setAttribute('data-theme', currentTheme);
+        updateThemeIcon(currentTheme);
+
+        function toggleTheme() {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            
+            document.documentElement.setAttribute('data-theme', newTheme);
+            document.body.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateThemeIcon(newTheme);
+            window.dispatchEvent(new Event('themechange'));
+        }
+
+        function updateThemeIcon(theme) {
+            const icon = document.getElementById('theme-icon');
+            if (theme === 'dark') {
+                icon.className = 'fas fa-moon';
+            } else {
+                icon.className = 'fas fa-sun';
+            }
+        }
+    </script>
+    <script>
+    (function(){
+      function css(n){return getComputedStyle(document.documentElement).getPropertyValue(n).trim();}
+      function colors(){
+        return {
+          soft:css('--viz-soft'), constraint:css('--viz-constraint'), level:css('--viz-level'),
+          gradf:css('--viz-gradf'), gradg:css('--viz-gradg'), tangent:css('--viz-tangent'),
+          grid:css('--viz-grid'), ghost:css('--viz-ghost'), ink:css('--text-color'), axis:css('--viz-axis')
+        };
+      }
+
+      const tab1=document.getElementById('tab1'), tab2=document.getElementById('tab2');
+      const ex1=document.getElementById('ex1'), ex2=document.getElementById('ex2');
+      function setTab(n){
+        const a=n===1;
+        tab1.classList.toggle('active',a); tab2.classList.toggle('active',!a);
+        ex1.classList.toggle('active',a); ex2.classList.toggle('active',!a);
+        tab1.setAttribute('aria-selected',a); tab2.setAttribute('aria-selected',!a);
+        if(!a) render3();
+      }
+      tab1.addEventListener('click',function(){setTab(1);});
+      tab2.addEventListener('click',function(){setTab(2);});
+
+      const k2=document.getElementById('k2'), level2=document.getElementById('level2'), level2Label=document.getElementById('level2Label');
+      const touch2=document.getElementById('touch2'), tangent2=document.getElementById('tangent2'), tangent2Label=document.getElementById('tangent2Label');
+      const gradF2=document.getElementById('gradF2'), gradG2=document.getElementById('gradG2'), gradF2Label=document.getElementById('gradF2Label'), gradG2Label=document.getElementById('gradG2Label');
+      const intersections2=document.getElementById('intersections2'), status2=document.getElementById('status2'), details2=document.getElementById('details2'), k2out=document.getElementById('k2out');
+      const ghostLevels=document.getElementById('ghostLevels'), grid2=document.getElementById('grid2'), incArrow=document.getElementById('incArrow'), incLabel=document.getElementById('incLabel');
+      const K=Math.sqrt(5), maxP={x:4/K,y:1/K}, minP={x:-4/K,y:-1/K};
+      const X=function(x){return 350+90*x;}, Y=function(y){return 250-90*y;};
+      function line(el,x1,y1,x2,y2){el.setAttribute('x1',x1);el.setAttribute('y1',y1);el.setAttribute('x2',x2);el.setAttribute('y2',y2);}
+      for(var a=-3;a<=3;a++){
+        var v=document.createElementNS('http://www.w3.org/2000/svg','line');
+        line(v,X(a),Y(-2.3),X(a),Y(2.3)); grid2.appendChild(v);
+      }
+      for(var b=-2;b<=2;b++){
+        var h=document.createElementNS('http://www.w3.org/2000/svg','line');
+        line(h,X(-3.2),Y(b),X(3.2),Y(b)); grid2.appendChild(h);
+      }
+      [-1.6,-0.8,0.8,1.6].forEach(function(kv){
+        var g=document.createElementNS('http://www.w3.org/2000/svg','line');
+        line(g,X(-3.2),Y(kv+3.2),X(3.2),Y(kv-3.2));
+        g.setAttribute('stroke-width','1.4'); g.setAttribute('opacity','0.45');
+        ghostLevels.appendChild(g);
+      });
+      line(incArrow,X(-1.35),Y(1.95),X(-0.72),Y(2.58));
+      incLabel.setAttribute('x',X(-1.23)); incLabel.setAttribute('y',Y(2.42));
+
+      function clearIntersections(){while(intersections2.firstChild) intersections2.removeChild(intersections2.firstChild);}
+      function rootsForK(k){
+        var A=5,B=-8*k,C=4*k*k-4,D=B*B-4*A*C;
+        if(D<-1e-9) return [];
+        var d=Math.sqrt(Math.max(0,D));
+        var xs=[(-B+d)/(2*A),(-B-d)/(2*A)];
+        return D<1e-8?[{x:xs[0],y:k-xs[0]}]:xs.map(function(x){return {x:x,y:k-x};});
+      }
+      function hideTangency(){[touch2,tangent2,tangent2Label,gradF2,gradG2,gradF2Label,gradG2Label].forEach(function(e){e.setAttribute('opacity','0');});}
+      function showTangency(p,label){
+        var C=colors();
+        touch2.setAttribute('cx',X(p.x)); touch2.setAttribute('cy',Y(p.y)); touch2.setAttribute('fill',C.ink); touch2.setAttribute('opacity','1');
+        line(tangent2,X(p.x-1.0),Y(p.y+1.0),X(p.x+1.0),Y(p.y-1.0)); tangent2.setAttribute('opacity','1');
+        tangent2Label.setAttribute('x',X(p.x+.34)); tangent2Label.setAttribute('y',Y(p.y-.52)); tangent2Label.setAttribute('opacity','1');
+        var nf=Math.sqrt(2), gf={x:1/nf,y:1/nf}, gg0={x:2*p.x,y:8*p.y}, ng=Math.hypot(gg0.x,gg0.y), gg={x:gg0.x/ng,y:gg0.y/ng};
+        line(gradF2,X(p.x),Y(p.y),X(p.x+.82*gf.x),Y(p.y+.82*gf.y));
+        line(gradG2,X(p.x),Y(p.y),X(p.x+.82*gg.x),Y(p.y+.82*gg.y));
+        [gradF2,gradG2,gradF2Label,gradG2Label].forEach(function(e){e.setAttribute('opacity','1');});
+        gradF2Label.setAttribute('x',X(p.x+.62*gf.x)); gradF2Label.setAttribute('y',Y(p.y+.62*gf.y)-10);
+        gradG2Label.setAttribute('x',X(p.x+.67*gg.x)); gradG2Label.setAttribute('y',Y(p.y+.67*gg.y)+17);
+        status2.textContent=label;
+        details2.innerHTML='Tangency point ≈ <b>('+p.x.toFixed(3)+', '+p.y.toFixed(3)+')</b>. Here ∇f = (1, 1) and ∇g = ('+(2*p.x).toFixed(3)+', '+(8*p.y).toFixed(3)+'), so they are parallel.';
+      }
+      function update2(){
+        var C=colors();
+        grid2.querySelectorAll('line').forEach(function(l){l.setAttribute('stroke',C.grid);});
+        ghostLevels.querySelectorAll('line').forEach(function(l){l.setAttribute('stroke',C.ghost);});
+        var k=+k2.value; k2out.textContent=k.toFixed(2);
+        line(level2,X(-3.2),Y(k+3.2),X(3.2),Y(k-3.2));
+        level2Label.setAttribute('x',X(1.55)); level2Label.setAttribute('y',Y(k-1.55)-8);
+        level2Label.textContent='x + y = '+k.toFixed(2);
+        clearIntersections();
+        var rs=rootsForK(k);
+        rs.forEach(function(p){
+          var c=document.createElementNS('http://www.w3.org/2000/svg','circle');
+          c.setAttribute('cx',X(p.x)); c.setAttribute('cy',Y(p.y)); c.setAttribute('r','5'); c.setAttribute('fill',C.ink);
+          intersections2.appendChild(c);
+        });
+        if(Math.abs(k-K)<.035) showTangency(maxP,'Constrained maximum: last touching level');
+        else if(Math.abs(k+K)<.035) showTangency(minP,'Constrained minimum: last touching level');
+        else {
+          hideTangency(); details2.textContent='';
+          status2.textContent=rs.length===2?'Two feasible intersection points':(rs.length===1?'One touching point':'No feasible intersection');
+        }
+      }
+      k2.addEventListener('input',update2);
+      document.getElementById('max2').addEventListener('click',function(){k2.value=K;update2();});
+      document.getElementById('min2').addEventListener('click',function(){k2.value=-K;update2();});
+
+      const NS='http://www.w3.org/2000/svg', scene3=document.getElementById('scene3');
+      const t3=document.getElementById('t3'), yaw3=document.getElementById('yaw3'), pitch3=document.getElementById('pitch3');
+      const t3out=document.getElementById('t3out'), f3out=document.getElementById('f3out'), details3=document.getElementById('details3');
+      const tMax=Math.atan2(2,1), tMin=tMax+Math.PI;
+      function E(name,attrs){
+        var e=document.createElementNS(NS,name);
+        Object.keys(attrs).forEach(function(k){e.setAttribute(k,String(attrs[k]));});
+        return e;
+      }
+      function P(p){
+        var yaw=+yaw3.value, pitch=+pitch3.value, cy=Math.cos(yaw), sy=Math.sin(yaw), cp=Math.cos(pitch), sp=Math.sin(pitch);
+        var x1=cy*p.x-sy*p.y, y1=sy*p.x+cy*p.y, z1=p.z, y2=cp*y1-sp*z1;
+        var s=108;
+        return {x:380+s*x1, y:290-s*y2};
+      }
+      function path3(pts,stroke,w,op,dash){
+        var d=pts.map(function(p,i){var q=P(p); return (i?'L':'M')+' '+q.x.toFixed(1)+' '+q.y.toFixed(1);}).join(' ');
+        var attrs={d:d,fill:'none',stroke:stroke,'stroke-width':w||1.4,opacity:op==null?1:op,'stroke-linecap':'round','stroke-linejoin':'round'};
+        if(dash) attrs['stroke-dasharray']=dash;
+        var e=E('path',attrs); scene3.appendChild(e); return e;
+      }
+      function txt3(p,s,c,size){
+        var q=P(p), e=E('text',{x:q.x+6,y:q.y-6,fill:c||colors().soft,'font-size':size||13});
+        e.textContent=s; scene3.appendChild(e);
+      }
+      function arrow3(p,v,scale,c,marker,label){
+        var a=P(p), b=P({x:p.x+scale*v.x,y:p.y+scale*v.y,z:p.z+scale*v.z});
+        scene3.appendChild(E('line',{x1:a.x,y1:a.y,x2:b.x,y2:b.y,stroke:c,'stroke-width':4,'marker-end':'url(#'+marker+')'}));
+        var e=E('text',{x:b.x+7,y:b.y-7,fill:c,'font-size':13,'font-weight':'700'});
+        e.textContent=label; scene3.appendChild(e);
+      }
+      function diff(a,b){var d=Math.abs(a-b)%(2*Math.PI); return Math.min(d,2*Math.PI-d);}
+      function render3(){
+        var C=colors();
+        scene3.replaceChildren();
+        var t=+t3.value, x=Math.cos(t), y=Math.sin(t), z=x+2*y, p={x:x,y:y,z:z};
+        var dark=document.documentElement.getAttribute('data-theme')==='dark';
+        path3([{x:-2.4,y:0,z:0},{x:2.4,y:0,z:0}],C.axis,1.5);
+        path3([{x:0,y:-2.4,z:0},{x:0,y:2.4,z:0}],C.axis,1.5);
+        path3([{x:0,y:0,z:-3.4},{x:0,y:0,z:3.4}],C.axis,1.5);
+        txt3({x:2.4,y:0,z:0},'x',C.soft); txt3({x:0,y:2.4,z:0},'y',C.soft); txt3({x:0,y:0,z:3.4},'z',C.soft);
+        for(var aa=-1.65;aa<=1.65;aa+=.33){var r=[]; for(var bb=-1.65;bb<=1.65;bb+=.07) r.push({x:aa,y:bb,z:aa+2*bb}); path3(r,C.constraint,1,dark?0.45:0.27);}
+        for(var bb2=-1.65;bb2<=1.65;bb2+=.33){var r2=[]; for(var aa2=-1.65;aa2<=1.65;aa2+=.07) r2.push({x:aa2,y:bb2,z:aa2+2*bb2}); path3(r2,C.constraint,1,dark?0.45:0.27);}
+        txt3({x:-1.55,y:1.45,z:-1.55+2*1.45},'plane z = x + 2y',C.constraint,13);
+        for(var j=0;j<16;j++){var ang=2*Math.PI*j/16; path3([{x:Math.cos(ang),y:Math.sin(ang),z:-3.2},{x:Math.cos(ang),y:Math.sin(ang),z:3.2}],C.gradg,1,dark?0.38:0.22);}
+        [-3,0,3].forEach(function(zz){var ring=[]; for(var i=0;i<=100;i++){var a2=2*Math.PI*i/100; ring.push({x:Math.cos(a2),y:Math.sin(a2),z:zz});} path3(ring,C.gradg,1.2,dark?0.55:0.36);});
+        txt3({x:1,y:0,z:3.1},'constraint cylinder',C.gradg,13);
+        var curve=[]; for(var i2=0;i2<=220;i2++){var a3=2*Math.PI*i2/220; curve.push({x:Math.cos(a3),y:Math.sin(a3),z:Math.cos(a3)+2*Math.sin(a3)});} path3(curve,C.ink,4,0.95);
+        var base=[]; for(var i3=0;i3<=120;i3++){var a4=2*Math.PI*i3/120; base.push({x:Math.cos(a4),y:Math.sin(a4),z:0});} path3(base,C.gradg,2,0.42,'5 4');
+        var q=P(p); scene3.appendChild(E('circle',{cx:q.x,cy:q.y,r:7,fill:C.ink}));
+        path3([p,{x:x,y:y,z:0}],C.soft,1.4,0.7,'4 4');
+        var tv={x:-Math.sin(t),y:Math.cos(t),z:-Math.sin(t)+2*Math.cos(t)}, nt=Math.hypot(tv.x,tv.y,tv.z);
+        tv={x:tv.x/nt,y:tv.y/nt,z:tv.z/nt}; arrow3(p,tv,.95,C.level,'arrT3','T');
+        var basep={x:x,y:y,z:0}, nf=Math.sqrt(5), gf={x:1/nf,y:2/nf,z:0}, ng=Math.hypot(2*x,2*y), gg={x:2*x/ng,y:2*y/ng,z:0};
+        arrow3(basep,gf,.82,C.gradf,'arrF3','∇f'); arrow3(basep,gg,.82,C.gradg,'arrG3','∇g');
+        txt3({x:-1.48,y:-1.40,z:0},'dashed circle = allowed motion in xy-domain',C.soft,12);
+        t3out.textContent=t.toFixed(2); f3out.textContent=z.toFixed(3);
+        var dz=-Math.sin(t)+2*Math.cos(t);
+        var dot=(1*(2*x)+2*(2*y))/(Math.sqrt(5)*ng);
+        var angle=Math.acos(Math.max(-1,Math.min(1,Math.abs(dot))))*180/Math.PI;
+        if(diff(t,tMax)<.035) details3.innerHTML='<b>Maximum.</b> Point ≈ ('+x.toFixed(3)+', '+y.toFixed(3)+'), height ≈ '+z.toFixed(3)+'. Here f′(t) ≈ 0 and the angle between ∇f and ∇g is ≈ 0°.';
+        else if(diff(t,tMin)<.035) details3.innerHTML='<b>Minimum.</b> Point ≈ ('+x.toFixed(3)+', '+y.toFixed(3)+'), height ≈ '+z.toFixed(3)+'. Here f′(t) ≈ 0 and the angle between ∇f and ∇g is ≈ 0°.';
+        else details3.innerHTML='At this point: <b>f′(t) = '+dz.toFixed(3)+'</b>. Angle between ∇f and ∇g (ignoring sign) ≈ <b>'+angle.toFixed(1)+'°</b>. Move toward an extreme and both approach the Lagrange condition.';
+      }
+      [t3,yaw3,pitch3].forEach(function(el){el.addEventListener('input',render3);});
+      document.getElementById('max3').addEventListener('click',function(){t3.value=tMax;render3();});
+      document.getElementById('min3').addEventListener('click',function(){t3.value=tMin;render3();});
+      window.addEventListener('themechange',function(){update2(); render3();});
+      update2();
+      render3();
+    })();
+    </script>
+</body>
+</html> 

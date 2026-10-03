@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lecture 15: Directional derivative - MAC2313</title>
+    <meta name="description" content="Interactive directional derivative explorer for MAC2313 Calculus III">
+    <meta name="author" content="Xingjian Xu (Hsu)">
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Academicons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/academicons@1.9.1/css/academicons.min.css">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <style>
+        :root {
+            --bg-color: #ffffff;
+            --text-color: #333333;
+            --link-color: #007bff;
+            --navbar-bg: #f8f9fa;
+            --navbar-text: #333333;
+            --card-bg: #ffffff;
+            --border-color: #dee2e6;
+            --shadow: 0 2px 4px rgba(0,0,0,0.1);
+            --viz-soft: #5B6773;
+            --viz-surface: #7c3aed;
+            --viz-dir: #2563eb;
+            --viz-steep: #059669;
+            --viz-axis: #cbd5e1;
+            --viz-err: #b91c1c;
+        }
+
+        [data-theme="dark"] {
+            --bg-color: #1a1a1a;
+            --text-color: #ffffff;
+            --link-color: #90EE90;
+            --navbar-bg: #2d2d2d;
+            --navbar-text: #ffffff;
+            --card-bg: #2d2d2d;
+            --border-color: #404040;
+            --shadow: 0 2px 4px rgba(0,0,0,0.3);
+            --viz-soft: #9AA6AF;
+            --viz-surface: #c4b5fd;
+            --viz-dir: #6A9BF2;
+            --viz-steep: #46C99A;
+            --viz-axis: #5c6972;
+            --viz-err: #f06a6a;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            transition: background-color 0.3s ease, color 0.3s ease;
+            line-height: 1.6;
+        }
+
+        .navbar {
+            background-color: var(--navbar-bg) !important;
+            border-bottom: 1px solid var(--border-color);
+            padding: 8px 0;
+            transition: all 0.3s ease;
+        }
+
+        .navbar-nav > li > a {
+            color: var(--navbar-text) !important;
+            font-size: 14px;
+            margin: 0 10px;
+            font-weight: 400;
+            transition: color 0.3s ease;
+        }
+
+        .navbar-nav > li > a:hover {
+            color: var(--link-color) !important;
+        }
+
+        .navbar-nav > li.active > a {
+            color: var(--link-color) !important;
+            font-weight: 500;
+        }
+
+        .light-toggle {
+            background: var(--navbar-bg);
+            border: 2px solid var(--border-color);
+            color: var(--navbar-text);
+            font-size: 18px;
+            cursor: pointer;
+            padding: 10px 15px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            margin-left: 20px;
+            min-width: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .light-toggle:hover {
+            background-color: var(--link-color);
+            color: var(--bg-color);
+            border-color: var(--link-color);
+            transform: scale(1.05);
+        }
+
+        .light-toggle:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px var(--link-color);
+        }
+
+        .light-toggle:active {
+            transform: scale(0.95);
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .course-header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 30px 0;
+            border-bottom: 2px solid var(--link-color);
+        }
+
+        .course-title {
+            font-size: 2.5em;
+            font-weight: 300;
+            color: var(--link-color);
+            margin-bottom: 10px;
+        }
+
+        .course-subtitle {
+            font-size: 1.2em;
+            color: var(--text-color);
+            opacity: 0.8;
+        }
+
+        .section {
+            margin-bottom: 40px;
+            padding: 25px;
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+        }
+
+        .section-title {
+            font-size: 1.5em;
+            font-weight: 500;
+            color: var(--link-color);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        .section-content {
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        .section-content a {
+            color: var(--link-color);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .section-content a:hover {
+            text-decoration: underline;
+        }
+
+        .schedule-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        .schedule-table th,
+        .schedule-table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .schedule-table th {
+            background-color: var(--navbar-bg);
+            color: var(--link-color);
+            font-weight: 500;
+            font-size: 14px;
+        }
+
+        .schedule-table td {
+            color: var(--text-color);
+            font-size: 14px;
+        }
+
+        .schedule-table tr:hover {
+            background-color: var(--navbar-bg);
+        }
+
+        .contact-info {
+            background-color: var(--navbar-bg);
+            padding: 20px;
+            border-radius: 6px;
+            border-left: 4px solid var(--link-color);
+        }
+
+        .contact-item {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .contact-icon {
+            margin-right: 10px;
+            color: var(--link-color);
+            width: 20px;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: var(--link-color);
+            color: var(--bg-color);
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .back-link:hover {
+            background-color: var(--text-color);
+            color: var(--bg-color);
+            text-decoration: none;
+        }
+
+        /* Light theme specific styling */
+        [data-theme="light"] body {
+            background-color: #ffffff;
+        }
+
+        [data-theme="light"] .navbar {
+            background-color: #f8f9fa !important;
+            border-bottom: 1px solid #dee2e6;
+        }
+
+        [data-theme="light"] .navbar-nav > li > a {
+            color: #333333 !important;
+        }
+
+        [data-theme="light"] .navbar-nav > li > a:hover {
+            color: #007bff !important;
+        }
+
+        [data-theme="light"] .navbar-nav > li.active > a {
+            color: #007bff !important;
+        }
+
+        [data-theme="light"] .light-toggle {
+            background-color: #f8f9fa;
+            border-color: #dee2e6;
+            color: #333333;
+        }
+
+        [data-theme="light"] .light-toggle:hover {
+            background-color: #007bff;
+            color: #ffffff;
+            border-color: #007bff;
+        }
+
+        [data-theme="light"] .section {
+            background-color: #ffffff;
+            border: 1px solid #e9ecef;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        [data-theme="light"] .contact-info {
+            background-color: #f8f9fa;
+            border-left: 4px solid #007bff;
+        }
+
+        [data-theme="light"] .schedule-table th {
+            background-color: #e9ecef;
+            color: #007bff;
+        }
+
+        [data-theme="light"] .schedule-table tr:hover {
+            background-color: #f8f9fa;
+        }
+
+        [data-theme="light"] .course-subtitle {
+            color: #333333;
+        }
+
+        [data-theme="light"] .section-content {
+            color: #333333;
+        }
+
+        [data-theme="light"] .schedule-table td {
+            color: #333333;
+        }
+
+        [data-theme="light"] .contact-item span {
+            color: #333333;
+        }
+
+        [data-theme="light"] .course-title {
+            color: #007bff;
+        }
+
+        [data-theme="light"] .section-title {
+            color: #007bff;
+        }
+
+        [data-theme="light"] .section-content a {
+            color: #007bff;
+        }
+
+        [data-theme="light"] .back-link {
+            background-color: #007bff;
+            color: #ffffff;
+        }
+
+        [data-theme="light"] .back-link:hover {
+            background-color: #0056b3;
+            color: #ffffff;
+        }
+
+        [data-theme="light"] .contact-icon {
+            color: #007bff;
+        }
+
+        [data-theme="light"] .course-header {
+            border-bottom-color: #007bff;
+        }
+
+        .math { font-family: Georgia, "Iowan Old Style", "Times New Roman", serif; font-style: italic; }
+        .top-grid { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(140px, .5fr) minmax(140px, .5fr) auto; gap: 12px; align-items: end; }
+        .main-grid { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(280px, .75fr); gap: 16px; align-items: start; margin-top: 16px; }
+        .side { display: grid; gap: 16px; }
+        .panel {
+            background: var(--navbar-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 14px;
+        }
+        .panel h3 { font-size: 16px; font-weight: 600; margin: 0 0 4px; }
+        .small { color: var(--viz-soft); font-size: 13px; line-height: 1.45; }
+        .explorer label { font-size: 14px; font-weight: 600; margin-bottom: 4px; display: block; }
+        .explorer input {
+            width: 100%;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 8px 10px;
+            background: var(--card-bg);
+            color: var(--text-color);
+            font-size: 16px;
+        }
+        .explorer input:focus-visible, .jump:focus-visible { outline: 2px solid var(--link-color); outline-offset: 2px; }
+        .jump {
+            font: inherit;
+            font-size: 14px;
+            color: var(--text-color);
+            background: transparent;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 8px 14px;
+            cursor: pointer;
+            min-height: 42px;
+        }
+        .jump:hover { border-color: var(--link-color); color: var(--link-color); }
+        .jump.primary { border-color: var(--link-color); color: var(--link-color); }
+        .header-row { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px; margin-bottom: 8px; }
+        .pill { display: inline-block; border: 1px solid var(--border-color); border-radius: 999px; padding: 4px 10px; font-size: 13px; color: var(--viz-soft); }
+        svg { width: 100%; height: auto; display: block; background: var(--navbar-bg); border-radius: 8px; touch-action: none; cursor: grab; }
+        svg:active { cursor: grabbing; }
+        #circle { cursor: default; }
+        .axis-mark { stroke: var(--viz-axis); }
+        .axis-label { fill: var(--viz-soft); }
+        #arrowBlue path { fill: var(--viz-dir); }
+        #arrowGreen path { fill: var(--viz-steep); }
+        .eq { font-family: Georgia, "Times New Roman", serif; font-size: 17px; line-height: 1.7; }
+        .value { font-size: 28px; font-weight: 600; letter-spacing: -0.02em; color: var(--viz-dir); font-variant-numeric: tabular-nums; }
+        .divider { border-top: 1px solid var(--border-color); margin-top: 12px; padding-top: 12px; }
+        #error { margin-top: 8px; color: var(--viz-err); min-height: 1.2em; }
+        .actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+
+        @media (max-width: 768px) {
+            .course-title {
+                font-size: 2em;
+            }
+            
+            .section {
+                padding: 20px;
+            }
+            
+            .schedule-table {
+                font-size: 12px;
+            }
+            
+            .schedule-table th,
+            .schedule-table td {
+                padding: 8px;
+            }
+            .main-grid, .top-grid { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 560px) {
+            .top-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body data-theme="dark">
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="../../#about">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../../#publications">Publications</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../../#research">Research</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../../#services">Services</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="../../index.html">Teaching</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../../../post/index.html">Post</a>
+                </li>
+            </ul>
+            <button class="light-toggle" onclick="toggleTheme()">
+                <i class="fas fa-moon" id="theme-icon"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Course Header -->
+        <div class="course-header">
+            <h1 class="course-title">Lecture 15: Directional derivative</h1>
+            <p class="course-subtitle">MAC2313 Calculus III • Fall 2026</p>
+        </div>
+
+        <div class="section explorer">
+            <h2 class="section-title">DIRECTIONAL DERIVATIVE</h2>
+            <div class="section-content">
+                <p>Define a surface, choose a point (including expressions like <b>pi/2</b>), select a unit direction, and see the directional derivative.</p>
+                <div class="panel">
+                    <div class="top-grid">
+                        <div>
+                            <label for="fn">Define the surface &nbsp; <span class="math">z = f(x, y)</span></label>
+                            <input id="fn" value="3*exp(x)*sin(y)" aria-label="Function of x and y">
+                            <div class="small" style="margin-top:5px">Examples: <b>x^2+y^2</b>, <b>x^2-y^2</b>, <b>sin(x)+cos(y)</b>, <b>x*y</b>, <b>3*exp(x)*sin(y)</b></div>
+                        </div>
+                        <div>
+                            <label for="x0">Point x₀</label>
+                            <input id="x0" type="text" value="0">
+                            <div class="small" style="margin-top:5px">e.g. 0, pi/2, sqrt(2)</div>
+                        </div>
+                        <div>
+                            <label for="y0">Point y₀</label>
+                            <input id="y0" type="text" value="pi/2">
+                            <div class="small" style="margin-top:5px">e.g. pi/2, -pi, 1/3</div>
+                        </div>
+                        <button id="draw" class="jump primary" type="button">Draw</button>
+                    </div>
+                    <div id="error" class="small" aria-live="polite"></div>
+                </div>
+
+                <div class="main-grid">
+                    <div class="panel">
+                        <div class="header-row">
+                            <div>
+                                <h3>3D surface</h3>
+                                <div class="small"><span class="math">P = (x₀, y₀, f(x₀, y₀))</span>. The blue arrow shows the selected directional change on the tangent plane.</div>
+                            </div>
+                            <span class="pill">Drag to rotate</span>
+                        </div>
+                        <svg id="surface" viewBox="0 0 720 560" role="img" aria-label="Three-dimensional surface and directional tangent arrow">
+                            <defs>
+                                <marker id="arrowBlue" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9 Z"></path></marker>
+                                <marker id="arrowGreen" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9 Z"></path></marker>
+                            </defs>
+                            <g id="scene"></g>
+                        </svg>
+                        <div class="actions">
+                            <button id="view1" class="jump" type="button">Default view</button>
+                            <button id="view2" class="jump" type="button">Top view</button>
+                        </div>
+                    </div>
+
+                    <div class="side">
+                        <div class="panel">
+                            <h3>Choose a direction <span class="math">u</span></h3>
+                            <div class="small" style="margin-top:4px">Each radius is a unit vector in the <span class="math">xy</span>-plane. Click a direction.</div>
+                            <svg id="circle" viewBox="0 0 320 300" role="img" aria-label="Circle of selectable unit directions">
+                                <circle class="axis-mark" cx="160" cy="145" r="92" fill="none" stroke-width="2"></circle>
+                                <line class="axis-mark" x1="48" y1="145" x2="272" y2="145"></line>
+                                <line class="axis-mark" x1="160" y1="33" x2="160" y2="257"></line>
+                                <text class="axis-label" x="277" y="140" font-size="13">x</text>
+                                <text class="axis-label" x="167" y="36" font-size="13">y</text>
+                                <g id="rays"></g>
+                                <circle id="originDot" cx="160" cy="145" r="4"></circle>
+                                <text id="angleText" class="axis-label" x="160" y="286" text-anchor="middle" font-size="13"></text>
+                            </svg>
+                        </div>
+
+                        <div class="panel">
+                            <h3>Directional derivative at <span class="math">P</span></h3>
+                            <div class="eq" style="margin-top:8px">
+                                <span class="math">P</span> = <span id="point"></span><br>
+                                <span class="math">∇f(P)</span> = <span id="grad"></span><br>
+                                <span class="math">u</span> = <span id="u"></span><br>
+                                <span class="math">D<sub>u</sub>f(P) = ∇f(P) · u</span>
+                            </div>
+                            <div class="value" id="du">0</div>
+                            <div id="meaning" class="small" style="margin-top:4px"></div>
+                            <div class="divider small">
+                                Positive means the surface rises in that direction; negative means it falls; zero means no first-order change.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Back Link -->
+        <a href="MAC2313.html" class="back-link">
+            <i class="fa fa-arrow-left"></i> Back to MAC2313
+        </a>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <!-- Theme Toggle Script -->
+    <script>
+        // Check for saved theme preference or default to dark
+        const currentTheme = localStorage.getItem('theme') || 'dark';
+        document.documentElement.setAttribute('data-theme', currentTheme);
+        document.body.setAttribute('data-theme', currentTheme);
+        updateThemeIcon(currentTheme);
+
+        function toggleTheme() {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            
+            document.documentElement.setAttribute('data-theme', newTheme);
+            document.body.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateThemeIcon(newTheme);
+            window.dispatchEvent(new Event('themechange'));
+        }
+
+        function updateThemeIcon(theme) {
+            const icon = document.getElementById('theme-icon');
+            if (theme === 'dark') {
+                icon.className = 'fas fa-moon';
+            } else {
+                icon.className = 'fas fa-sun';
+            }
+        }
+    </script>
+    <script>
+    (function(){
+      function css(n){return getComputedStyle(document.documentElement).getPropertyValue(n).trim();}
+      const fnInput=document.getElementById('fn'), xInput=document.getElementById('x0'), yInput=document.getElementById('y0');
+      const err=document.getElementById('error'), scene=document.getElementById('scene'), rays=document.getElementById('rays');
+      const pointEl=document.getElementById('point'), gradEl=document.getElementById('grad'), uEl=document.getElementById('u');
+      const duEl=document.getElementById('du'), meaning=document.getElementById('meaning'), angleText=document.getElementById('angleText');
+      const surfaceSvg=document.getElementById('surface'), originDot=document.getElementById('originDot');
+      const NS='http://www.w3.org/2000/svg';
+      var theta=0, yaw=-0.78, pitch=0.58, dragging=false, lastX=0, lastY=0;
+      var f=null, x0=0, y0=Math.PI/2, z0=3, gx=3, gy=0, du=3;
+      var allowed={x:1,y:1,sin:1,cos:1,tan:1,exp:1,sqrt:1,abs:1,log:1,pi:1,e:1};
+
+      function E(tag, attrs){
+        var e=document.createElementNS(NS, tag);
+        Object.keys(attrs||{}).forEach(function(k){e.setAttribute(k, String(attrs[k]));});
+        return e;
+      }
+      function makeEvaluator(expr){
+        var words=expr.match(/[A-Za-z]+/g)||[];
+        for(var i=0;i<words.length;i++){
+          if(!allowed[words[i].toLowerCase()]) throw new Error('Allowed names: x, y, sin, cos, tan, exp, sqrt, abs, log, pi, e.');
+        }
+        if(!/^[0-9A-Za-z_+\-*/^().,\s]+$/.test(expr)) throw new Error('Unsupported symbol in expression.');
+        var js=expr.replace(/\^/g,'**').replace(/\bpi\b/gi,'PI').replace(/\be\b/g,'E');
+        var F=new Function('x','y','sin','cos','tan','exp','sqrt','abs','log','PI','E','return ('+js+');');
+        return function(x,y){
+          var v=F(x,y,Math.sin,Math.cos,Math.tan,Math.exp,Math.sqrt,Math.abs,Math.log,Math.PI,Math.E);
+          if(!Number.isFinite(v)) throw new Error('Expression is not finite.');
+          return v;
+        };
+      }
+      function evalConstant(expr){return makeEvaluator(expr)(0,0);}
+      function deriv(fun,x,y){
+        var h=1e-4*Math.max(1,Math.abs(x),Math.abs(y));
+        return [(fun(x+h,y)-fun(x-h,y))/(2*h), (fun(x,y+h)-fun(x,y-h))/(2*h)];
+      }
+      function fmt(v){
+        if(Math.abs(v)<5e-7) v=0;
+        return Math.abs(v)>=1000 ? v.toExponential(2) : v.toFixed(3).replace(/\.000$/,'');
+      }
+      function project(p,zScale){
+        var cy=Math.cos(yaw), sy=Math.sin(yaw), cp=Math.cos(pitch), sp=Math.sin(pitch);
+        var X=cy*p.x-sy*p.y, Y=sy*p.x+cy*p.y, Z=p.z*zScale;
+        var YY=cp*Y-sp*Z, s=82;
+        return {x:360+s*X, y:292-s*YY};
+      }
+      function path(points,stroke,width,opacity,zScale){
+        var d=points.map(function(p,i){var q=project(p,zScale); return (i?'L ':'M ')+q.x.toFixed(1)+' '+q.y.toFixed(1);}).join(' ');
+        scene.appendChild(E('path',{d:d,fill:'none',stroke:stroke,'stroke-width':width,opacity:opacity,'stroke-linecap':'round','stroke-linejoin':'round'}));
+      }
+      function line3(a,b,stroke,width,zScale,dash,marker){
+        var p=project(a,zScale), q=project(b,zScale);
+        var attrs={x1:p.x,y1:p.y,x2:q.x,y2:q.y,stroke:stroke,'stroke-width':width};
+        if(dash) attrs['stroke-dasharray']=dash;
+        if(marker) attrs['marker-end']=marker;
+        scene.appendChild(E('line',attrs));
+      }
+      function text3(p,text,fill,zScale){
+        var q=project(p,zScale), e=E('text',{x:q.x+5,y:q.y-5,fill:fill,'font-size':12});
+        e.textContent=text; scene.appendChild(e);
+      }
+      function updateMath(){
+        var ux=Math.cos(theta), uy=Math.sin(theta);
+        du=gx*ux+gy*uy;
+        pointEl.textContent='('+fmt(x0)+', '+fmt(y0)+')';
+        gradEl.textContent='⟨'+fmt(gx)+', '+fmt(gy)+'⟩';
+        uEl.textContent='⟨'+fmt(ux)+', '+fmt(uy)+'⟩';
+        duEl.textContent=fmt(du);
+        if(du>1e-4) meaning.innerHTML='<b>Positive:</b> f increases in this direction.';
+        else if(du<-1e-4) meaning.innerHTML='<b>Negative:</b> f decreases in this direction.';
+        else meaning.innerHTML='<b>Approximately zero:</b> no first-order change in this direction.';
+        angleText.textContent='θ = '+Math.round(theta*180/Math.PI)+'°';
+      }
+      function drawCircle(){
+        rays.replaceChildren();
+        originDot.setAttribute('fill', css('--text-color'));
+        var cx=160, cy=145, R=92, accent=css('--viz-dir'), mute=css('--viz-soft');
+        for(var i=0;i<16;i++){
+          var a=i*Math.PI/8;
+          var sel=Math.abs(Math.atan2(Math.sin(theta-a), Math.cos(theta-a)))<0.06;
+          var x=cx+R*Math.cos(a), y=cy-R*Math.sin(a);
+          var ln=E('line',{x1:cx,y1:cy,x2:x,y2:y,stroke:sel?accent:mute,'stroke-width':sel?5:2.1,'stroke-linecap':'round',style:'cursor:pointer'});
+          var dot=E('circle',{cx:x,cy:y,r:sel?6:4,fill:sel?accent:mute,style:'cursor:pointer'});
+          (function(angle){
+            var choose=function(){theta=angle; drawCircle(); updateMath(); drawSurface();};
+            ln.addEventListener('click', choose);
+            dot.addEventListener('click', choose);
+          })(a);
+          rays.appendChild(ln); rays.appendChild(dot);
+        }
+      }
+      function drawSurface(){
+        if(!f) return;
+        scene.replaceChildren();
+        var C={surface:css('--viz-surface'), dir:css('--viz-dir'), steep:css('--viz-steep'), axis:css('--viz-axis'), soft:css('--viz-soft'), ink:css('--text-color')};
+        var vals=[], zmin=Infinity, zmax=-Infinity;
+        var R=Math.max(2.5, Math.min(5, Math.max(Math.abs(x0), Math.abs(y0))+1.5));
+        var N=25;
+        try{
+          for(var i=0;i<=N;i++){
+            var row=[], x=-R+2*R*i/N;
+            for(var j=0;j<=N;j++){
+              var y=-R+2*R*j/N, z=Math.max(-15, Math.min(15, f(x,y)));
+              row.push({x:x,y:y,z:z});
+              zmin=Math.min(zmin,z); zmax=Math.max(zmax,z);
+            }
+            vals.push(row);
+          }
+        }catch(e){ err.textContent=e.message; return; }
+        var span=Math.max(1,zmax-zmin), zScale=2.7/span, zBase=zmin-0.08*span;
+        line3({x:-R*1.1,y:0,z:zBase},{x:R*1.1,y:0,z:zBase},C.axis,1.3,zScale);
+        line3({x:0,y:-R*1.1,z:zBase},{x:0,y:R*1.1,z:zBase},C.axis,1.3,zScale);
+        text3({x:R*1.1,y:0,z:zBase},'x',C.soft,zScale);
+        text3({x:0,y:R*1.1,z:zBase},'y',C.soft,zScale);
+        for(var ii=0;ii<=N;ii+=2) path(vals[ii],C.surface,1.05,0.55,zScale);
+        for(var jj=0;jj<=N;jj+=2){
+          var col=[];
+          for(var k=0;k<=N;k++) col.push(vals[k][jj]);
+          path(col,C.surface,1.05,0.55,zScale);
+        }
+        var P={x:x0,y:y0,z:z0}, q=project(P,zScale);
+        scene.appendChild(E('circle',{cx:q.x,cy:q.y,r:7,fill:C.ink}));
+        text3(P,'P',C.ink,zScale);
+        line3({x:x0,y:y0,z:zBase},P,C.soft,1.2,zScale,'5 5');
+        var ux=Math.cos(theta), uy=Math.sin(theta), m=Math.hypot(ux,uy,du)||1, s=0.95;
+        var end={x:x0+s*ux/m,y:y0+s*uy/m,z:z0+s*du/m};
+        line3(P,end,C.dir,3.5,zScale,'','url(#arrowBlue)');
+        text3(end,'direction u',C.dir,zScale);
+        var d=0.72;
+        path([[-d,-d],[d,-d],[d,d],[-d,d],[-d,-d]].map(function(ab){
+          return {x:x0+ab[0], y:y0+ab[1], z:z0+gx*ab[0]+gy*ab[1]};
+        }), C.steep, 2, 0.85, zScale);
+        var gn=Math.hypot(gx,gy);
+        if(gn>1e-9){
+          var sc=0.7/gn;
+          var ge={x:x0+sc*gx, y:y0+sc*gy, z:z0+sc*(gx*gx+gy*gy)};
+          line3(P,ge,C.steep,2.7,zScale,'','url(#arrowGreen)');
+          text3(ge,'steepest increase',C.steep,zScale);
+        }
+      }
+      function rebuild(){
+        err.textContent='';
+        try{
+          f=makeEvaluator(fnInput.value.trim());
+          x0=evalConstant(xInput.value.trim());
+          y0=evalConstant(yInput.value.trim());
+          z0=f(x0,y0);
+          var g=deriv(f,x0,y0); gx=g[0]; gy=g[1];
+          updateMath(); drawCircle(); drawSurface();
+        }catch(e){ err.textContent=e.message; }
+      }
+      document.getElementById('draw').addEventListener('click', rebuild);
+      [fnInput,xInput,yInput].forEach(function(inp){
+        inp.addEventListener('keydown', function(e){ if(e.key==='Enter') rebuild(); });
+      });
+      document.getElementById('view1').addEventListener('click', function(){ yaw=-0.78; pitch=0.58; drawSurface(); });
+      document.getElementById('view2').addEventListener('click', function(){ yaw=0; pitch=1.18; drawSurface(); });
+      surfaceSvg.addEventListener('pointerdown', function(e){
+        dragging=true; lastX=e.clientX; lastY=e.clientY;
+        try{surfaceSvg.setPointerCapture(e.pointerId);}catch(_){}
+      });
+      surfaceSvg.addEventListener('pointermove', function(e){
+        if(!dragging) return;
+        var dx=e.clientX-lastX, dy=e.clientY-lastY;
+        lastX=e.clientX; lastY=e.clientY;
+        yaw+=dx*0.008;
+        pitch=Math.max(-1.25, Math.min(1.25, pitch-dy*0.008));
+        drawSurface();
+      });
+      function stop(e){ dragging=false; try{surfaceSvg.releasePointerCapture(e.pointerId);}catch(_){} }
+      surfaceSvg.addEventListener('pointerup', stop);
+      surfaceSvg.addEventListener('pointercancel', stop);
+      window.addEventListener('themechange', function(){ drawCircle(); drawSurface(); });
+      rebuild();
+    })();
+    </script>
+</body>
+</html> 
