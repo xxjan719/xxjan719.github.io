@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/academicons@1.9.1/css/academicons.min.css">
     
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
@@ -49,13 +49,29 @@
             color: var(--text-color);
             transition: background-color 0.3s ease, color 0.3s ease;
             line-height: 1.6;
+            padding-top: 64px;
         }
 
         .navbar {
             background-color: var(--navbar-bg) !important;
-            border-bottom: 1px solid var(--border-color);
+            box-shadow: var(--shadow);
             padding: 8px 0;
-            transition: all 0.3s ease;
+            transition: background-color 0.3s ease;
+        }
+
+        .navbar-nav {
+            float: right !important;
+        }
+
+        .toggle-container {
+            margin-left: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar .container {
+            padding-top: 0;
+            padding-bottom: 0;
         }
 
         .navbar-nav > li > a {
@@ -70,41 +86,32 @@
             color: var(--link-color) !important;
         }
 
+        .navbar-nav > li > a:visited {
+            color: var(--navbar-text) !important;
+        }
+
         .navbar-nav > li.active > a {
-            color: var(--link-color) !important;
-            font-weight: 500;
+            color: var(--navbar-text) !important;
+            font-weight: 400;
+            background-color: rgba(255,255,255,0.12);
+            border-radius: 4px;
         }
 
-        .light-toggle {
-            background: var(--navbar-bg);
-            border: 2px solid var(--border-color);
+        #light-toggle {
+            background: none;
+            border: none;
             color: var(--navbar-text);
-            font-size: 18px;
+            font-size: 16px;
             cursor: pointer;
-            padding: 10px 15px;
-            border-radius: 8px;
-            transition: all 0.3s ease;
-            margin-left: 20px;
-            min-width: 50px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            padding: 0;
+            min-width: 0;
+            transition: color 0.3s ease;
         }
 
-        .light-toggle:hover {
-            background-color: var(--link-color);
-            color: var(--bg-color);
-            border-color: var(--link-color);
-            transform: scale(1.05);
-        }
-
-        .light-toggle:focus {
-            outline: none;
-            box-shadow: 0 0 0 3px var(--link-color);
-        }
-
-        .light-toggle:active {
-            transform: scale(0.95);
+        #light-toggle:hover {
+            color: var(--link-color);
+            background: none;
+            transform: none;
         }
 
         .container {
@@ -239,8 +246,8 @@
         }
 
         [data-theme="light"] .navbar {
-            background-color: #f8f9fa !important;
-            border-bottom: 1px solid #dee2e6;
+            background-color: #ffffff !important;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
 
         [data-theme="light"] .navbar-nav > li > a {
@@ -252,19 +259,20 @@
         }
 
         [data-theme="light"] .navbar-nav > li.active > a {
-            color: #007bff !important;
+            color: #333333 !important;
+            background-color: rgba(0,0,0,0.08);
+            border-radius: 4px;
         }
 
-        [data-theme="light"] .light-toggle {
-            background-color: #f8f9fa;
-            border-color: #dee2e6;
+        [data-theme="light"] #light-toggle {
+            background: none;
+            border: none;
             color: #333333;
         }
 
-        [data-theme="light"] .light-toggle:hover {
-            background-color: #007bff;
-            color: #ffffff;
-            border-color: #007bff;
+        [data-theme="light"] #light-toggle:hover {
+            background: none;
+            color: #007bff;
         }
 
         [data-theme="light"] .section {
@@ -355,33 +363,47 @@
 </head>
 <body data-theme="dark">
     <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg">
+    <header>
+      <nav id="navbar" class="navbar navbar-light navbar-expand-sm fixed-top" role="navigation">
         <div class="container">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="../../#about">About</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="../../#publications">Publications</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="../../#research">Research</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="../../#services">Services</a>
-                </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="../../index.html">Teaching</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="../../../post/index.html">Post</a>
-                </li>
+          <button class="navbar-toggler collapsed ml-auto" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar top-bar"></span>
+            <span class="icon-bar middle-bar"></span>
+            <span class="icon-bar bottom-bar"></span>
+          </button>
+          <div class="collapse navbar-collapse text-right" id="navbarNav">
+            <ul class="navbar-nav ml-auto flex-nowrap">
+              <li class="nav-item">
+                <a class="nav-link" href="../../../">About</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="../../../#publications">Publications</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="../../../#research">Research</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="../../../#services">Services</a>
+              </li>
+              <li class="nav-item active">
+                <a class="nav-link" href="../../index.html">Teaching
+                  <span class="sr-only">(current)</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="../../../post/">Post</a>
+              </li>
+              <li class="toggle-container">
+                <button id="light-toggle" title="Change theme" onclick="toggleTheme()">
+                  <i class="fa fa-moon-o" id="theme-icon"></i>
+                </button>
+              </li>
             </ul>
-            <button class="light-toggle" onclick="toggleTheme()">
-                <i class="fas fa-moon" id="theme-icon"></i>
-            </button>
+          </div>
         </div>
-    </nav>
+      </nav>
+    </header>
 
     <!-- Main Content -->
     <div class="container">
@@ -438,13 +460,14 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
     
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <!-- Theme Toggle Script -->
     <script>
         // Check for saved theme preference or default to dark
         const currentTheme = localStorage.getItem('theme') || 'dark';
         document.documentElement.setAttribute('data-theme', currentTheme);
+        document.body.setAttribute('data-theme', currentTheme);
         updateThemeIcon(currentTheme);
 
         function toggleTheme() {
@@ -452,17 +475,16 @@
             const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
             
             document.documentElement.setAttribute('data-theme', newTheme);
+            document.body.setAttribute('data-theme', newTheme);
             localStorage.setItem('theme', newTheme);
             updateThemeIcon(newTheme);
+            window.dispatchEvent(new Event('themechange'));
         }
 
         function updateThemeIcon(theme) {
             const icon = document.getElementById('theme-icon');
-            if (theme === 'dark') {
-                icon.className = 'fas fa-moon';
-            } else {
-                icon.className = 'fas fa-sun';
-            }
+            if (!icon) return;
+            icon.className = theme === 'light' ? 'fa fa-moon-o' : 'fa fa-sun-o';
         }
     </script>
 </body>
